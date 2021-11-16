@@ -23,15 +23,14 @@ https://youtu.be/O1WwJ0uXl94
 
 ## Team
 
-**Team Name**: *Edit this to your official team name*
+**Team Name**: The Dangling Pointers
 
 Team member Names:
 
-1. *TODO my name is...*
-2. *TODO my name is...*
-3. *TODO my name is...*
-4. *TODO my name is...*
-5. *TODO my name is...*
+1. Alex Thrush
+2. Hualin Bai
+3. Jackson Steilberg
+4. Yufeng Gao
 
 # Team spread sheet 
 
