@@ -1,0 +1,4 @@
+/home/george/CS5500/finalproject-team-20-the-dangling-pointers/labs/Lab8_Networking/part1/bin/CMakeFiles/rebuild_cache.dir
+/home/george/CS5500/finalproject-team-20-the-dangling-pointers/labs/Lab8_Networking/part1/bin/CMakeFiles/edit_cache.dir
+/home/george/CS5500/finalproject-team-20-the-dangling-pointers/labs/Lab8_Networking/part1/bin/CMakeFiles/App_Test.dir
+/home/george/CS5500/finalproject-team-20-the-dangling-pointers/labs/Lab8_Networking/part1/bin/CMakeFiles/App.dir
