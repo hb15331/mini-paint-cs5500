@@ -18,21 +18,23 @@ The first stage we learned in the software development life cycle is planning.
 
 ## Timeline
 
-- Date:
-	- Task/Milestone to be completed
-- Date:
-	- Task/Milestone to be completed
-- Date:
-	- Task/Milestone to be completed
-- Date:
-	- Task/Milestone to be completed
-- Date:
-	- Task/Milestone to be completed
-- Date:
-	- Task/Milestone to be completed
-- Date:
-	- Task/Milestone to be completed
-- Date:
-	- Task/Milestone to be completed
-- Date:
-	- Task/Milestone to be completed
+- Date: November 22nd
+	- Milestone 1 - Use Cases (add 15 tasks)
+- Date: November 22nd
+	- Milestone 2 - Integrate previous assignments
+- Date: November 24th
+	- Milestone 4 - Milestone check-in #1
+- Date: November 29th
+	- Milestone 3 - Networking Feature
+- Date: December 1st
+	- Milestone 5 - Extra Feature
+- Date: December 3rd
+	- Milestone 6 - Milestone check-in #2
+- Date: December 6th
+	- Milestone 7 - Building Software
+- Date: December 8th
+	- Milestone 8 - Code documentation and project structure
+- Date: December 10th
+	- Milestone 9 - Testing
+- Date: December 12th
+	- Milestone 10 - Video
