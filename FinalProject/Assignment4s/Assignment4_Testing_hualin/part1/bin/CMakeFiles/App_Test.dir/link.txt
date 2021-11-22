@@ -1,0 +1,1 @@
+/usr/bin/c++ CMakeFiles/App_Test.dir/src/App.cpp.o CMakeFiles/App_Test.dir/src/Command.cpp.o CMakeFiles/App_Test.dir/src/Draw.cpp.o CMakeFiles/App_Test.dir/tests/main_test.cpp.o CMakeFiles/App_Test.dir/tests/catch_amalgamated.cpp.o -o App_Test  -lsfml-graphics -lsfml-window -lsfml-system 
