@@ -6,5 +6,5 @@ CXX_FLAGS =   -g -std=gnu++17
 
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/home/george/CS5500/monorepo-yufeng-gao/Assignment4_Testing/part1/./include -I/home/george/CS5500/monorepo-yufeng-gao/Assignment4_Testing/part1/./tests 
+CXX_INCLUDES = -I/home/george/CS5500/finalproject-team-20-the-dangling-pointers/FinalProject/Assignment4s/A4_Yufeng/part1/./include -I/home/george/CS5500/finalproject-team-20-the-dangling-pointers/FinalProject/Assignment4s/A4_Yufeng/part1/./tests 
 

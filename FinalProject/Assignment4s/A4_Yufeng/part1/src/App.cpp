@@ -12,6 +12,7 @@
 #include <SFML/Graphics/Sprite.hpp>
 // Include standard library C++ libraries.
 #include <cassert>
+#include <memory>
 // Project header files
 #include "App.hpp"
 
@@ -30,9 +31,9 @@
 *
 */
 App::App()
-: m_commands(std::queue<Command*>()),
-m_undo(std::stack<Command*>()),
-m_redo(std::stack<Command*>()),
+: m_commands(std::queue<std::shared_ptr<Command>>()),
+m_undo(std::stack<std::shared_ptr<Command>>()),
+m_redo(std::stack<std::shared_ptr<Command>>()),
 m_image(new sf::Image),
 m_sprite(new sf::Sprite),
 m_texture(new sf::Texture),
@@ -55,19 +56,13 @@ App::~App(){
 	delete m_sprite;
 	delete m_texture;
 	while(!m_redo.empty()) {
-		Command* disposed = m_redo.top();
 		m_redo.pop();
-		delete disposed;
 	}
 	while(!m_undo.empty()) {
-		Command* disposed = m_undo.top();
 		m_undo.pop();
-		delete disposed;
 	}
 	while(!m_commands.empty()) {
-		Command* disposed = m_commands.front();
 		m_commands.pop();
-		delete disposed;
 	}
 }
 
@@ -75,7 +70,7 @@ App::~App(){
 *		a command to a data structure. 
 *		
 */
-void App::AddCommand(Command* c){
+void App::AddCommand(std::shared_ptr<Command> c){
 	if(c != nullptr){
 		m_commands.push(c);
 	}
@@ -87,23 +82,18 @@ void App::AddCommand(Command* c){
 */
 void App::ExecuteCommand(){
 	while(!m_commands.empty()){
-		Command* item = m_commands.front();
-		if (m_undo.empty() || !m_undo.top()->isEqual(*item)) {
-			if (item->execute()) {
-				m_undo.push(item);
+		if (m_undo.empty() || !m_undo.top()->isEqual(*m_commands.front())) {
+			if (m_commands.front()->execute()) {
+				m_undo.push(m_commands.front());
 			}
 			while(!m_redo.empty()) {
-				Command* disposed = m_redo.top();
 				//destruct the Command pointer
 				m_redo.pop();
-				//delete the Command object from memory
-				delete disposed;
 			}
 			m_commands.pop();
 		}
 		else {
 			m_commands.pop();
-			delete item;
 		}
 	}
 }
@@ -113,9 +103,8 @@ void App::ExecuteCommand(){
 */
 void App::Undo(){
 	if (!m_undo.empty()) {
-		Command* item = m_undo.top();
-		if (item->undo()){
-			m_redo.push(item);
+		if (m_undo.top()->undo()){
+			m_redo.push(m_undo.top());
 		};
 		m_undo.pop();
 	}
@@ -126,9 +115,8 @@ void App::Undo(){
 */
 void App::Redo(){
 	if (!m_redo.empty()){
-		Command* item = m_redo.top();
-		if (item->execute()){
-			m_undo.push(item);
+		if (m_redo.top()->execute()){
+			m_undo.push(m_redo.top());
 		};
 		m_redo.pop();
 	}

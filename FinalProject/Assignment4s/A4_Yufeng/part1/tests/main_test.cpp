@@ -15,6 +15,7 @@
 #include <SFML/Graphics/Sprite.hpp>
 // Include standard library C++ libraries.
 #include <iostream>
+#include <memory>
 #include <string>
 // Project header files
 #include "App.hpp"
@@ -58,8 +59,7 @@ void update(App& appObject){
 		int xSize = (int) image.getSize().x;
 		int ySize = (int) (image.getSize().y);
 		if (coordinate.x >= 0 && coordinate.x < xSize && coordinate.y >=0 && coordinate.y < ySize) {
-			Draw* command = new Draw(coordinate.x, coordinate.y, sf::Color::Red, appObject.GetImage());
-			appObject.AddCommand(command);
+			appObject.AddCommand(std::make_shared<Draw>(coordinate.x, coordinate.y, sf::Color::Red, appObject.GetImage()));
 			appObject.ExecuteCommand();
 		}
 	}
@@ -130,8 +130,7 @@ TEST_CASE("test draw command") {
     testApp.UpdateCallback(&mock_update);
     testApp.DrawCallback(&mock_draw);
     REQUIRE(testApp.GetImage().getPixel(0,0)==sf::Color::White);
-    Draw* command = new Draw(0, 0, sf::Color::Red, testApp.GetImage());
-    testApp.AddCommand(command);
+    testApp.AddCommand(std::make_shared<Draw>(0, 0, sf::Color::Red, testApp.GetImage()));
     testApp.ExecuteCommand();
     REQUIRE(testApp.GetImage().getPixel(0,0)==sf::Color::Red);
 }
@@ -163,8 +162,7 @@ TEST_CASE("test undo on single valid command") {
     testApp.UpdateCallback(&mock_update);
     testApp.DrawCallback(&mock_draw);
     REQUIRE(testApp.GetImage().getPixel(0,0)==sf::Color::White);
-    Draw* command = new Draw(0, 0, sf::Color::Red, testApp.GetImage());
-    testApp.AddCommand(command);
+    testApp.AddCommand(std::make_shared<Draw>(0, 0, sf::Color::Red, testApp.GetImage()));
     testApp.ExecuteCommand();
     REQUIRE(testApp.GetImage().getPixel(0,0)==sf::Color::Red);
     testApp.Undo();
@@ -177,8 +175,7 @@ TEST_CASE("test redo on single valid command") {
     testApp.UpdateCallback(&mock_update);
     testApp.DrawCallback(&mock_draw);
     REQUIRE(testApp.GetImage().getPixel(0,0)==sf::Color::White);
-    Draw* command = new Draw(0, 0, sf::Color::Red, testApp.GetImage());
-    testApp.AddCommand(command);
+    testApp.AddCommand(std::make_shared<Draw>(0, 0, sf::Color::Red, testApp.GetImage()));
     testApp.ExecuteCommand();
     REQUIRE(testApp.GetImage().getPixel(0,0)==sf::Color::Red);
     testApp.Undo();
@@ -193,15 +190,13 @@ TEST_CASE("test invalid redo after executing a new command") {
     testApp.UpdateCallback(&mock_update);
     testApp.DrawCallback(&mock_draw);
     REQUIRE(testApp.GetImage().getPixel(0,0)==sf::Color::White);
-    Draw* command1 = new Draw(0, 0, sf::Color::Red, testApp.GetImage());
-    testApp.AddCommand(command1);
+    testApp.AddCommand(std::make_shared<Draw>(0, 0, sf::Color::Red, testApp.GetImage()));
     testApp.ExecuteCommand();
     REQUIRE(testApp.GetImage().getPixel(0,0)==sf::Color::Red);
     //undo command1
     testApp.Undo();
     REQUIRE(testApp.GetImage().getPixel(0,0)==sf::Color::White);
-    Draw* command2 = new Draw(0, 0, sf::Color::Blue, testApp.GetImage());
-    testApp.AddCommand(command2);
+    testApp.AddCommand(std::make_shared<Draw>(0, 0, sf::Color::Blue, testApp.GetImage()));
     testApp.ExecuteCommand();
     //Call redo when there are no valid redo commands
     //after setting pixel at (0,0) to blue using new command

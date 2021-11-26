@@ -22,6 +22,7 @@
 #include <SFML/Graphics/Sprite.hpp>
 // Include standard library C++ libraries.
 #include <iostream>
+#include <memory>
 #include <string>
 // Project header files
 #include "App.hpp"
@@ -66,8 +67,7 @@ void update(App& appObject){
 		int xSize = (int) image.getSize().x;
 		int ySize = (int) (image.getSize().y);
 		if (coordinate.x >= 0 && coordinate.x < xSize && coordinate.y >=0 && coordinate.y < ySize) {
-			Draw* command = new Draw(coordinate.x, coordinate.y, sf::Color::Red, appObject.GetImage());
-			appObject.AddCommand(command);
+			appObject.AddCommand(std::make_shared<Draw>(coordinate.x, coordinate.y, sf::Color::Red, appObject.GetImage()));
 			appObject.ExecuteCommand();
 		}
 	}

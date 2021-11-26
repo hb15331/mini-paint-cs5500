@@ -15,6 +15,7 @@
 // Include standard library C++ libraries.
 #include <queue>
 #include <stack>
+#include <memory>
 #include "Command.hpp"
 // Project header files
 // #include ...
@@ -24,11 +25,11 @@ class App{
 private:
 // Member variables
 	// Queue stores the next command to do.
-	std::queue<Command*> m_commands;
+	std::queue<std::shared_ptr<Command>> m_commands;
 	// Stack that stores the last action to occur.
-	std::stack<Command*> m_undo;
+	std::stack<std::shared_ptr<Command>> m_undo;
 	// Stack that stores the last action to redo.
-	std::stack<Command*> m_redo;
+	std::stack<std::shared_ptr<Command>> m_redo;
 	// Main image	
 	sf::Image* m_image;
 	// Create a sprite that we overaly
@@ -68,7 +69,7 @@ public:
 // Member functions
 	App();
 	~App();
-	void AddCommand(Command* c);
+	void AddCommand(std::shared_ptr<Command> c);
 	void ExecuteCommand();
 	void Undo();
 	void Redo();
