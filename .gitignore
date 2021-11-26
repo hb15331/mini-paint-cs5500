@@ -9,6 +9,5 @@
 *.dll
 *.gcda
 *.gcno
-
 bin/
 obj/
