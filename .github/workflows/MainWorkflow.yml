@@ -51,6 +51,6 @@ jobs:
         run: cd ./labs/Lab10_CI/bin && xvfb-run --server-args="-screen 0 1024x768x24" ./App_Test
       # Run cppcheck over all the files in ./src
       - name: Build the mini-paint application
-        run: cd ./labs/Lab10_CI/src && g++ -g -Wall -std=c++17 *.cpp -o App -lsfml-graphics -lsfml-window -lsfml-system
+        run: cd ./labs/Lab10_CI && g++ -g -Wall -std=c++17 ./src/*.cpp -I./include/ -o App -lsfml-graphics -lsfml-window -lsfml-system
       - name: Run cppcheck
         run: cd ./labs/Lab10_CI/src && cppcheck --enable=all *.cpp
