@@ -1,1 +1,0 @@
-/usr/bin/c++ CMakeFiles/APP_NAME.dir/main.cpp.o CMakeFiles/APP_NAME.dir/Singleton.cpp.o -o APP_NAME 

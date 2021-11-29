@@ -1,3 +1,0 @@
-/home/user/monorepo-hb15331/Assignment4_Testing/part1/tutorial/SingletonExample/CMakeFiles/rebuild_cache.dir
-/home/user/monorepo-hb15331/Assignment4_Testing/part1/tutorial/SingletonExample/CMakeFiles/APP_NAME.dir
-/home/user/monorepo-hb15331/Assignment4_Testing/part1/tutorial/SingletonExample/CMakeFiles/edit_cache.dir
