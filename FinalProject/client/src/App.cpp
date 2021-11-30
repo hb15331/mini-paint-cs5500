@@ -34,6 +34,7 @@ App::App()
 : m_commands(std::queue<std::shared_ptr<Command>>()),
 m_undo(std::stack<std::shared_ptr<Command>>()),
 m_redo(std::stack<std::shared_ptr<Command>>()),
+m_selected_color(sf::Color::Red),
 m_image(new sf::Image),
 m_sprite(new sf::Sprite),
 m_texture(new sf::Texture),
@@ -96,6 +97,18 @@ void App::ExecuteCommand(){
 			m_commands.pop();
 		}
 	}
+}
+
+/*! \brief 	Get the color used by client for painting. Default color is red.
+*/
+sf::Color& App::GetSelectedColor(){
+	return m_selected_color;
+}
+
+/*! \brief 	Set the color used by client for painting.
+*/
+void App::SetSelectedColor(sf::Color color){
+	m_selected_color = color;
 }
 
 /*! \brief 	Undo the latest command that has executed.

@@ -30,6 +30,8 @@ private:
 	std::stack<std::shared_ptr<Command>> m_undo;
 	// Stack that stores the last action to redo.
 	std::stack<std::shared_ptr<Command>> m_redo;
+	// Color that is selected for painting. Default is red
+	sf::Color m_selected_color;
 	// Main image	
 	sf::Image* m_image;
 	// Create a sprite that we overaly
@@ -71,6 +73,8 @@ public:
 	~App();
 	void AddCommand(std::shared_ptr<Command> c);
 	void ExecuteCommand();
+	sf::Color& GetSelectedColor();
+	void SetSelectedColor(sf::Color color);
 	void Undo();
 	void Redo();
 	sf::Image& GetImage();

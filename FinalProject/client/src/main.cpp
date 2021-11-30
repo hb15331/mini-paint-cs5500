@@ -57,6 +57,38 @@ void update(App& appObject){
 			else if(event.key.code==sf::Keyboard::Z) {
 				appObject.Undo();
 			}
+			if (event.key.code == sf::Keyboard::Num1 || event.key.code == sf::Keyboard::Numpad1)
+			{
+				appObject.SetSelectedColor(sf::Color::Black);
+			}
+			if (event.key.code == sf::Keyboard::Num2 || event.key.code == sf::Keyboard::Numpad2)
+			{
+				appObject.SetSelectedColor(sf::Color::White);
+			}
+			if (event.key.code == sf::Keyboard::Num3 || event.key.code == sf::Keyboard::Numpad3)
+			{
+				appObject.SetSelectedColor(sf::Color::Red);
+			}
+			if (event.key.code == sf::Keyboard::Num4 || event.key.code == sf::Keyboard::Numpad4)
+			{
+				appObject.SetSelectedColor(sf::Color::Green);
+			}
+			if (event.key.code == sf::Keyboard::Num5 || event.key.code == sf::Keyboard::Numpad5)
+			{
+				appObject.SetSelectedColor(sf::Color::Blue);
+			}
+			if (event.key.code == sf::Keyboard::Num6 || event.key.code == sf::Keyboard::Numpad6)
+			{
+				appObject.SetSelectedColor(sf::Color::Yellow);
+			}
+			if (event.key.code == sf::Keyboard::Num7 || event.key.code == sf::Keyboard::Numpad7)
+			{
+				appObject.SetSelectedColor(sf::Color::Magenta);
+			}
+			if (event.key.code == sf::Keyboard::Num8 || event.key.code == sf::Keyboard::Numpad8)
+			{
+				appObject.SetSelectedColor(sf::Color::Cyan);
+			}
 		}
 	}
 	// We can otherwise handle events normally
@@ -67,7 +99,7 @@ void update(App& appObject){
 		int xSize = (int) image.getSize().x;
 		int ySize = (int) (image.getSize().y);
 		if (coordinate.x >= 0 && coordinate.x < xSize && coordinate.y >=0 && coordinate.y < ySize) {
-			appObject.AddCommand(std::make_shared<Draw>(coordinate.x, coordinate.y, sf::Color::Red, appObject.GetImage()));
+			appObject.AddCommand(std::make_shared<Draw>(coordinate.x, coordinate.y, appObject.GetSelectedColor(), appObject.GetImage()));
 			appObject.ExecuteCommand();
 		}
 	}
