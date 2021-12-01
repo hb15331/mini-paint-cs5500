@@ -1,7 +1,7 @@
 ####################################################
 # CMake is a build file generator.
 # It does not compile your software, but
-# rather uses the CMake Language to 
+# rather uses the CMake Language to
 # figure out how to generate another file
 # for which you can then use to build projects.
 # CMake is a specification language for build tools.
@@ -32,7 +32,7 @@
 ####################################################
 
 ####################################################
-# Writing a CMake file involves writing one 
+# Writing a CMake file involves writing one
 # cmake command per line.
 
 # The minimum required version of CMake to use
@@ -55,6 +55,7 @@ set(CMAKE_CXX_STANDARD 17)
 # Where are the include directories
 include_directories("/usr/include/")
 include_directories("./include/")
+include_directories("../include/")
 include_directories("./tests/")
 
 # Where are the libraries
@@ -70,6 +71,8 @@ link_directories("/usr/lib/x86_64-linux-gnu/")
 # Here is an example below adding multiple files
 add_executable(App ./src/App.cpp ./src/Draw.cpp ./src/Command.cpp ./src/UDPNetworkClient.cpp ./src/main.cpp)
 add_executable(App_Test ./src/App.cpp ./src/Command.cpp ./src/Draw.cpp ./src/UDPNetworkClient.cpp ./tests/main_test.cpp ./tests/catch_amalgamated.cpp)
+add_executable(Server ./src/Draw.cpp ./src/Command.cpp ./src/UDPNetworkServer.cpp ./src/server_main.cpp)
+add_executable(Server_Test ./src/Command.cpp ./src/Draw.cpp ./src/UDPNetworkServer.cpp ./tests/server_main_test.cpp ./tests/catch_amalgamated.cpp)
 
 # Add any libraries
 # On linux, you can use the handy 'apt-file' tool to find
@@ -78,7 +81,9 @@ add_executable(App_Test ./src/App.cpp ./src/Command.cpp ./src/Draw.cpp ./src/UDP
 #   	sudo apt-file update
 # 	apt-file find Texture.hpp
 target_link_libraries(App sfml-graphics sfml-window sfml-system sfml-network)
+target_link_libraries(Server sfml-graphics sfml-window sfml-system sfml-network)
 target_link_libraries(App_Test sfml-graphics sfml-window sfml-system sfml-network)
+target_link_libraries(Server_Test sfml-graphics sfml-window sfml-system sfml-network)
 
 # Add any command line compilation options
 target_compile_options(App PRIVATE -g -Weffc++ -Wall -Wextra)
