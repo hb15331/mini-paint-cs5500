@@ -1,16 +1,16 @@
-/** 
- *  @file   main.cpp 
+/**
+ *  @file   main.cpp
  *  @brief  Entry point into the program.
- *  @author Mike and Yufeng Gao 
- *  @date   2021-18-10 
+ *  @author Mike and Yufeng Gao
+ *  @date   2021-18-10
  ***********************************************/
 
 // Compile: Use a CMakeLists.txt to generate a build file or you can try compiling with:
 // g++ -std=c++17 ./src/*.cpp -I./include/ -o App -lsfml-graphics -lsfml-window -lsfml-system
 //
-// Note:	If your compiler does not support -std=c++17, 
+// Note:	If your compiler does not support -std=c++17,
 //		    then try -std=c++14 then -std=c++11.
-//		
+//
 // HOW TO RUN
 //
 // ./App
@@ -29,28 +29,28 @@
 #include "Command.hpp"
 #include "Draw.hpp"
 
-
 /*! \brief 	Call any initailization functions here.
 *		This might be for example setting up any
 *		global variables, allocating memory,
 *		dynamically loading any libraries, or
 *		doing nothing at all.
-*		
+*
 */
-void initialization(void){
+void initialization(App& appObject){
+  appObject.createUDPNetworkClient();
 	std::cout << "Starting the App" << std::endl;
 }
 
 /*! \brief 	The update function for app to handle events.
 * 		This includes mouse and key events for draw, undo, redo
 *		and exit.
-*		
+*
 */
 void update(App& appObject){
 	// Update our canvas
 	sf::Event event;
 	while(appObject.GetWindow().pollEvent(event)){
-		if(event.type == sf::Event::KeyPressed){				
+		if(event.type == sf::Event::KeyPressed){
 			if(event.key.code==sf::Keyboard::Y) {
 				appObject.Redo();
 			}
@@ -116,39 +116,39 @@ void update(App& appObject){
 	if(sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)){
 		exit(EXIT_SUCCESS);
 	}
-	
+
 	// Where was the mouse previously before going to the next frame
 	appObject.pmouseX = appObject.mouseX;
 	appObject.pmouseY = appObject.mouseY;
 }
 
 
-/*! \brief 	The draw call 
-*		
+/*! \brief 	The draw call
+*
 */
 void draw(App& appObject){
-	// Static variable 
+	// Static variable
 	static int refreshRate = 0;
-	++refreshRate;	// Increment 
+	++refreshRate;	// Increment
 
 
-	// We load into our texture the modified pixels	
+	// We load into our texture the modified pixels
 	// But we only do so every 10 draw calls to reduce latency of transfer
 	// between the GPU and CPU.
 	// Ask yourself: Could we do better with sf::Clock and refresh once
-	// 	 	 every 'x' frames? 
+	// 	 	 every 'x' frames?
 	if(refreshRate>10){
-		appObject.GetTexture().loadFromImage(appObject.GetImage());	
+		appObject.GetTexture().loadFromImage(appObject.GetImage());
 		refreshRate =0;
 	}
 }
 
- 
+
 /*! \brief 	The entry point into our program.
-*		
+*
 */
 int main(){
-	App drawApp;
+	App drawApp("test_user", 50001);
 	// Call any setup function
 	// Passing a function pointer into the 'init' function.
 	// of our application.

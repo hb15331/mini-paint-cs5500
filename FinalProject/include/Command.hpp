@@ -1,8 +1,8 @@
-/** 
- *  @file   Command.hpp 
+/**
+ *  @file   Command.hpp
  *  @brief  Represents an actionable command by the user.
- *  @author Mike and ???? 
- *  @date   yyyy-dd-mm 
+ *  @author Mike and Yufeng Gao
+ *  @date   2021-18-10
  ***********************************************/
 #ifndef COMMAND_HPP
 #define COMMAND_HPP
@@ -11,18 +11,17 @@
 // #include ...
 // Include standard library C++ libraries.
 #include <string>
-// Project header files
-// #include ...
 
 // The command class
 class Command{
 private:
 	std::string m_commandDescription;
 public:
-	Command(std::string commandDescription) : m_commandDescription(commandDescription) {}
+	Command(std::string commandDescription);
 	// Destructor for a command
 	virtual ~Command();
-
+	// Returns true if two commands are equal, returns false otherwise.
+	virtual bool isEqual(const Command& other) = 0;
 	// Returns true or false if the command was able to succssfully
 	// execute.
 	// If it executes successfully, then that command is added to the

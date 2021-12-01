@@ -1,8 +1,8 @@
-/** 
- *  @file   Draw.hpp 
- *  @brief  Drawing actions interface. 
- *  @author Mike and Yufeng Gao 
- *  @date   2021-18-10 
+/**
+ *  @file   Draw.hpp
+ *  @brief  Drawing actions interface.
+ *  @author Mike and Yufeng Gao
+ *  @date   2021-18-10
  ***********************************************/
 #ifndef DRAW_H
 #define DRAW_H
@@ -14,15 +14,14 @@
 #include <string>
 // Project header files
 #include "Command.hpp"
-#include "App.hpp"
 
 // Anytime we want to implement a new command in our paint tool,
 // we have to inherit from the command class.
 // This forces us to implement an 'execute' and 'undo' command.
-// 
+//
 // In our Draw class note that we have also explicitly marked the
 // functions as 'override' to indicate that these functions are
-// overriding the behavior of functions in a base class 
+// overriding the behavior of functions in a base class
 // that are implemented as virtual.
 class Draw : public Command{
 private:

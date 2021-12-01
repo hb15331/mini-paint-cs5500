@@ -1,18 +1,9 @@
-/** 
- *  @file   App.cpp 
+/**
+ *  @file   App.cpp
  *  @brief  Main class for program
- *  @author Mike and Yufeng Gao 
- *  @date   2021-18-10 
+ *  @author Mike and Yufeng Gao
+ *  @date   2021-18-10
  ***********************************************/
-
-// Include our Third-Party SFML header
-#include <SFML/Graphics.hpp>
-#include <SFML/Graphics/Image.hpp>
-#include <SFML/Graphics/Texture.hpp>
-#include <SFML/Graphics/Sprite.hpp>
-// Include standard library C++ libraries.
-#include <cassert>
-#include <memory>
 // Project header files
 #include "App.hpp"
 
@@ -30,7 +21,7 @@
 /*!	\brief Construct the App object
 *
 */
-App::App()
+App::App(std::string uname, unsigned short port)
 : m_commands(std::queue<std::shared_ptr<Command>>()),
 m_undo(std::stack<std::shared_ptr<Command>>()),
 m_redo(std::stack<std::shared_ptr<Command>>()),
@@ -45,12 +36,14 @@ m_drawFunc(nullptr),
 pmouseX(0),
 pmouseY(0),
 mouseX(0),
-mouseY(0)
+mouseY(0),
+m_uname(uname),
+m_udp_client(uname,port)
 {
 }
 
 /*! \brief 	Destruct the App object.
-*		
+*
 */
 App::~App(){
 	delete m_image;
@@ -68,8 +61,8 @@ App::~App(){
 }
 
 /*! \brief 	When we draw, we would prefer to add
-*		a command to a data structure. 
-*		
+*		a command to a data structure.
+*
 */
 void App::AddCommand(std::shared_ptr<Command> c){
 	if(c != nullptr){
@@ -77,7 +70,7 @@ void App::AddCommand(std::shared_ptr<Command> c){
 	}
 }
 
-/*! \brief 	The command(s) that were added is executed if it is 
+/*! \brief 	The command(s) that were added is executed if it is
 *		not the same as the last executed command(excluding re-dos).
 *		Once a new command is executed, the redo stack is cleared.
 */
@@ -137,7 +130,7 @@ void App::Redo(){
 
 /*! \brief 	Return a reference to our m_image, so that
 *		we do not have to publicly expose it.
-*		
+*
 */
 sf::Image& App::GetImage(){
 	return *m_image;
@@ -145,7 +138,7 @@ sf::Image& App::GetImage(){
 
 /*! \brief 	Return a reference to our m_Texture so that
 *		we do not have to publicly expose it.
-*		
+*
 */
 sf::Texture& App::GetTexture(){
 	return *m_texture;
@@ -153,7 +146,7 @@ sf::Texture& App::GetTexture(){
 
 /*! \brief 	Return a reference to our m_window so that we
 *		do not have to publicly expose it.
-*		
+*
 */
 sf::RenderWindow& App::GetWindow(){
 	return *m_window;
@@ -169,7 +162,7 @@ void App::ClearCanvas(){
 /*! \brief 	Initializes the App and sets up the main
 *		rendering window(i.e. our canvas.)
 */
-void App::Init(void (*initFunction)(void)){
+void App::Init(void (*initFunction)(App& app)){
 	// Create our window
 	m_window = new sf::RenderWindow(sf::VideoMode(600,400),"Mini-Paint alpha 0.0.2",sf::Style::Titlebar);
 	m_window->setVerticalSyncEnabled(true);
@@ -189,7 +182,7 @@ void App::Init(void (*initFunction)(void)){
 
 /*! \brief 	Set a callback function which will be called
 		each iteration of the main loop before drawing.
-*		
+*
 */
 void App::UpdateCallback(void (*updateFunction)(App&)){
 	m_updateFunc = updateFunction;
@@ -197,7 +190,7 @@ void App::UpdateCallback(void (*updateFunction)(App&)){
 
 /*! \brief 	Set a callback function which will be called
 		each iteration of the main loop after update.
-*		
+*
 */
 void App::DrawCallback(void (*drawFunction)(App&)){
 	m_drawFunc = drawFunction;
@@ -207,11 +200,11 @@ void App::DrawCallback(void (*drawFunction)(App&)){
 		and will be executed until the main window is closed.
 		Within the loop function the update and draw callback
 		functions will be called.
-*		
+*
 */
 void App::Loop(){
 	// Call the init function
-	m_initFunc();
+	m_initFunc(*this);
 
 	// Start the main rendering loop
 	while(m_window->isOpen()){
@@ -223,11 +216,25 @@ void App::Loop(){
 		m_drawFunc(*this);
 		// Update the texture
 		// Note: This can be done in the 'draw call'
-		// Draw to the canvas	
+		// Draw to the canvas
 		m_window->draw(*m_sprite);
 		// Display the canvas
 		m_window->display();
 	}
 }
 
+
+/*!
+*
+*/
+void App::createUDPNetworkClient() {
+  // FIXME Ideally in a real world application, a client would
+  // never have to 'guess' which ports are open on a server.
+  // One could improve this code by communicating with the server
+  // what ports are 'open' for connection in the 'joinServer' function.
+  // For now, we will create clients that can simply join however!
+  m_udp_client.joinServer(sf::IpAddress::getLocalAddress(),50000);
+  m_udp_client.setUsername(m_uname);
+  m_udp_client.sendString("Hello, "+m_uname+" is joining!");
+}
 

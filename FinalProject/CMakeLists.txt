@@ -68,8 +68,8 @@ link_directories("/usr/lib/x86_64-linux-gnu/")
 # to generate.
 #
 # Here is an example below adding multiple files
-add_executable(App ./src/App.cpp ./src/Draw.cpp ./src/Command.cpp ./src/main.cpp) # example with more files
-add_executable(App_Test ./src/App.cpp ./src/Command.cpp ./src/Draw.cpp ./tests/main_test.cpp ./tests/catch_amalgamated.cpp)
+add_executable(App ./src/App.cpp ./src/Draw.cpp ./src/Command.cpp ./src/UDPNetworkClient.cpp ./src/main.cpp)
+add_executable(App_Test ./src/App.cpp ./src/Command.cpp ./src/Draw.cpp ./src/UDPNetworkClient.cpp ./tests/main_test.cpp ./tests/catch_amalgamated.cpp)
 
 # Add any libraries
 # On linux, you can use the handy 'apt-file' tool to find
@@ -77,8 +77,8 @@ add_executable(App_Test ./src/App.cpp ./src/Command.cpp ./src/Draw.cpp ./tests/m
 # 	sudo apt install apt-file
 #   	sudo apt-file update
 # 	apt-file find Texture.hpp
-target_link_libraries(App sfml-graphics sfml-window sfml-system)
-target_link_libraries(App_Test sfml-graphics sfml-window sfml-system)
+target_link_libraries(App sfml-graphics sfml-window sfml-system sfml-network)
+target_link_libraries(App_Test sfml-graphics sfml-window sfml-system sfml-network)
 
 # Add any command line compilation options
 target_compile_options(App PRIVATE -g -Weffc++ -Wall -Wextra)

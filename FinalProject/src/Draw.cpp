@@ -1,17 +1,10 @@
-/** 
- *  @file   Draw.cpp 
- *  @brief  Draw implementation, all drawing actions are commands. 
- *  @author Mike and Yufeng Gao 
- *  @date   2021-18-10 
+/**
+ *  @file   Draw.cpp
+ *  @brief  Draw implementation, all drawing actions are commands.
+ *  @author Mike and Yufeng Gao
+ *  @date   2021-18-10
  ***********************************************/
 
-// Include our Third-Party SFML header
-#include <SFML/Graphics/Color.hpp>
-#include <SFML/Graphics/Image.hpp>
-// Include standard library C++ libraries.
-// #include ...
-// Project header files
-#include "App.hpp"
 #include "Draw.hpp"
 
 int m_pixelX, m_pixelY;
@@ -43,12 +36,12 @@ m_ptrImage(obj.m_ptrImage){
 */
 bool Draw::isEqual(const Command& other) {
 	const Draw* another = dynamic_cast<const Draw*>(&other);
-	return another != nullptr && m_pixelX == another->m_pixelX && m_pixelY == another->m_pixelY 
+	return another != nullptr && m_pixelX == another->m_pixelX && m_pixelY == another->m_pixelY
 		&& m_color == (another->m_color);
 }
 
 /*! \brief 	Return true if the command is successfully executed. Otherwise return false.
-*		
+*
 */
 bool Draw::execute(){
 	int xSize = (int) (*m_ptrImage).getSize().x;
@@ -61,7 +54,7 @@ bool Draw::execute(){
 }
 
 /*! \brief 	Return true if the command is successfully undone. Otherwise return false.
-*		
+*
 */
 bool Draw::undo(){
 	int xSize = (int) (*m_ptrImage).getSize().x;

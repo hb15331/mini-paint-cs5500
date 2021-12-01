@@ -1,8 +1,8 @@
-/** 
- *  @file   main_test.cpp 
+/**
+ *  @file   main_test.cpp
  *  @brief  Unit Tests for our program
  *  @author Mike and Yufeng
- *  @date   2021-17-11 
+ *  @date   2021-17-11
  ***********************************************/
 
 #define CATCH_CONFIG_MAIN
@@ -24,7 +24,7 @@
 
 std::string testLog;
 
-void mock_initialization(void){
+void mock_initialization(App& app){
 	testLog.append("App initialized.");
 }
 
@@ -36,13 +36,13 @@ void mock_initialization(void){
 /*! \brief 	The update function for app to handle events.
 * 		This includes mouse and key events for draw, undo, redo
 *		and exit.
-*		
+*
 */
 void update(App& appObject){
 	// Update our canvas
 	sf::Event event;
 	while(appObject.GetWindow().pollEvent(event)){
-		if(event.type == sf::Event::KeyPressed){				
+		if(event.type == sf::Event::KeyPressed){
 			if(event.key.code==sf::Keyboard::Y) {
 				appObject.Redo();
 			}
@@ -67,29 +67,29 @@ void update(App& appObject){
 	if(sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)){
 		exit(EXIT_SUCCESS);
 	}
-	
+
 	// Where was the mouse previously before going to the next frame
 	appObject.pmouseX = appObject.mouseX;
 	appObject.pmouseY = appObject.mouseY;
 }
 
 
-/*! \brief 	The draw call 
-*		
+/*! \brief 	The draw call
+*
 */
 void draw(App& appObject){
-	// Static variable 
+	// Static variable
 	static int refreshRate = 0;
-	++refreshRate;	// Increment 
+	++refreshRate;	// Increment
 
 
-	// We load into our texture the modified pixels	
+	// We load into our texture the modified pixels
 	// But we only do so every 10 draw calls to reduce latency of transfer
 	// between the GPU and CPU.
 	// Ask yourself: Could we do better with sf::Clock and refresh once
-	// 	 	 every 'x' frames? 
+	// 	 	 every 'x' frames?
 	if(refreshRate>10){
-		appObject.GetTexture().loadFromImage(appObject.GetImage());	
+		appObject.GetTexture().loadFromImage(appObject.GetImage());
 		refreshRate =0;
 	}
 }
@@ -105,7 +105,7 @@ void mock_draw(App& appObject) {
 }
 
 TEST_CASE("init and mock update") {
-    App testApp;
+    App testApp("test_user", 20001);
     testLog = "";
     testApp.Init(&mock_initialization);
     testApp.UpdateCallback(&mock_update);
@@ -115,7 +115,7 @@ TEST_CASE("init and mock update") {
 }
 
 TEST_CASE("init and mock draw") {
-    App testApp;
+    App testApp("test_user", 20001);
     testLog = "";
     testApp.Init(&mock_initialization);
     testApp.UpdateCallback(&update);
@@ -125,7 +125,7 @@ TEST_CASE("init and mock draw") {
 }
 
 TEST_CASE("test draw command") {
-    App testApp;
+    App testApp("test_user", 20001);
     testApp.Init(&mock_initialization);
     testApp.UpdateCallback(&mock_update);
     testApp.DrawCallback(&mock_draw);
@@ -157,7 +157,7 @@ TEST_CASE("test draw command") {
 // }
 
 TEST_CASE("test undo on single valid command") {
-    App testApp;
+    App testApp("test_user", 20001);
     testApp.Init(&mock_initialization);
     testApp.UpdateCallback(&mock_update);
     testApp.DrawCallback(&mock_draw);
@@ -170,7 +170,7 @@ TEST_CASE("test undo on single valid command") {
 }
 
 TEST_CASE("test redo on single valid command") {
-    App testApp;
+    App testApp("test_user", 20001);
     testApp.Init(&mock_initialization);
     testApp.UpdateCallback(&mock_update);
     testApp.DrawCallback(&mock_draw);
@@ -185,7 +185,7 @@ TEST_CASE("test redo on single valid command") {
 }
 
 TEST_CASE("test invalid redo after executing a new command") {
-    App testApp;
+    App testApp("test_user", 20001);
     testApp.Init(&mock_initialization);
     testApp.UpdateCallback(&mock_update);
     testApp.DrawCallback(&mock_draw);
