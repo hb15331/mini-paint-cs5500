@@ -84,7 +84,7 @@ public:
 	void UpdateCallback(void (*updateFunction)(App&));
 	void DrawCallback(void (*drawFunction)(App&));
 	void Loop();
-
+	void ClearCanvas();
 };
 
 

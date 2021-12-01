@@ -159,6 +159,12 @@ sf::RenderWindow& App::GetWindow(){
 	return *m_window;
 }
 
+void App::ClearCanvas(){
+	m_image -> create(600, 400, sf::Color::White);
+	m_texture -> loadFromImage(*m_image);
+	m_sprite -> setTexture(*m_texture);
+}
+
 
 /*! \brief 	Initializes the App and sets up the main
 *		rendering window(i.e. our canvas.)

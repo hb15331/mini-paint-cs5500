@@ -91,6 +91,15 @@ void update(App& appObject){
 			}
 		}
 	}
+
+	// handle the keyReleased events
+	if (event.type == sf::Event::KeyReleased) {
+		if (event.key.code == sf::Keyboard::Space) {
+			std::cout << "Clear the canvas" << std::endl;
+			appObject.ClearCanvas();
+		}
+	}
+
 	// We can otherwise handle events normally
 	if(sf::Mouse::isButtonPressed(sf::Mouse::Left)){
 		sf::Vector2i coordinate = sf::Mouse::getPosition(appObject.GetWindow());
