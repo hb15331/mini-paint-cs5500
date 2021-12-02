@@ -1,4 +1,5 @@
 #include "UDPNetworkClient.hpp"
+#include <list>
 
 
 // Default Constructor
@@ -11,13 +12,33 @@
 //
 // Our UDPNetworkClient will be non-blocking by default
 UDPNetworkClient::UDPNetworkClient(std::string username, unsigned short port){
+    //Adding in a list of valid ports to automate the binding process.
+    int valid_ports[] = {50001, 50002, 50003, 50004, 50005, 50006, 50007, 50008, 50009, 50010};
+    std::list<int>::iterator it;
     m_username = username;
 	m_port = port;
     // Setup a socket for a UDP connection
     // Multiple computers can have the same port
     // However, the IP addresses would need to be different.
     // Listening to a port
-    m_socket.bind(m_port);
+    //m_socket.bind(m_port);
+    
+    //Logic for testing ports to see which are available.
+    for(int i = 0; i < 10; ++i) {
+        std::cout << "Port:" << valid_ports[i] << std::endl;
+        sf::Socket::Status status = m_socket.bind(i);
+        if (status == sf::Socket::Status::Done) {
+            std::cout << "Status after bind is: Done." << std::endl;
+            break;
+        }else if (i == 9 and status != sf::Socket::Status::Done)
+        {
+            std::cout << "Too many users on the server, bind failed!" << std::endl;
+        }
+        else {
+            std::cout << "Status after bind is: Failed. Moving to next port." << std::endl;
+        }
+    } 
+    
     // By default socket is non-blocking
     m_socket.setBlocking(false);
 }
