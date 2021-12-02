@@ -26,7 +26,7 @@ UDPNetworkClient::UDPNetworkClient(std::string username){
     //Logic for testing ports to see which are available.
     for(int i = 0; i < 10; ++i) {
         std::cout << "Port:" << valid_ports[i] << std::endl;
-        sf::Socket::Status status = m_socket.bind(i);
+        sf::Socket::Status status = m_socket.bind(valid_ports[i]);
         if (status == sf::Socket::Status::Done) {
             std::cout << "Status after bind is: Done." << std::endl;
             break;
