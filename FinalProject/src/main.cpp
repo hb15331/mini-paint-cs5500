@@ -153,11 +153,7 @@ int main(){
     unsigned short port;
 	std::cout << "Enter your username:";
     std::cin >> username;
-	//We should change this part to automatically pick a port.
-	//If port 50001 doesn't bind, go to 50002, etc.
-    std::cout << "Which port will you try? (e.g. 50001-50010):";
-    std::cin >> port;
-	App drawApp(username, port);
+	App drawApp(username);
 	// Call any setup function
 	// Passing a function pointer into the 'init' function.
 	// of our application.

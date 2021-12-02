@@ -73,7 +73,7 @@ public:
 	// 	 still risky to expose anything as public.
 	unsigned int pmouseX, pmouseY, mouseX, mouseY;
 // Member functions
-	App(std::string uname, unsigned short port);
+	App(std::string uname);
 	~App();
 	void AddCommand(std::shared_ptr<Command> c);
 	void ExecuteCommand();

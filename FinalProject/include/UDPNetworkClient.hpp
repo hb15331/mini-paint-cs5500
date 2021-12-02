@@ -21,7 +21,7 @@ class UDPNetworkClient{
 public:
 
     // Default Constructor
-    UDPNetworkClient(std::string username, unsigned short port);
+    UDPNetworkClient(std::string username);
     // Default Destructor
     ~UDPNetworkClient();
     // Our client can attempt a UDP connection to join

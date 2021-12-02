@@ -21,7 +21,7 @@
 /*!	\brief Construct the App object
 *
 */
-App::App(std::string uname, unsigned short port)
+App::App(std::string uname)
 : m_commands(std::queue<std::shared_ptr<Command>>()),
 m_undo(std::stack<std::shared_ptr<Command>>()),
 m_redo(std::stack<std::shared_ptr<Command>>()),
@@ -38,7 +38,7 @@ pmouseY(0),
 mouseX(0),
 mouseY(0),
 m_uname(uname),
-m_udp_client(uname,port)
+m_udp_client(uname)
 {
 }
 

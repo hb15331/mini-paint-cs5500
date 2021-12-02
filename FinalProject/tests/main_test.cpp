@@ -105,7 +105,7 @@ void mock_draw(App& appObject) {
 }
 
 TEST_CASE("init and mock update") {
-    App testApp("test_user", 20001);
+    App testApp("test_user");
     testLog = "";
     testApp.Init(&mock_initialization);
     testApp.UpdateCallback(&mock_update);
@@ -115,7 +115,7 @@ TEST_CASE("init and mock update") {
 }
 
 TEST_CASE("init and mock draw") {
-    App testApp("test_user", 20001);
+    App testApp("test_user");
     testLog = "";
     testApp.Init(&mock_initialization);
     testApp.UpdateCallback(&update);
@@ -125,7 +125,7 @@ TEST_CASE("init and mock draw") {
 }
 
 TEST_CASE("test draw command") {
-    App testApp("test_user", 20001);
+    App testApp("test_user");
     testApp.Init(&mock_initialization);
     testApp.UpdateCallback(&mock_update);
     testApp.DrawCallback(&mock_draw);
@@ -157,7 +157,7 @@ TEST_CASE("test draw command") {
 // }
 
 TEST_CASE("test undo on single valid command") {
-    App testApp("test_user", 20001);
+    App testApp("test_user");
     testApp.Init(&mock_initialization);
     testApp.UpdateCallback(&mock_update);
     testApp.DrawCallback(&mock_draw);
@@ -170,7 +170,7 @@ TEST_CASE("test undo on single valid command") {
 }
 
 TEST_CASE("test redo on single valid command") {
-    App testApp("test_user", 20001);
+    App testApp("test_user");
     testApp.Init(&mock_initialization);
     testApp.UpdateCallback(&mock_update);
     testApp.DrawCallback(&mock_draw);
@@ -185,7 +185,7 @@ TEST_CASE("test redo on single valid command") {
 }
 
 TEST_CASE("test invalid redo after executing a new command") {
-    App testApp("test_user", 20001);
+    App testApp("test_user");
     testApp.Init(&mock_initialization);
     testApp.UpdateCallback(&mock_update);
     testApp.DrawCallback(&mock_draw);

@@ -11,12 +11,12 @@
 // communicate over.
 //
 // Our UDPNetworkClient will be non-blocking by default
-UDPNetworkClient::UDPNetworkClient(std::string username, unsigned short port){
+UDPNetworkClient::UDPNetworkClient(std::string username){
     //Adding in a list of valid ports to automate the binding process.
     int valid_ports[] = {50001, 50002, 50003, 50004, 50005, 50006, 50007, 50008, 50009, 50010};
     std::list<int>::iterator it;
     m_username = username;
-	m_port = port;
+	//m_port = port;
     // Setup a socket for a UDP connection
     // Multiple computers can have the same port
     // However, the IP addresses would need to be different.
