@@ -109,6 +109,7 @@ void update(App& appObject){
 		int ySize = (int) (image.getSize().y);
 		if (coordinate.x >= 0 && coordinate.x < xSize && coordinate.y >=0 && coordinate.y < ySize) {
 			appObject.AddCommand(std::make_shared<Draw>(coordinate.x, coordinate.y, appObject.GetSelectedColor(), appObject.GetImage()));
+			appObject.
 			appObject.ExecuteCommand();
 		}
 	}
@@ -148,7 +149,15 @@ void draw(App& appObject){
 *
 */
 int main(){
-	App drawApp("test_user", 50001);
+	std::string username;
+    unsigned short port;
+	std::cout << "Enter your username:";
+    std::cin >> username;
+	//We should change this part to automatically pick a port.
+	//If port 50001 doesn't bind, go to 50002, etc.
+    std::cout << "Which port will you try? (e.g. 50001-50010):";
+    std::cin >> port;
+	App drawApp(username, port);
 	// Call any setup function
 	// Passing a function pointer into the 'init' function.
 	// of our application.

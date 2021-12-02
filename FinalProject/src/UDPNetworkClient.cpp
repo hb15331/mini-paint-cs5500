@@ -33,7 +33,7 @@ UDPNetworkClient::~UDPNetworkClient(){
 // we will not do any error checking to see if the server even exists.
 // We simply try to send messages to a server.
 int UDPNetworkClient::joinServer(sf::IpAddress serverAddress, unsigned short serverPort){
-    std::cout << "UDPClient will attemp to join server: " << std::endl;
+    std::cout << "UDPClient will attempt to join server: " << std::endl;
     m_serverIpAddress = serverAddress;
     m_serverPort = serverPort;
 }
@@ -44,7 +44,7 @@ int UDPNetworkClient::joinServer(sf::IpAddress serverAddress, unsigned short ser
 //
 // In this example, we will try to send over commands.
 int UDPNetworkClient::sendCommand(Command* c){
-	/*myPacket p;
+	myPacket p;
 	p.m_client = m_username;
 	p.m_command = c;
 
@@ -55,7 +55,6 @@ int UDPNetworkClient::sendCommand(Command* c){
     }else{
         std::cout << "Client(" << m_username << ") sending packet" << std::endl;
     }
-*/
     return 0;
 }
 

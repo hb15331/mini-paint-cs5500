@@ -90,6 +90,7 @@ public:
 	void Loop();
 	void ClearCanvas(sf::Color color);
 	void createUDPNetworkClient();
+	void SendCommandToServer(std::shared_ptr<Command> c);
 };
 
 

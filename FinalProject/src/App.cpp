@@ -238,3 +238,12 @@ void App::createUDPNetworkClient() {
   m_udp_client.sendString("Hello, "+m_uname+" is joining!");
 }
 
+/*!
+*
+*/
+void App::SendCommandToServer(std::shared_ptr<Command> c){
+	if(c != nullptr){
+		//m_udp_client.sendCommand(c);
+	}
+	
+}

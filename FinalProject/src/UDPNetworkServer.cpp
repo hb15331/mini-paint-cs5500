@@ -54,6 +54,7 @@ int UDPNetworkServer::start(){
         // We store the clients ip and port that is connected
         // FIXME for now '128' is a magic number we have 'guessed' is big enough
 		char in[128];
+        //Command* c;
 		sf::IpAddress senderIp;
 		size_t received;
 		unsigned short senderPort;
