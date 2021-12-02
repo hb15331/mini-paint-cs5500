@@ -152,8 +152,8 @@ sf::RenderWindow& App::GetWindow(){
 	return *m_window;
 }
 
-void App::ClearCanvas(){
-	m_image -> create(600, 400, sf::Color::White);
+void App::ClearCanvas(sf::Color color){
+	m_image -> create(600, 400, color);
 	m_texture -> loadFromImage(*m_image);
 	m_sprite -> setTexture(*m_texture);
 }

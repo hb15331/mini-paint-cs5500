@@ -88,7 +88,7 @@ public:
 	void UpdateCallback(void (*updateFunction)(App&));
 	void DrawCallback(void (*drawFunction)(App&));
 	void Loop();
-	void ClearCanvas();
+	void ClearCanvas(sf::Color color);
 	void createUDPNetworkClient();
 };
 

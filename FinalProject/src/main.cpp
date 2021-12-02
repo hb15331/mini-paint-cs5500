@@ -96,7 +96,7 @@ void update(App& appObject){
 	if (event.type == sf::Event::KeyReleased) {
 		if (event.key.code == sf::Keyboard::Space) {
 			std::cout << "Clear the canvas" << std::endl;
-			appObject.ClearCanvas();
+			appObject.ClearCanvas(appObject.GetSelectedColor());
 		}
 	}
 
