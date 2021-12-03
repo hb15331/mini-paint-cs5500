@@ -25,7 +25,7 @@ Draw::Draw(const Draw &obj)
  *object. If the command has the same pixel location and color, the bool value
  *true will be returned. Otherwise false is returned.
  */
-bool Draw::isEqual(const Command &other) {
+bool Draw::IsEqual(const Command &other) {
   const Draw *another = dynamic_cast<const Draw *>(&other);
   return another != nullptr && m_pixelX == another->m_pixelX &&
          m_pixelY == another->m_pixelY && m_color == (another->m_color);
@@ -35,7 +35,7 @@ bool Draw::isEqual(const Command &other) {
  * return false.
  *
  */
-bool Draw::execute() {
+bool Draw::Execute() {
   int xSize = (int)(*m_ptrImage).getSize().x;
   int ySize = (int)(*m_ptrImage).getSize().y;
   if (m_pixelX >= 0 && m_pixelX < xSize && m_pixelY >= 0 && m_pixelY < ySize) {
@@ -49,7 +49,7 @@ bool Draw::execute() {
  * return false.
  *
  */
-bool Draw::undo() {
+bool Draw::Undo() {
   int xSize = (int)(*m_ptrImage).getSize().x;
   int ySize = (int)(*m_ptrImage).getSize().y;
   if (m_pixelX >= 0 && m_pixelX < xSize && m_pixelY >= 0 && m_pixelY < ySize) {
@@ -62,9 +62,19 @@ bool Draw::undo() {
 /*! \brief Converts the Draw into a readable string
  * \return String that represents draw location, size and color
  */
-std::string Draw::toString() const {
+std::string Draw::ToString() const {
   std::stringstream ss;
-  ss << Command::toString() << ": (" << m_pixelX << "," << m_pixelY << ")"
+  ss << Command::ToString() << ": (" << m_pixelX << "," << m_pixelY << ")"
      << ", sz=" << 1;
   return ss.str();
+}
+
+/*! \brief Converts the draw into a packet
+* \return Packet that represents the draw command
+*/
+sf::Packet Draw::Serialize() const {
+  std::cout << "Serializing" << std::endl;
+  sf::Packet packet;
+  packet << "Draw" << m_pixelX << m_pixelY << 1;
+  return packet;
 }

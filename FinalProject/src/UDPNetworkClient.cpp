@@ -64,15 +64,12 @@ int UDPNetworkClient::joinServer(sf::IpAddress serverAddress,
 // some data to the UDPNetworkServer.
 //
 // In this example, we will try to send over commands.
-int UDPNetworkClient::sendCommand(std::shared_ptr<Command> c) {
-  myPacket p;
-  p.m_client = m_username;
-  std::cout << *c << std::endl;
-  p.m_command = &(*c);
+int UDPNetworkClient::SendPacket(sf::Packet packet) {
+  packet << m_username;
 
-  std::cout << "Packet Data:" << m_username << std::endl;
+  std::cout << "Packet Data:" << packet << std::endl;
 
-  if (m_socket.send(p, m_ipAddress, m_port) != sf::Socket::Done) {
+  if (m_socket.send(packet, m_serverIpAddress, m_serverPort) != sf::Socket::Done) {
     std::cout << "Client error? Wrong IP?" << std::endl;
   } else {
     std::cout << "Client(" << m_username << ") sending packet" << std::endl;

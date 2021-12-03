@@ -54,18 +54,25 @@ int UDPNetworkServer::start() {
     // We store the clients ip and port that is connected
     // FIXME for now '128' is a magic number we have 'guessed' is big enough
     // char in[128];
-    myPacket *in;
-    // Command* c;
+    sf::Packet packet;
     sf::IpAddress senderIp;
     size_t received;
     unsigned short senderPort;
     // If the server receives a message
     // then we want to broadcast that message out to
     // all potential folks who have joined our server.
+
     sf::Socket::Status status =
-        m_socket.receive(in, sizeof(in), received, m_ipAddress, senderPort);
+        m_socket.receive(packet, m_ipAddress, senderPort);
+
     if (status == sf::Socket::Done) {
-      std::cout << "\tI(the server) received: " << in->m_command << std::endl;
+      std::string cmd_type, username;
+      int xcoord, ycoord, sz;
+      std::cout << &packet << std::endl;
+      if (packet >> cmd_type >> xcoord >> ycoord >> sz >> username) {
+        std::cout << "Hello" << xcoord << "|" << ycoord << std::endl;
+      }
+
       // Check if this is the first message sent by the client
       // by iterating through all of our current clients.
       // If we reach the end of the map, then we know this is a
@@ -84,7 +91,7 @@ int UDPNetworkServer::start() {
       // One such fix, is to have each client joined as a separate thread
       // for the server which receives messages. 1 socket thus per connection
       // and then we may then also have a lock on any shared data structures.
-      //! m_sentHistory.push_back(in);
+      //m_sentHistory.push_back(in);
       std::cout << "total messages: " << m_sentHistory.size() << std::endl;
       // We create an iterator that looks through our map
       // For each of our clients we are going to send to them
@@ -93,7 +100,7 @@ int UDPNetworkServer::start() {
       std::map<unsigned short, sf::IpAddress>::iterator ipIterator;
       for (ipIterator = m_activeClients.begin();
            ipIterator != m_activeClients.end(); ipIterator++) {
-        m_socket.send(in, sizeof(in), ipIterator->second, ipIterator->first);
+        m_socket.send(packet, ipIterator->second, ipIterator->first);
       }
     } else if (status != 1) {
       std::cout << status << std::endl;

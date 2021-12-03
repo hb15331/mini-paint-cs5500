@@ -65,8 +65,8 @@ void App::AddCommand(std::shared_ptr<Command> c) {
  */
 void App::ExecuteCommand() {
   while (!m_commands.empty()) {
-    if (m_undo.empty() || !m_undo.top()->isEqual(*m_commands.front())) {
-      if (m_commands.front()->execute()) {
+    if (m_undo.empty() || !m_undo.top()->IsEqual(*m_commands.front())) {
+      if (m_commands.front()->Execute()) {
         m_undo.push(m_commands.front());
       }
       while (!m_redo.empty()) {
@@ -93,7 +93,7 @@ void App::SetSelectedColor(sf::Color color) { m_selected_color = color; }
  */
 void App::Undo() {
   if (!m_undo.empty()) {
-    if (m_undo.top()->undo()) {
+    if (m_undo.top()->Undo()) {
       m_redo.push(m_undo.top());
     };
     m_undo.pop();
@@ -105,7 +105,7 @@ void App::Undo() {
  */
 void App::Redo() {
   if (!m_redo.empty()) {
-    if (m_redo.top()->execute()) {
+    if (m_redo.top()->Execute()) {
       m_undo.push(m_redo.top());
     };
     m_redo.pop();
@@ -228,6 +228,6 @@ std::queue<std::shared_ptr<Command>> App::GetCommandQueue() {
 /*!
  *
  */
-void App::SendCommandToServer(std::shared_ptr<Command> c) {
-  m_udp_client.sendCommand(c);
+void App::SendPacket(sf::Packet packet) {
+  m_udp_client.SendPacket(packet);
 }

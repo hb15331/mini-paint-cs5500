@@ -32,9 +32,6 @@ public:
   myPacket() { m_client = "whichever client I am"; }
 
   ~myPacket() {
-    if (m_command != nullptr) {
-      // delete m_command;
-    }
   }
 };
 

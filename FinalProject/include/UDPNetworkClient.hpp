@@ -29,7 +29,7 @@ public:
   // Once joined, we can send commands.
   int joinServer(sf::IpAddress serverAddress, unsigned short serverPort);
   // Send data to server
-  int sendCommand(std::shared_ptr<Command> c);
+  int SendPacket(sf::Packet packet);
   // Send String to server
   // We are going to provide a way to just send strings of information
   // to our server.

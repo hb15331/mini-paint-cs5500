@@ -15,9 +15,18 @@ Command::Command(std::string command_description)
     : m_command_description(command_description) {}
 
 /*! \brief Converts the command to a string, useful for debugging */
-std::string Command::toString() const { return m_command_description; }
+std::string Command::ToString() const { return m_command_description; }
 
 /*! \brief 	N/A
  *
  */
 Command::~Command() {}
+
+/*! \brief Converts the Command into a packet
+* \return Packet form of Command
+*/
+sf::Packet Command::Serialize() const {
+  sf::Packet packet;
+  packet << "Command";
+  return packet;
+}

@@ -10,8 +10,10 @@
 // Include our Third-Party SFML header
 #include <SFML/Graphics/Color.hpp>
 #include <SFML/Graphics/Image.hpp>
+#include <SFML/Network.hpp>
 // Include standard library C++ libraries.
 #include <sstream>
+#include <iostream>
 #include <string>
 // Project header files
 #include "Command.hpp"
@@ -36,15 +38,16 @@ private:
 public:
   Draw(int pixelX, int pixelY, const sf::Color &newColor, sf::Image &image);
   Draw(const Draw &obj);
-  bool isEqual(const Command &other) override;
-  bool execute() override;
-  std::string toString() const;
-  bool undo() override;
+  bool IsEqual(const Command &other) override;
+  bool Execute() override;
+  std::string ToString() const;
+  bool Undo() override;
+  sf::Packet Serialize() const;
 };
 
 /*! \brief Override to allow simple printing of a Draw object */
 inline std::ostream &operator<<(std::ostream &strm, const Draw &dr) {
-  return strm << dr.toString();
+  return strm << dr.ToString();
 }
 
 #endif

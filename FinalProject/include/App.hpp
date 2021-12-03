@@ -11,6 +11,7 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Graphics/Image.hpp>
 #include <SFML/Graphics/Sprite.hpp>
+#include <SFML/Network.hpp>
 #include <SFML/Graphics/Texture.hpp>
 // Include standard library C++ libraries.
 #include "Command.hpp"
@@ -91,7 +92,7 @@ public:
   void Loop();
   void ClearCanvas(sf::Color color);
   void CreateUDPNetworkClient();
-  void SendCommandToServer(std::shared_ptr<Command> c);
+  void SendPacket(sf::Packet packet);
   UDPNetworkClient &GetUdpClient();
 };
 

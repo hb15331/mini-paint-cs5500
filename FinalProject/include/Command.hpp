@@ -12,6 +12,8 @@
 // Include standard library C++ libraries.
 #include <string>
 
+#include <SFML/Network.hpp>
+
 // The command class
 class Command {
 private:
@@ -22,23 +24,25 @@ public:
   // Destructor for a command
   virtual ~Command();
   // Returns true if two commands are equal, returns false otherwise.
-  virtual bool isEqual(const Command &other) = 0;
+  virtual bool IsEqual(const Command &other) = 0;
   // Returns true or false if the command was able to succssfully
   // execute.
   // If it executes successfully, then that command is added to the
   // undo stack.
   // Each parameters also takes in a string name. While this may not be optimal,
   // it allows us to easily debug what each command is doing in a textual form.
-  virtual bool execute() = 0;
-  virtual bool undo() = 0;
+  virtual bool Execute() = 0;
+  virtual bool Undo() = 0;
 
   //! Converts the command to a user-readable string
-  virtual std::string toString() const;
+  virtual std::string ToString() const;
+
+  virtual sf::Packet Serialize() const;
 };
 
 /*! \brief Allow Commands to be printed with std::cout */
 inline std::ostream &operator<<(std::ostream &strm, const Command &cm) {
-  return strm << cm.toString();
+  return strm << cm.ToString();
 }
 
 #endif
