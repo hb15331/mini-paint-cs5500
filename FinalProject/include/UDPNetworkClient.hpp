@@ -16,7 +16,7 @@
 #include <vector>
 
 // Create a non-blocking UDPClient
-// This clien will provide a way to connect with some server
+// This client will provide a way to connect with some server
 // and send information to that server.
 class UDPNetworkClient {
 public:
