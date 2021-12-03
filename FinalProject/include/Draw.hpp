@@ -12,6 +12,7 @@
 #include <SFML/Graphics/Image.hpp>
 // Include standard library C++ libraries.
 #include <string>
+#include <sstream>
 // Project header files
 #include "Command.hpp"
 
@@ -36,7 +37,16 @@ public:
 	Draw(const Draw& obj);
 	bool isEqual(const Command& other) override;
 	bool execute() override;
+	std::string toString() const;
 	bool undo() override;
 };
+
+
+
+/*! \brief Override to allow simple printing of a Draw object */
+inline std::ostream& operator<<(std::ostream &strm, const Draw& dr) {
+  return strm << dr.toString();
+}
+
 
 #endif

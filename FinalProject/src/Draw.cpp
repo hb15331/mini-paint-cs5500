@@ -65,3 +65,12 @@ bool Draw::undo(){
 	}
 	return true;
 }
+
+/*! \brief Converts the Draw into a readable string
+ * \return String that represents draw location, size and color
+ */
+std::string Draw::toString() const {
+    std::stringstream ss;
+    ss << Command::toString() << ": (" << m_pixelX << "," << m_pixelY << ")" << ", sz=" << 1;
+    return ss.str();
+}

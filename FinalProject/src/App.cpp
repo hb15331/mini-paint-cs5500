@@ -208,6 +208,7 @@ void App::Loop(){
 
 	// Start the main rendering loop
 	while(m_window->isOpen()){
+
 		// Clear the window
 		m_window->clear();
 		// Updates specified by the user
@@ -227,13 +228,13 @@ void App::Loop(){
 /*!
 *
 */
-void App::createUDPNetworkClient() {
+void App::CreateUDPNetworkClient() {
   // FIXME Ideally in a real world application, a client would
   // never have to 'guess' which ports are open on a server.
   // One could improve this code by communicating with the server
   // what ports are 'open' for connection in the 'joinServer' function.
   // For now, we will create clients that can simply join however!
-  m_udp_client.joinServer(sf::IpAddress::getLocalAddress(),50000);
+  m_udp_client.joinServer(sf::IpAddress::getLocalAddress(), 50000);
   m_udp_client.setUsername(m_uname);
   m_udp_client.sendString("Hello, "+m_uname+" is joining!");
 }
@@ -241,9 +242,17 @@ void App::createUDPNetworkClient() {
 /*!
 *
 */
+UDPNetworkClient& App::GetUdpClient() {
+  return m_udp_client;
+}
+
+std::queue<std::shared_ptr<Command>> App::GetCommandQueue() {
+  return m_commands;
+}
+
+/*!
+*
+*/
 void App::SendCommandToServer(std::shared_ptr<Command> c){
-	if(c != nullptr){
-		//m_udp_client.sendCommand(c);
-	}
-	
+  m_udp_client.sendCommand(c);
 }

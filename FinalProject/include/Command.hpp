@@ -15,9 +15,9 @@
 // The command class
 class Command{
 private:
-	std::string m_commandDescription;
+	std::string m_command_description;
 public:
-	Command(std::string commandDescription);
+	Command(std::string command_description);
 	// Destructor for a command
 	virtual ~Command();
 	// Returns true if two commands are equal, returns false otherwise.
@@ -30,8 +30,16 @@ public:
 	// it allows us to easily debug what each command is doing in a textual form.
 	virtual bool execute() = 0;
 	virtual bool undo() = 0;
+
+	//! Converts the command to a user-readable string
+  virtual std::string toString() const;
 };
 
+
+/*! \brief Allow Commands to be printed with std::cout */
+inline std::ostream& operator<<(std::ostream &strm, const Command& cm) {
+  return strm << cm.toString();
+}
 
 
 #endif

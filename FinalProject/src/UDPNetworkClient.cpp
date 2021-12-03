@@ -22,7 +22,7 @@ UDPNetworkClient::UDPNetworkClient(std::string username){
     // However, the IP addresses would need to be different.
     // Listening to a port
     //m_socket.bind(m_port);
-    
+
     //Logic for testing ports to see which are available.
     for(int i = 0; i < 10; ++i) {
         std::cout << "Port:" << valid_ports[i] << std::endl;
@@ -37,8 +37,8 @@ UDPNetworkClient::UDPNetworkClient(std::string username){
         else {
             std::cout << "Status after bind is: Failed. Moving to next port." << std::endl;
         }
-    } 
-    
+    }
+
     // By default socket is non-blocking
     m_socket.setBlocking(false);
 }
@@ -64,14 +64,15 @@ int UDPNetworkClient::joinServer(sf::IpAddress serverAddress, unsigned short ser
 // some data to the UDPNetworkServer.
 //
 // In this example, we will try to send over commands.
-int UDPNetworkClient::sendCommand(Command* c){
+int UDPNetworkClient::sendCommand(std::shared_ptr<Command> c){
 	myPacket p;
 	p.m_client = m_username;
-	p.m_command = c;
+	std::cout << *c << std::endl;
+	p.m_command = &(*c);
 
 	std::cout << "Packet Data:" << m_username << std::endl;
 
-    if(m_socket.send(p, m_ipAddress, m_port) == sf::Socket::Done){
+    if(m_socket.send(p, m_ipAddress, m_port) != sf::Socket::Done){
         std::cout << "Client error? Wrong IP?" << std::endl;
     }else{
         std::cout << "Client(" << m_username << ") sending packet" << std::endl;

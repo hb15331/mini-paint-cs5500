@@ -13,6 +13,7 @@
 #include <string>
 #include <vector>
 #include <iostream>
+#include <memory>
 
 // Create a non-blocking UDPClient
 // This clien will provide a way to connect with some server
@@ -29,7 +30,7 @@ public:
     // Once joined, we can send commands.
     int joinServer(sf::IpAddress serverAddress, unsigned short serverPort);
     // Send data to server
-    int sendCommand(Command* c);
+    int sendCommand(std::shared_ptr<Command> c);
     // Send String to server
     // We are going to provide a way to just send strings of information
     // to our server.

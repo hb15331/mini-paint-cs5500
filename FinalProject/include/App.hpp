@@ -76,6 +76,7 @@ public:
 	App(std::string uname);
 	~App();
 	void AddCommand(std::shared_ptr<Command> c);
+	std::queue<std::shared_ptr<Command>> GetCommandQueue();
 	void ExecuteCommand();
 	sf::Color& GetSelectedColor();
 	void SetSelectedColor(sf::Color color);
@@ -89,8 +90,9 @@ public:
 	void DrawCallback(void (*drawFunction)(App&));
 	void Loop();
 	void ClearCanvas(sf::Color color);
-	void createUDPNetworkClient();
+	void CreateUDPNetworkClient();
 	void SendCommandToServer(std::shared_ptr<Command> c);
+	UDPNetworkClient& GetUdpClient();
 };
 
 

@@ -38,7 +38,7 @@ int UDPNetworkServer::start(){
 		std::cout << "Unable to bind -- Error: " << status << std::endl;
         return status;
 	}
-    
+
 	// Start the server
     // TODO In the future you may add reason to stop or pause the server
     // as other possible states.
@@ -46,14 +46,15 @@ int UDPNetworkServer::start(){
 
     // We are going to create a non-blocking UDP server..
     m_socket.setBlocking(false);
-    
+
     // Start a server that will run forever
     while(m_start){
 
         // When a connection is made to our server, we get some amount of bytes
         // We store the clients ip and port that is connected
         // FIXME for now '128' is a magic number we have 'guessed' is big enough
-		char in[128];
+		//char in[128];
+		myPacket *in;
         //Command* c;
 		sf::IpAddress senderIp;
 		size_t received;
@@ -61,8 +62,9 @@ int UDPNetworkServer::start(){
 		// If the server receives a message
 		// then we want to broadcast that message out to
 		// all potential folks who have joined our server.
-		if(m_socket.receive(in,sizeof(in),received,m_ipAddress,senderPort) == sf::Socket::Done){
-			std::cout << "\tI(the server) received: " << in << std::endl;
+		sf::Socket::Status status = m_socket.receive(in,sizeof(in),received,m_ipAddress,senderPort);
+		if(status == sf::Socket::Done){
+			std::cout << "\tI(the server) received: " << in->m_command << std::endl;
             // Check if this is the first message sent by the client
             // by iterating through all of our current clients.
             // If we reach the end of the map, then we know this is a
@@ -71,7 +73,7 @@ int UDPNetworkServer::start(){
             clientIterator = m_activeClients.find(senderPort);
             if(clientIterator == m_activeClients.end()){
                 std::cout << "First time joiner!" << std::endl;
-                handleClientJoining(senderPort,senderIp); 
+                handleClientJoining(senderPort,senderIp);
                 // Add client to our activeClients map so we can send them more
                 // messages that come in
                 m_activeClients[senderPort] = senderIp;
@@ -81,7 +83,7 @@ int UDPNetworkServer::start(){
             // One such fix, is to have each client joined as a separate thread
             // for the server which receives messages. 1 socket thus per connection
             // and then we may then also have a lock on any shared data structures.
-            m_sentHistory.push_back(in);
+            //!m_sentHistory.push_back(in);
             std::cout << "total messages: " << m_sentHistory.size() << std::endl;
             // We create an iterator that looks through our map
             // For each of our clients we are going to send to them
@@ -91,6 +93,8 @@ int UDPNetworkServer::start(){
             for(ipIterator = m_activeClients.begin(); ipIterator != m_activeClients.end(); ipIterator++){
                 m_socket.send(in,sizeof(in), ipIterator->second, ipIterator->first);
             }
+		} else if (status != 1) {
+      std::cout << status << std::endl;
 		}
 
     } // End our server while loop
@@ -106,14 +110,14 @@ int UDPNetworkServer::stop(){
 // of all of the things that have happened.
 // For a 'painting' application this is likely appropriate, for
 // other applicatinos (e.g. a game) this may not be necessary.
-int UDPNetworkServer::handleClientJoining(unsigned short clientPort, 
+int UDPNetworkServer::handleClientJoining(unsigned short clientPort,
                                          sf::IpAddress clientIpAddress){
     std::cout << "Updating new client" << std::endl;
     // Iterate through every message sent and send it to the client.
     for(int i= 0; i < m_sentHistory.size(); i++){
         char in[128];
         m_socket.send(m_sentHistory[i].c_str(),
-                      m_sentHistory[i].length()+1,  
+                      m_sentHistory[i].length()+1,
                       clientIpAddress,
                       clientPort);
     }

@@ -37,7 +37,7 @@
 *
 */
 void initialization(App& appObject){
-  appObject.createUDPNetworkClient();
+  appObject.CreateUDPNetworkClient();
 	std::cout << "Starting the App" << std::endl;
 }
 
@@ -109,6 +109,8 @@ void update(App& appObject){
 		int ySize = (int) (image.getSize().y);
 		if (coordinate.x >= 0 && coordinate.x < xSize && coordinate.y >=0 && coordinate.y < ySize) {
 			appObject.AddCommand(std::make_shared<Draw>(coordinate.x, coordinate.y, appObject.GetSelectedColor(), appObject.GetImage()));
+			appObject.SendCommandToServer(appObject.GetCommandQueue().front());
+			appObject.GetUdpClient().sendString("Hello!");
 			//Should also send the above command to server here. This is a placeholder.
 			appObject.ExecuteCommand();
 		}
