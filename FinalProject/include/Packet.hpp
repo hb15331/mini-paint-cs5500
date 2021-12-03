@@ -9,8 +9,8 @@
 #include "Draw.hpp"
 
 // Other standard libraries
-#include <string>
 #include <memory>
+#include <string>
 #include <vector>
 
 // We can inhert from the SFML Packet and create our
@@ -24,23 +24,18 @@
 // these commands, it can store them, and broadcast this
 // information to all of the other clients who have
 // previously connected.
-class myPacket : public sf::Packet{
+class myPacket : public sf::Packet {
 public:
-    std::string m_client;
-    std::string m_command_string;
+  std::string m_client;
+  std::string m_command_string;
 
-    myPacket(){
-		m_client = "whichever client I am";
-        m_command = nullptr;
+  myPacket() { m_client = "whichever client I am"; }
+
+  ~myPacket() {
+    if (m_command != nullptr) {
+      // delete m_command;
     }
-
-
-    ~myPacket(){
-        if(m_command != nullptr){
-            //delete m_command;
-        }
-    }
-
+  }
 };
 
 #endif

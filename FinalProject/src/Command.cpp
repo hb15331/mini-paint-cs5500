@@ -9,18 +9,15 @@
 #include "Command.hpp"
 
 /*! \brief 	N/A
-*
-*/
-Command::Command(std::string command_description) : m_command_description(command_description) {
-}
+ *
+ */
+Command::Command(std::string command_description)
+    : m_command_description(command_description) {}
 
 /*! \brief Converts the command to a string, useful for debugging */
-std::string Command::toString() const {
-  return m_command_description;
-}
+std::string Command::toString() const { return m_command_description; }
 
 /*! \brief 	N/A
-*
-*/
-Command::~Command(){
-}
+ *
+ */
+Command::~Command() {}

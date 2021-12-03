@@ -51,6 +51,11 @@ project(
 # We can additionally set the langauge standard for
 # C++
 set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+
+#set(CMAKE_CXX_CLANG_TIDY
+#  clang-tidy;
+#  -checks=*;)
 
 # Where are the include directories
 include_directories("/usr/include/")

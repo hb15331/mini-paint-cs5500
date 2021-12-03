@@ -11,8 +11,8 @@
 #include <SFML/Graphics/Color.hpp>
 #include <SFML/Graphics/Image.hpp>
 // Include standard library C++ libraries.
-#include <string>
 #include <sstream>
+#include <string>
 // Project header files
 #include "Command.hpp"
 
@@ -24,29 +24,27 @@
 // functions as 'override' to indicate that these functions are
 // overriding the behavior of functions in a base class
 // that are implemented as virtual.
-class Draw : public Command{
+class Draw : public Command {
 private:
-	int m_pixelX, m_pixelY;
-	sf::Color m_color;
-	sf::Color m_prevColor;
-	//pointer to the image
-	sf::Image* m_ptrImage;
-	Draw& operator= (const Draw&) = delete;
+  int m_pixelX, m_pixelY;
+  sf::Color m_color;
+  sf::Color m_prevColor;
+  // pointer to the image
+  sf::Image *m_ptrImage;
+  Draw &operator=(const Draw &) = delete;
+
 public:
-	Draw(int pixelX, int pixelY, const sf::Color& newColor, sf::Image& image);
-	Draw(const Draw& obj);
-	bool isEqual(const Command& other) override;
-	bool execute() override;
-	std::string toString() const;
-	bool undo() override;
+  Draw(int pixelX, int pixelY, const sf::Color &newColor, sf::Image &image);
+  Draw(const Draw &obj);
+  bool isEqual(const Command &other) override;
+  bool execute() override;
+  std::string toString() const;
+  bool undo() override;
 };
 
-
-
 /*! \brief Override to allow simple printing of a Draw object */
-inline std::ostream& operator<<(std::ostream &strm, const Draw& dr) {
+inline std::ostream &operator<<(std::ostream &strm, const Draw &dr) {
   return strm << dr.toString();
 }
-
 
 #endif
