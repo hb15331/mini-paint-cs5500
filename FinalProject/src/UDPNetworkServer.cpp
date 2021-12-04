@@ -70,7 +70,9 @@ int UDPNetworkServer::start() {
 
       try {
         std::shared_ptr<Command> command = Deserialize(packet);
-        std::cout << *command << std::endl;
+        if (command) {
+          std::cout << *command << std::endl;
+        }
       } catch (std::runtime_error e) {
         std::cout << e.what() << std::endl;
       }

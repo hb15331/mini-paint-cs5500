@@ -10,9 +10,9 @@
 // Include our Third-Party SFML header
 // #include ...
 // Include standard library C++ libraries.
-#include <string>
-#include <memory>
 #include <iostream>
+#include <memory>
+#include <string>
 
 #include <SFML/Network.hpp>
 

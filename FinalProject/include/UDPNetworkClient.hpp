@@ -40,6 +40,7 @@ public:
   // within a 'main loop' in our client so we do not miss any information
   // while we are connected.
   void receiveData();
+  sf::Packet ReceiveData();
 
   // Get username
   std::string getUsername();

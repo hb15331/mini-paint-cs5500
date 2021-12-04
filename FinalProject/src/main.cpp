@@ -124,6 +124,9 @@ void update(App &appObject) {
     exit(EXIT_SUCCESS);
   }
 
+  std::shared_ptr<Command> received_command;
+  received_command = appObject.ReceiveData();
+
   // Where was the mouse previously before going to the next frame
   appObject.pmouseX = appObject.mouseX;
   appObject.pmouseY = appObject.mouseY;

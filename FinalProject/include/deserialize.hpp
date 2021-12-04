@@ -11,8 +11,11 @@ inline std::shared_ptr<Command> Deserialize(sf::Packet packet) {
   int xcoord, ycoord, sz;
   uint8_t r, g, b, a, p_r, p_g, p_b, p_a;
   if (!(packet >> cmd_type >> xcoord >> ycoord >> sz >> r >> g >> b >> a >>
-        p_r >> p_g >> p_b >> p_a >> username)) {
-    std::cout << "Error deserializing packet " << packet << std::endl;
+        p_r >> p_g >> p_b >> p_a >> username) &&
+      packet.getDataSize() > 0) {
+    std::cout << "Error deserializing packet " << packet
+              << " size: " << packet.getDataSize() << std::endl;
+    return nullptr;
   }
   if (cmd_type == "Draw") {
 

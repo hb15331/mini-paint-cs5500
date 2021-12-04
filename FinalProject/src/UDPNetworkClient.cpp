@@ -136,6 +136,19 @@ void /*myPacket*/ UDPNetworkClient::receiveData() {
   }
 }
 
+sf::Packet UDPNetworkClient::ReceiveData() {
+  sf::IpAddress copyAddress = m_serverIpAddress;
+  unsigned short copyPort = m_serverPort;
+  sf::Packet packet;
+  sf::Socket::Status status = m_socket.receive(packet, copyAddress, copyPort);
+
+  if (status == sf::Socket::Done) {
+    std::cout << "Got a packet" << std::endl;
+    return packet;
+  } else {
+    return packet;
+  }
+}
 // Return our username
 std::string UDPNetworkClient::getUsername() { return m_username; }
 

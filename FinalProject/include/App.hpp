@@ -16,6 +16,7 @@
 // Include standard library C++ libraries.
 #include "Command.hpp"
 #include "UDPNetworkClient.hpp"
+#include "deserialize.hpp"
 #include <cassert>
 #include <memory>
 #include <queue>
@@ -94,6 +95,7 @@ public:
   void CreateUDPNetworkClient();
   void SendPacket(sf::Packet packet);
   UDPNetworkClient &GetUdpClient();
+  std::shared_ptr<Command> ReceiveData();
 };
 
 #endif

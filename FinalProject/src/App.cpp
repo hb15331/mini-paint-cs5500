@@ -202,9 +202,7 @@ void App::Loop() {
   }
 }
 
-/*!
- *
- */
+/*! Creates and saves the udp client */
 void App::CreateUDPNetworkClient() {
   // FIXME Ideally in a real world application, a client would
   // never have to 'guess' which ports are open on a server.
@@ -216,8 +214,8 @@ void App::CreateUDPNetworkClient() {
   m_udp_client.sendString("Hello, " + m_uname + " is joining!");
 }
 
-/*!
- *
+/*! \brief Gets the udp client
+ * \return The udp client
  */
 UDPNetworkClient &App::GetUdpClient() { return m_udp_client; }
 
@@ -225,7 +223,27 @@ std::queue<std::shared_ptr<Command>> App::GetCommandQueue() {
   return m_commands;
 }
 
-/*!
- *
+/*! \brief sends a packet to the server
+ * \param packet The packet to tsend
  */
 void App::SendPacket(sf::Packet packet) { m_udp_client.SendPacket(packet); }
+
+/*! \brief Attempts to receive a command from the server
+ * \return Pointer to a command if one was obtained; nullptr if not
+ */
+std::shared_ptr<Command> App::ReceiveData() {
+  sf::Packet packet = m_udp_client.ReceiveData();
+  try {
+    std::shared_ptr<Command> command = Deserialize(packet);
+    if (command == nullptr) {
+      return nullptr;
+    } else {
+      std::cout << "command!" << std::endl;
+      std::cout << *command << std::endl;
+      return command;
+    }
+  } catch (std::runtime_error e) {
+    // std::cout << e.what() << std::endl;
+    return nullptr;
+  }
+}
