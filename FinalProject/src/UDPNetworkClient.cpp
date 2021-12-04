@@ -69,7 +69,8 @@ int UDPNetworkClient::SendPacket(sf::Packet packet) {
 
   std::cout << "Packet Data:" << packet << std::endl;
 
-  if (m_socket.send(packet, m_serverIpAddress, m_serverPort) != sf::Socket::Done) {
+  if (m_socket.send(packet, m_serverIpAddress, m_serverPort) !=
+      sf::Socket::Done) {
     std::cout << "Client error? Wrong IP?" << std::endl;
   } else {
     std::cout << "Client(" << m_username << ") sending packet" << std::endl;

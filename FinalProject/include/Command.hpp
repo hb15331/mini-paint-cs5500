@@ -11,6 +11,8 @@
 // #include ...
 // Include standard library C++ libraries.
 #include <string>
+#include <memory>
+#include <iostream>
 
 #include <SFML/Network.hpp>
 

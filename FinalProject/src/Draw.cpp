@@ -15,6 +15,11 @@ Draw::Draw(int pixelX, int pixelY, const sf::Color &newColor, sf::Image &image)
     : Command("Draw"), m_pixelX(pixelX), m_pixelY(pixelY), m_color(newColor),
       m_prevColor(image.getPixel(pixelX, pixelY)), m_ptrImage(&image) {}
 
+Draw::Draw(int pixelX, int pixelY, const sf::Color &newColor,
+           const sf::Color &prevColor)
+    : Command("Draw"), m_pixelX(pixelX), m_pixelY(pixelY), m_color(newColor),
+      m_prevColor(prevColor), m_ptrImage(nullptr) {}
+
 Draw::Draw(const Draw &obj)
     : Command("Draw"), m_pixelX(obj.m_pixelX), m_pixelY(obj.m_pixelX),
       m_color(obj.m_color),
@@ -70,11 +75,13 @@ std::string Draw::ToString() const {
 }
 
 /*! \brief Converts the draw into a packet
-* \return Packet that represents the draw command
-*/
+ * \return Packet that represents the draw command
+ */
 sf::Packet Draw::Serialize() const {
   std::cout << "Serializing" << std::endl;
   sf::Packet packet;
-  packet << "Draw" << m_pixelX << m_pixelY << 1;
+  packet << "Draw" << m_pixelX << m_pixelY << 1 << m_color.r << m_color.g
+         << m_color.b << m_color.a << m_prevColor.r << m_prevColor.g
+         << m_prevColor.b << m_prevColor.a;
   return packet;
 }

@@ -19,6 +19,7 @@
 #include "Command.hpp"
 #include "Draw.hpp"
 #include "Packet.hpp"
+#include "deserialize.hpp"
 
 // Other standard libraries
 #include <string>

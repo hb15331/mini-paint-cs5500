@@ -37,6 +37,7 @@ private:
 
 public:
   Draw(int pixelX, int pixelY, const sf::Color &newColor, sf::Image &image);
+  Draw(int pixelX, int pixelY, const sf::Color &newColor, const sf::Color &prevColor);
   Draw(const Draw &obj);
   bool IsEqual(const Command &other) override;
   bool Execute() override;

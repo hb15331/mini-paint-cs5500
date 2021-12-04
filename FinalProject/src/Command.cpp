@@ -23,8 +23,8 @@ std::string Command::ToString() const { return m_command_description; }
 Command::~Command() {}
 
 /*! \brief Converts the Command into a packet
-* \return Packet form of Command
-*/
+ * \return Packet form of Command
+ */
 sf::Packet Command::Serialize() const {
   sf::Packet packet;
   packet << "Command";

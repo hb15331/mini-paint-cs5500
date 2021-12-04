@@ -228,6 +228,4 @@ std::queue<std::shared_ptr<Command>> App::GetCommandQueue() {
 /*!
  *
  */
-void App::SendPacket(sf::Packet packet) {
-  m_udp_client.SendPacket(packet);
-}
+void App::SendPacket(sf::Packet packet) { m_udp_client.SendPacket(packet); }

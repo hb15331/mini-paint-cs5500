@@ -66,12 +66,18 @@ int UDPNetworkServer::start() {
         m_socket.receive(packet, m_ipAddress, senderPort);
 
     if (status == sf::Socket::Done) {
-      std::string cmd_type, username;
-      int xcoord, ycoord, sz;
       std::cout << &packet << std::endl;
-      if (packet >> cmd_type >> xcoord >> ycoord >> sz >> username) {
-        std::cout << "Hello" << xcoord << "|" << ycoord << std::endl;
+
+      try {
+        std::shared_ptr<Command> command = Deserialize(packet);
+        std::cout << *command << std::endl;
+      } catch (std::runtime_error e) {
+        std::cout << e.what() << std::endl;
       }
+
+      // if (packet >> cmd_type >> xcoord >> ycoord >> sz >> username) {
+      //  std::cout << "Hello" << xcoord << "|" << ycoord << std::endl;
+      //}
 
       // Check if this is the first message sent by the client
       // by iterating through all of our current clients.
@@ -91,7 +97,7 @@ int UDPNetworkServer::start() {
       // One such fix, is to have each client joined as a separate thread
       // for the server which receives messages. 1 socket thus per connection
       // and then we may then also have a lock on any shared data structures.
-      //m_sentHistory.push_back(in);
+      // m_sentHistory.push_back(in);
       std::cout << "total messages: " << m_sentHistory.size() << std::endl;
       // We create an iterator that looks through our map
       // For each of our clients we are going to send to them
