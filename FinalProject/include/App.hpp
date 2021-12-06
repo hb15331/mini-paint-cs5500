@@ -7,12 +7,16 @@
 #ifndef APP_HPP
 #define APP_HPP
 
+// The 'C-based' libraries are needed for Nuklear GUI
+#include <string.h>
 // Include our Third-Party SFML header
 #include <SFML/Graphics.hpp>
 #include <SFML/Graphics/Image.hpp>
 #include <SFML/Graphics/Sprite.hpp>
 #include <SFML/Graphics/Texture.hpp>
 #include <SFML/Network.hpp>
+#include <SFML/OpenGL.hpp>
+#include <SFML/Window.hpp>
 // Include standard library C++ libraries.
 #include "Command.hpp"
 #include "UDPNetworkClient.hpp"
@@ -21,6 +25,22 @@
 #include <memory>
 #include <queue>
 #include <stack>
+
+// NUKLEAR - for our GUI
+#define NK_INCLUDE_FIXED_TYPES
+#define NK_INCLUDE_STANDARD_IO
+#define NK_INCLUDE_STANDARD_VARARGS
+#define NK_INCLUDE_DEFAULT_ALLOCATOR
+#define NK_INCLUDE_VERTEX_BUFFER_OUTPUT
+#define NK_INCLUDE_FONT_BAKING
+#define NK_INCLUDE_DEFAULT_FONT
+#define NK_IMPLEMENTATION
+#define NK_SFML_GL2_IMPLEMENTATION
+#include "nuklear.h"
+#include "nuklear_sfml_gl2.h"
+
+#define WINDOW_WIDTH 600
+#define WINDOW_HEIGHT 400
 
 // Singleton for our Application called 'App'.
 class App {
@@ -43,6 +63,7 @@ private:
   sf::Texture *m_texture;
   // Our rendering window
   sf::RenderWindow *m_window;
+  sf::RenderWindow *m_option_window;
   // Username
   std::string m_uname;
   // The network client
@@ -87,6 +108,10 @@ public:
   sf::Image &GetImage();
   sf::Texture &GetTexture();
   sf::RenderWindow &GetWindow();
+  sf::RenderWindow &GetGUIWindow();
+  // Function to render our GUI
+  void drawLayout(struct nk_context* ctx);
+  struct nk_context *m_ctx;
   void Init(void (*initFunction)(App &));
   void UpdateCallback(void (*updateFunction)(App &));
   void DrawCallback(void (*drawFunction)(App &));
