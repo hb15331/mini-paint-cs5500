@@ -100,26 +100,25 @@ void update(App &appObject) {
        appObject.ClearCanvas(appObject.GetSelectedColor());
       }
     }
-    
-    if (event.type == sf::Event::MouseButtonPressed && event.key.code == sf::Mouse::Left) {
-      sf::Vector2i coordinate = sf::Mouse::getPosition(appObject.GetWindow());
-      sf::Image image = appObject.GetImage();
-      // assuming the image size does not reach INT_MAX
-      int xSize = (int)image.getSize().x;
-      int ySize = (int)(image.getSize().y);
-      if (coordinate.x >= 0 && coordinate.x < xSize && coordinate.y >= 0 &&
-          coordinate.y < ySize)
-      {
-        //TODO: refactor command based on selected paint brush
-        appObject.AddCommand(std::make_shared<Draw>(coordinate.x, coordinate.y,
-                                                    appObject.GetSelectedColor(),
-                                                    appObject.GetImage()));
-        // appObject.SendCommandToServer(appObject.GetCommandQueue().front());
-        appObject.SendPacket(appObject.GetCommandQueue().front()->Serialize());
-        // Should also send the above command to server here. This is a
-        // placeholder.
-        appObject.ExecuteCommand();
-      }
+  }
+
+  if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+  {
+    sf::Vector2i coordinate = sf::Mouse::getPosition(appObject.GetWindow());
+    sf::Image image = appObject.GetImage();
+
+    if (coordinate.x >= 0 && coordinate.x < WINDOW_WIDTH && coordinate.y >= 0 &&
+        coordinate.y < WINDOW_HEIGHT)
+    {
+      //TODO: refactor command based on selected paint brush
+      appObject.AddCommand(std::make_shared<Draw>(coordinate.x, coordinate.y,
+                                                  appObject.GetSelectedColor(),
+                                                  appObject.GetImage()));
+      // appObject.SendCommandToServer(appObject.GetCommandQueue().front());
+      appObject.SendPacket(appObject.GetCommandQueue().front()->Serialize());
+      // Should also send the above command to server here. This is a
+      // placeholder.
+      appObject.ExecuteCommand();
     }
   }
 

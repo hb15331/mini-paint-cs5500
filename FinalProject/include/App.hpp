@@ -34,8 +34,8 @@
 #define NK_INCLUDE_VERTEX_BUFFER_OUTPUT
 #define NK_INCLUDE_FONT_BAKING
 #define NK_INCLUDE_DEFAULT_FONT
-#define NK_IMPLEMENTATION
-#define NK_SFML_GL2_IMPLEMENTATION
+// #define NK_IMPLEMENTATION
+// #define NK_SFML_GL2_IMPLEMENTATION
 #include "nuklear.h"
 #include "nuklear_sfml_gl2.h"
 

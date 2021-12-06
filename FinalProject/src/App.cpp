@@ -6,7 +6,10 @@
  ***********************************************/
 // Project header files
 #include "App.hpp"
-
+#define NK_IMPLEMENTATION
+#define NK_SFML_GL2_IMPLEMENTATION
+#include "nuklear.h"
+#include "nuklear_sfml_gl2.h"
 
 // All static members of a Singleton need to initialized to some value.
 // This is so that when the program is compiled, memory is reserved
@@ -206,8 +209,14 @@ void App::Loop() {
 
   // Start the main rendering loop
   while (m_window->isOpen() && m_option_window->isOpen()) {
-
+    m_option_window->setActive(true);
+    m_option_window->clear();
+    glClearColor(m_selected_color.r, m_selected_color.g, m_selected_color.b, m_selected_color.a);
+    glClear(GL_COLOR_BUFFER_BIT);
+    nk_sfml_render(NK_ANTI_ALIASING_ON);
+    m_option_window->display();
     // Clear the window
+    m_window->setActive(true);
     m_window->clear();
     // Updates specified by the user
     m_updateFunc(*this);
