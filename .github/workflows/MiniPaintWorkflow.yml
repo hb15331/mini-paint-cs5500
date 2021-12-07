@@ -29,7 +29,8 @@ jobs:
         run: sudo apt-get update
       - name: Install sfml
         run: sudo apt-get install libsfml-dev
-      - name: build main.cpp code
-        run: cd ./FinalProject && g++ -std=c++17 ./src/*.cpp -I./include/ -o App -lsfml-graphics -lsfml-window -lsfml-system
-      - name: run main
-        run: cd ./FinalProject && ./App
+      - name: Build project makefile
+        run: cd ./FinalProject/bin && cmake ..
+      - name: Run project makefile
+        run: cd ./FInalProject/bin && make
+      
