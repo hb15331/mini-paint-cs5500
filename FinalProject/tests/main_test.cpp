@@ -22,6 +22,7 @@
 #include "Command.hpp"
 #include "Draw.hpp"
 
+
 std::string testLog;
 
 void mock_initialization(App& app){

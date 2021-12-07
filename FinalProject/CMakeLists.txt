@@ -85,9 +85,9 @@ add_executable(Server_Test ./src/Command.cpp ./src/Draw.cpp ./src/UDPNetworkServ
 # 	sudo apt install apt-file
 #   	sudo apt-file update
 # 	apt-file find Texture.hpp
-target_link_libraries(App sfml-graphics sfml-window sfml-system sfml-network)
+target_link_libraries(App sfml-graphics sfml-window sfml-system sfml-network GL)
 target_link_libraries(Server sfml-graphics sfml-window sfml-system sfml-network)
-target_link_libraries(App_Test sfml-graphics sfml-window sfml-system sfml-network)
+target_link_libraries(App_Test sfml-graphics sfml-window sfml-system sfml-network GL)
 target_link_libraries(Server_Test sfml-graphics sfml-window sfml-system sfml-network)
 
 # Add any command line compilation options

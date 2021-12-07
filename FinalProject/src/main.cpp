@@ -52,6 +52,9 @@ void update(App &appObject) {
   sf::Event event;
   while (appObject.GetWindow().pollEvent(event)) {
     if (event.type == sf::Event::KeyPressed) {
+      if (event.key.code == sf::Keyboard::Escape) {
+        exit(EXIT_SUCCESS);
+      }
       if (event.key.code == sf::Keyboard::Y) {
         appObject.Redo();
       } else if (event.key.code == sf::Keyboard::Z) {
@@ -90,25 +93,24 @@ void update(App &appObject) {
         appObject.SetSelectedColor(sf::Color::Cyan);
       }
     }
-  }
-
-  // handle the keyReleased events
-  if (event.type == sf::Event::KeyReleased) {
-    if (event.key.code == sf::Keyboard::Space) {
-      std::cout << "Clear the canvas" << std::endl;
-      appObject.ClearCanvas(appObject.GetSelectedColor());
+    // handle the keyReleased events
+    if (event.type == sf::Event::KeyReleased) {
+      if (event.key.code == sf::Keyboard::Space) {
+        std::cout << "Clear the canvas" << std::endl;
+       appObject.ClearCanvas(appObject.GetSelectedColor());
+      }
     }
   }
 
-  // We can otherwise handle events normally
-  if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
+  if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+  {
     sf::Vector2i coordinate = sf::Mouse::getPosition(appObject.GetWindow());
     sf::Image image = appObject.GetImage();
-    // assuming the image size does not reach INT_MAX
-    int xSize = (int)image.getSize().x;
-    int ySize = (int)(image.getSize().y);
-    if (coordinate.x >= 0 && coordinate.x < xSize && coordinate.y >= 0 &&
-        coordinate.y < ySize) {
+
+    if (coordinate.x >= 0 && coordinate.x < WINDOW_WIDTH && coordinate.y >= 0 &&
+        coordinate.y < WINDOW_HEIGHT)
+    {
+      //TODO: refactor command based on selected paint brush
       appObject.AddCommand(std::make_shared<Draw>(coordinate.x, coordinate.y,
                                                   appObject.GetSelectedColor(),
                                                   appObject.GetImage()));
@@ -119,10 +121,45 @@ void update(App &appObject) {
       appObject.ExecuteCommand();
     }
   }
-  // Capture any keys that are released
-  if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) {
-    exit(EXIT_SUCCESS);
+
+  // Capture input from the nuklear GUI
+  nk_input_begin(appObject.m_ctx);
+  while (appObject.GetGUIWindow().pollEvent(event))
+  {
+    // Our close event.
+    // Note: We only have a 'minimize' button
+    //       in our window right now, so this event is not
+    //       going to fire.
+    if (event.type == sf::Event::Closed)
+    {
+      nk_sfml_shutdown();
+      appObject.GetGUIWindow().close();
+      exit(EXIT_SUCCESS);
+    }
+
+    // Capture any keys that are released
+    else if (event.type == sf::Event::KeyReleased)
+    {
+      std::cout << "Key Pressed" << std::endl;
+      // Check if the escape key is pressed.
+      if (event.key.code == sf::Keyboard::Escape)
+      {
+        nk_sfml_shutdown();
+        appObject.GetGUIWindow().close();
+        exit(EXIT_SUCCESS);
+      }
+    }
+    //else if(event.type == sf::Event::Resized){
+    //    glViewport(0, 0, event.size.width, event.size.height);
+    //}
+    nk_sfml_handle_event(&event);
   }
+
+  // Complete input from nuklear GUI
+  nk_input_end(appObject.m_ctx);
+
+  // Draw our GUI
+  appObject.drawLayout(appObject.m_ctx);
 
   std::shared_ptr<Command> received_command;
   received_command = appObject.ReceiveData();
