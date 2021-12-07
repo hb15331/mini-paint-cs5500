@@ -107,15 +107,17 @@ void update(App &appObject) {
     // assuming the image size does not reach INT_MAX
     int xSize = (int)image.getSize().x;
     int ySize = (int)(image.getSize().y);
+    sf::Color current_color = image.getPixel(coordinate.x, coordinate.y);
     if (coordinate.x >= 0 && coordinate.x < xSize && coordinate.y >= 0 &&
         coordinate.y < ySize) {
       appObject.AddCommand(std::make_shared<Draw>(coordinate.x, coordinate.y,
-                                                  appObject.GetSelectedColor(),
-                                                  appObject.GetImage()));
+                                                  appObject.GetSelectedColor(), 
+                                                  current_color));
+      // appObject.AddCommand(std::make_shared<Draw>(coordinate.x, coordinate.y,
+      //                                             appObject.GetSelectedColor(),
+      //                                             appObject.GetImage()));
       // appObject.SendCommandToServer(appObject.GetCommandQueue().front());
       appObject.SendPacket(appObject.GetCommandQueue().front()->Serialize());
-      // Should also send the above command to server here. This is a
-      // placeholder.
       appObject.ExecuteCommand();
     }
   }
@@ -126,6 +128,13 @@ void update(App &appObject) {
 
   std::shared_ptr<Command> received_command;
   received_command = appObject.ReceiveData();
+
+  if(received_command != nullptr){
+    std::cout << "Data received from server." << std::endl;
+    // Need to update command's stored image here.
+    // appObject.AddCommand(received_command);
+    // appObject.ExecuteCommand();
+  }
 
   // Where was the mouse previously before going to the next frame
   appObject.pmouseX = appObject.mouseX;
