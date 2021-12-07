@@ -33,4 +33,11 @@ jobs:
         run: cd ./FinalProject && cmake .
       - name: Run project makefile
         run: cd ./FinalProject && make
-      
+      - name: Setup headless x11 window
+        run: sudo apt-get install xvfb xorg xauth openbox # xorg is needed to set DISPLAY variable later
+      - name: Run graphical application tests in headless mode
+      # Run cppcheck for all the files in ./src
+      - name: Install cppcheck
+        run: sudo apt-get install cppcheck
+      - name: Run cppcheck
+        run: cd ./FinalProject/src && cppcheck --enable=all *.cpp
