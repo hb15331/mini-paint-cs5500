@@ -107,9 +107,9 @@ void update(App &appObject) {
     // assuming the image size does not reach INT_MAX
     int xSize = (int)image.getSize().x;
     int ySize = (int)(image.getSize().y);
-    sf::Color current_color = image.getPixel(coordinate.x, coordinate.y);
     if (coordinate.x >= 0 && coordinate.x < xSize && coordinate.y >= 0 &&
         coordinate.y < ySize) {
+      sf::Color current_color = image.getPixel(coordinate.x, coordinate.y);
       appObject.AddCommand(std::make_shared<Draw>(coordinate.x, coordinate.y,
                                                   appObject.GetSelectedColor(), 
                                                   current_color));
@@ -132,8 +132,8 @@ void update(App &appObject) {
   if(received_command != nullptr){
     std::cout << "Data received from server." << std::endl;
     // Need to update command's stored image here.
-    // appObject.AddCommand(received_command);
-    // appObject.ExecuteCommand();
+    appObject.AddCommand(received_command);
+    appObject.ExecuteCommand();
   }
 
   // Where was the mouse previously before going to the next frame
