@@ -30,7 +30,7 @@ jobs:
       - name: Install sfml
         run: sudo apt-get install libsfml-dev
       - name: Build project makefile
-        run: cd ./FinalProject && cmake ..
+        run: cd ./FinalProject && cmake .
       - name: Run project makefile
         run: cd ./FinalProject && make
       
