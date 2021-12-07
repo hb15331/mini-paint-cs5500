@@ -1,0 +1,35 @@
+# A simple C/C++ Continuous Integration file
+name: MiniPaint CI
+
+# This action is pushed on any push to a specific branch,
+# in this case, the master branch, although you could add others.
+on:
+  push:
+    branches: [ main ]
+    
+# Every github action needs at least one job.
+# We could have multiple jobs, but for now I am only going to include one here.
+jobs:
+  build_and_test_minipaint: # This is the name of our job, and you will see it in the 'Actions' tab.
+    # We can have our integration tests run on multiple operating systems in 'containers'
+    # that are hosted on github. You can create your own as well, or setup a 'container'
+    # using a tool like docker if you like. For now, I am going to show you the ubuntu setup.
+    # Available environments are here: https://github.com/actions/virtual-environments
+    runs-on: ubuntu-18.04
+    # These are the steps that will be run every time that we run our script, one will follow
+    # the other.
+    # You can pretend you would be manually be typing these out in the terminal everytime you did
+    # a 'push' before.
+    steps:
+      - uses: actions/checkout@v2
+      - name: Quick check to see where we are and who we are.
+        run: pwd && whoami && ls -l
+      # For us, we need to setup our linux box which only takes a few moments
+      - name: Update packages on linux
+        run: sudo apt-get update
+      - name: Install sfml
+        run: sudo apt-get install libsfml-dev
+      - name: build main.cpp code
+        run: cd ./FinalProject && g++ -std=c++17 ./src/*.cpp -I./include/ -o App -lsfml-graphics -lsfml-window -lsfml-system
+      - name: run main
+        run: cd ./FinalProject && ./App
