@@ -33,9 +33,18 @@ jobs:
         run: cd ./FinalProject && cmake .
       - name: Run project makefile
         run: cd ./FinalProject && make
+      # These next two steps need a little bit more explaining, because as we are finding out
+      # testing graphics applications is really hard!
+      # You learned this when you wrote your GUI applications tests earlier.
+      # First and foremost, make sure your tests terminate at some point, otherwise they will run forever
+      # and we will never finish this test!
+      # Second, since we are running our code on github.com, we do not have a 'window', so we need
+      # to install some tools that emulate having an actual desktop window to run our program in.
+      # 'xvfb ' is one such tool, and you can see how I have set it up below.
       - name: Setup headless x11 window
         run: sudo apt-get install xvfb xorg xauth openbox # xorg is needed to set DISPLAY variable later
       - name: Run graphical application tests in headless mode
+        run: cd ./FinalProject && xvfb-run --server-args="-screen 0 1024x768x24" ./App_Test
       # Run cppcheck for all the files in ./src
       - name: Install cppcheck
         run: sudo apt-get install cppcheck
