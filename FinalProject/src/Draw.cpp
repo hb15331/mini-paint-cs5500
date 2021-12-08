@@ -50,6 +50,21 @@ bool Draw::Execute() {
   return false;
 }
 
+/*! \brief 	Return true if the command is successfully executed. Otherwise
+ * return false.
+ *
+ */
+bool Draw::Execute(sf::Image &image){
+  m_ptrImage = &image;
+  int xSize = (int)(*m_ptrImage).getSize().x;
+  int ySize = (int)(*m_ptrImage).getSize().y;
+  if (m_pixelX >= 0 && m_pixelX < xSize && m_pixelY >= 0 && m_pixelY < ySize) {
+    (*m_ptrImage).setPixel(m_pixelX, m_pixelY, m_color);
+    return true;
+  }
+  return false;
+}
+
 /*! \brief 	Return true if the command is successfully undone. Otherwise
  * return false.
  *

@@ -41,6 +41,7 @@ public:
   Draw(const Draw &obj);
   bool IsEqual(const Command &other) override;
   bool Execute() override;
+  bool Execute(sf::Image &image);
   std::string ToString() const;
   bool Undo() override;
   sf::Packet Serialize() const;

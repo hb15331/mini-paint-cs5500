@@ -70,7 +70,8 @@ void App::AddCommand(std::shared_ptr<Command> c) {
 void App::ExecuteCommand() {
   while (!m_commands.empty()) {
     if (m_undo.empty() || !m_undo.top()->IsEqual(*m_commands.front())) {
-      if (m_commands.front()->Execute()) {
+      // if (m_commands.front()->Execute()) {
+      if (m_commands.front()->Execute(GetImage())) {
         m_undo.push(m_commands.front());
       }
       while (!m_redo.empty()) {
