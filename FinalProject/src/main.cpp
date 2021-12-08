@@ -113,10 +113,6 @@ void update(App &appObject) {
       appObject.AddCommand(std::make_shared<Draw>(coordinate.x, coordinate.y,
                                                   appObject.GetSelectedColor(), 
                                                   current_color));
-      // appObject.AddCommand(std::make_shared<Draw>(coordinate.x, coordinate.y,
-      //                                             appObject.GetSelectedColor(),
-      //                                             appObject.GetImage()));
-      // appObject.SendCommandToServer(appObject.GetCommandQueue().front());
       appObject.SendPacket(appObject.GetCommandQueue().front()->Serialize());
       appObject.ExecuteCommand();
     }
