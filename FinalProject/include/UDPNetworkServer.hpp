@@ -40,6 +40,8 @@ public:
   int stop();
   //Bind to port
   bool bindToPort();
+  //Receive a packet
+  bool receivePacket();
 
 private:
   // What to do when the client joins the server

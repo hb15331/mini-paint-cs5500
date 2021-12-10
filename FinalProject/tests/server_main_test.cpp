@@ -34,11 +34,15 @@ TEST_CASE("Create server object, bind to port") {
     REQUIRE( status == true );
 }
 
-// TEST_CASE("Receive packet") {
-//     sf::Packet packet;
-//     UDPNetworkServer server("Server Name", sf::IpAddress::getLocalAddress(), 50000);
-//     server.bindToPort();
-//     while(m_socket.receive(packet, sf::IpAddress::getLocalAddress(), 50001) != sf::Socket::Done) {
-//         //Send test packet
-//     }
-// }
+TEST_CASE("Receive packet") {
+    UDPNetworkServer server("Server Name", sf::IpAddress::getLocalAddress(), 50000);
+    sf::UdpSocket socket;
+    sf::Packet packet;
+    bool status;
+    packet << "test";
+    socket.setBlocking(false);
+    status = server.bindToPort();
+    REQUIRE( server.receivePacket() == false );
+    socket.send(packet, sf::IpAddress::getLocalAddress(), 50000);
+    REQUIRE( server.receivePacket() == true );
+}
