@@ -113,7 +113,7 @@ void update(App &appObject) {
         coordinate.y < ySize) {
       sf::Color current_color = image.getPixel(coordinate.x, coordinate.y);
       appObject.AddCommand(std::make_shared<Draw>(coordinate.x, coordinate.y,
-                                                  appObject.GetSelectedColor(), 
+                                                  appObject.GetSelectedColor(),
                                                   current_color));
       appObject.SendPacket(appObject.GetCommandQueue().front()->Serialize());
       appObject.ExecuteCommand();

@@ -11,19 +11,8 @@
 #include "nuklear.h"
 #include "nuklear_sfml_gl2.h"
 
-// All static members of a Singleton need to initialized to some value.
-// This is so that when the program is compiled, memory is reserved
-// for each of these static values.
-// Potentially handy data structures for building an undo system.
-// TODO: Decide, modify, add or remove any data structures you need.
-
-// Function pointers
-// void (*m_initFunc)(void) = nullptr;
-// void (*m_updateFunc)(App&) = nullptr;
-// void (*m_drawFunc)(App&) = nullptr;
-
 /*!	\brief Construct the App object
- *
+ * \return new app object
  */
 App::App(std::string uname)
     : m_commands(std::queue<std::shared_ptr<Command>>()),
@@ -36,11 +25,8 @@ App::App(std::string uname)
       m_udp_client(uname), m_ctx(new struct nk_context),
       m_pen_size(1) {}
 
-/*! \brief 	Destruct the App object.
- *
- */
-App::~App()
-{
+/*! \brief 	Destruct the App object */
+App::~App() {
   delete m_image;
   delete m_sprite;
   delete m_texture;

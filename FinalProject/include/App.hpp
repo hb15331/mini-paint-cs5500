@@ -64,8 +64,10 @@ private:
   // Our rendering window
   sf::RenderWindow *m_window;
   sf::RenderWindow *m_option_window;
+
   // Username
   std::string m_uname;
+
   // The network client
   UDPNetworkClient m_udp_client;
   // Pen size retrieved from GUI setting
@@ -77,52 +79,86 @@ private:
   void (*m_initFunc)(App &);
   void (*m_updateFunc)(App &);
   void (*m_drawFunc)(App &);
+
   // prevent implicit definition of copy constructor
   // and copy assignment
   App(const App &) = delete;
   App &operator=(const App &) = delete;
 
+  // Is the app connected to the server?
+  bool is_online = true;
+
 public:
-  // Member Variables
+
   // Keeps track of the previous mouse and current mouse positions
   // 'pmouse' is where the mouse previously was.
   // 'mouse' records where the mouse currently is.
-  // Note: Occassinally I break my rules of always having a getter/setter
-  //	 function for each member variable if there's reason to.
-  //   	 There is some overhead associated with calling these functions,
-  // 	 and even with 'inline' there is no gaureentee that the functions
-  //  	 do get inlined. Other commercial and open source APIs seem
-  // 	 to do this on occassion--use your disgression and expression to
-  // 	 make an informed choice if exposuing these variables is safe, fast,
-  // 	 and going to be more maintainable in the long run. In the end--it's
-  // 	 still risky to expose anything as public.
   unsigned int pmouseX, pmouseY, mouseX, mouseY;
+
   // Member functions
+  // Constructor
   App(std::string uname);
+
+  // Destructor
   ~App();
+
+  // Adds a new command to the command queue
   void AddCommand(std::shared_ptr<Command> c);
+
+  // Get the commands needed to be executed
   std::queue<std::shared_ptr<Command>> GetCommandQueue();
+
+  // Execute command at front of queue
   void ExecuteCommand();
+
+  // Get currently selected pen color
   sf::Color &GetSelectedColor();
+
+  // Set currently selected pen color
   void SetSelectedColor(sf::Color color);
+
+  // Undo last action
   void Undo();
+
+  // Undo last undo :)
   void Redo();
+
+  // Get the drawin image/texture data
   sf::Image &GetImage();
   sf::Texture &GetTexture();
+
+  // Get handles to drawing/gui window
   sf::RenderWindow &GetWindow();
   sf::RenderWindow &GetGUIWindow();
+
   // Function to render our GUI
   void drawLayout(struct nk_context* ctx);
   struct nk_context *m_ctx;
+
+
   void Init(void (*initFunction)(App &));
   void UpdateCallback(void (*updateFunction)(App &));
   void DrawCallback(void (*drawFunction)(App &));
+
+  // Main app loop
   void Loop();
+
+  // Set canvas to a given color
   void ClearCanvas(sf::Color color);
+
+  // Attempt to connect to the server. If connected then m_is_online becomes true
   void CreateUDPNetworkClient();
+
+  // Send packet to server
   void SendPacket(sf::Packet packet);
+
   int GetPenSize();
+
+  // Get the current udp client (Note: You should check that you're online
+  //before you use it...)
   UDPNetworkClient &GetUdpClient();
+
+  // Receive command from the server
   std::shared_ptr<Command> ReceiveData();
 };
 
