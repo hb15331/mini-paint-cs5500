@@ -120,6 +120,17 @@ int UDPNetworkServer::start() {
 // Stops the server from running and removes all clients
 int UDPNetworkServer::stop() { m_start = false; }
 
+// Bind server to given port.
+// Return true if bind is successful, false if not.
+bool UDPNetworkServer::bindToPort() {
+  int status;
+  status = m_socket.bind(m_port);
+  if (status != sf::Socket::Done) {
+    return false;
+  }
+  return true;
+}
+
 // Typically we'll want to update the client to get the log
 // of all of the things that have happened.
 // For a 'painting' application this is likely appropriate, for

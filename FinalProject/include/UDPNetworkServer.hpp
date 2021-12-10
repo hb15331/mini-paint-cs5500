@@ -38,6 +38,8 @@ public:
   int start();
   // Stops the server from running and removes all clients
   int stop();
+  //Bind to port
+  bool bindToPort();
 
 private:
   // What to do when the client joins the server
