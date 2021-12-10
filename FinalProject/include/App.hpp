@@ -68,6 +68,8 @@ private:
   std::string m_uname;
   // The network client
   UDPNetworkClient m_udp_client;
+  // Pen size retrieved from GUI setting
+  int m_pen_size;
 
   // Member functions
   // Store the address of our funcion pointer
@@ -119,6 +121,7 @@ public:
   void ClearCanvas(sf::Color color);
   void CreateUDPNetworkClient();
   void SendPacket(sf::Packet packet);
+  int GetPenSize();
   UDPNetworkClient &GetUdpClient();
   std::shared_ptr<Command> ReceiveData();
 };
