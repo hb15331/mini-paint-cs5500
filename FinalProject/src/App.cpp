@@ -14,7 +14,7 @@
 /*!	\brief Construct the App object
  * \return new app object
  */
-App::App(std::string uname)
+App::App(std::string uname, sf::IpAddress ip_address)
     : m_commands(std::queue<std::shared_ptr<Command>>()),
       m_undo(std::stack<std::shared_ptr<Command>>()),
       m_redo(std::stack<std::shared_ptr<Command>>()),
@@ -22,7 +22,7 @@ App::App(std::string uname)
       m_sprite(new sf::Sprite), m_texture(new sf::Texture), m_window(nullptr),
       m_option_window(nullptr), m_initFunc(nullptr), m_updateFunc(nullptr), m_drawFunc(nullptr),
       m_is_online(false),
-      pmouseX(0), pmouseY(0), mouseX(0), mouseY(0), m_uname(uname),
+      pmouseX(0), pmouseY(0), mouseX(0), mouseY(0), m_uname(uname), m_ip_address(ip_address),
       m_udp_client(uname), m_ctx(new struct nk_context),
       m_pen_size(1) {}
 
@@ -264,7 +264,9 @@ void App::CreateUDPNetworkClient()
   // what ports are 'open' for connection in the 'joinServer' function.
   // For now, we will create clients that can simply join however!
   m_udp_client.setUsername(m_uname);
-  int result = m_udp_client.joinServer(sf::IpAddress::getLocalAddress(), 50000);
+  int result = m_udp_client.joinServer(m_ip_address, 50000);
+  // Commenting below out to allow for user-entered ip to be connected to.
+  // int result = m_udp_client.joinServer(sf::IpAddress::getLocalAddress(), 50000);
   if(result == 1) {
     std::cout << "Online mode!" << std::endl;
     m_is_online = true;

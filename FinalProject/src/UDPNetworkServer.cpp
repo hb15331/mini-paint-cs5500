@@ -32,6 +32,7 @@ UDPNetworkServer::~UDPNetworkServer() {
 // in a map.
 int UDPNetworkServer::start() {
   std::cout << "Starting UDP Network server" << std::endl;
+  std::cout << "Server's IP address is: " << m_ipAddress << std::endl;
   // Attempt to bind to a port
   int status;
   if (status = (m_socket.bind(m_port) != sf::Socket::Done)) {

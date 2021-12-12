@@ -69,6 +69,9 @@ private:
   // Username
   std::string m_uname;
 
+  // IP address
+  sf::IpAddress m_ip_address;
+
   // The network client
   UDPNetworkClient m_udp_client;
   // Pen size retrieved from GUI setting
@@ -98,7 +101,7 @@ public:
 
   // Member functions
   // Constructor
-  App(std::string uname);
+  App(std::string uname, sf::IpAddress ip_address);
 
   // Destructor
   ~App();

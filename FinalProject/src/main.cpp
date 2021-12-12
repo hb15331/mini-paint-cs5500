@@ -207,10 +207,12 @@ void draw(App &appObject) {
  */
 int main() {
   std::string username;
-  unsigned short port;
+  sf::IpAddress ip_address;
   std::cout << "Enter your username:";
   std::cin >> username;
-  App drawApp(username);
+  std::cout << "Enter the ipv4 address of the server:";
+  std::cin >> ip_address;
+  App drawApp(username, ip_address);
   // Call any setup function
   // Passing a function pointer into the 'init' function.
   // of our application.
