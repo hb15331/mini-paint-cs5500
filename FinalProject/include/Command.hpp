@@ -19,10 +19,9 @@
 
 // The command class
 class Command {
-private:
-  std::string m_command_description;
-
 public:
+  const std::string m_command_description;
+
   Command(std::string command_description);
   // Destructor for a command
   virtual ~Command();
@@ -36,7 +35,10 @@ public:
   // it allows us to easily debug what each command is doing in a textual form.
   virtual bool Execute() = 0;
   virtual bool Execute(sf::Image &image) = 0;
-  virtual bool Undo() = 0;
+  virtual bool Undo(sf::Image &image) = 0;
+
+  // Inverts the command
+  virtual void Invert() = 0;
 
   //! Converts the command to a user-readable string
   virtual std::string ToString() const;

@@ -171,7 +171,7 @@ void update(App &appObject) {
     received_command = appObject.ReceiveData();
 
     if(received_command != nullptr){
-      std::cout << "Data received from server." << std::endl;
+      //std::cout << "Data received from server." << std::endl;
       // Need to update command's stored image here.
       appObject.AddCommand(received_command);
       appObject.ExecuteCommand();

@@ -21,6 +21,7 @@
 #include "Command.hpp"
 #include "UDPNetworkClient.hpp"
 #include "deserialize.hpp"
+#include "UndoRedo.hpp"
 #include <cassert>
 #include <memory>
 #include <queue>

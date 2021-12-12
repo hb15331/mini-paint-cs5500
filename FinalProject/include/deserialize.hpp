@@ -1,6 +1,8 @@
 #ifndef DESERIALIZE_HPP_INCLUDED
 #define DESERIALIZE_HPP_INCLUDED
 
+#include "Command.hpp"
+#include "UndoRedo.hpp"
 #include <exception>
 
 /*! \brief turns a packet back into a command
@@ -26,6 +28,14 @@ inline std::shared_ptr<Command> Deserialize(sf::Packet packet) {
     }
     return (std::make_shared<Draw>(xcoord, ycoord, sf::Color(r, g, b, a),
                                    sf::Color(p_r, p_g, p_b, p_a)));
+  } else if (cmd_type == "UndoRedo") {
+    std::string cmd;
+    if (!(packet >> cmd >> username)) {
+      std::cout << "Error deserializing packet " << packet
+              << " size: " << packet.getDataSize() << std::endl;
+      return nullptr;
+    }
+    return (std::make_shared<UndoRedo>(cmd));
   } else if (cmd_type == "String") {
     std::string out;
     std::cout << "String packet\n" << out << std::endl;

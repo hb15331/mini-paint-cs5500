@@ -99,13 +99,18 @@ void App::SetSelectedColor(sf::Color color) { m_selected_color = color; }
  */
 void App::Undo()
 {
-  if (!m_undo.empty())
-  {
-    if (m_undo.top()->Undo())
+  if (IsOnline()) {
+    UndoRedo cmd = UndoRedo("Undo");
+    SendPacket(cmd.Serialize());
+  } else {
+    if (!m_undo.empty())
     {
-      m_redo.push(m_undo.top());
-    };
-    m_undo.pop();
+      if (m_undo.top()->Undo(GetImage()))
+      {
+        m_redo.push(m_undo.top());
+      };
+      m_undo.pop();
+    }
   }
 };
 
@@ -114,13 +119,18 @@ void App::Undo()
  */
 void App::Redo()
 {
-  if (!m_redo.empty())
-  {
-    if (m_redo.top()->Execute())
+  if (IsOnline()) {
+    UndoRedo cmd = UndoRedo("Redo");
+    SendPacket(cmd.Serialize());
+  } else {
+    if (!m_redo.empty())
     {
-      m_undo.push(m_redo.top());
-    };
-    m_redo.pop();
+      if (m_redo.top()->Execute())
+      {
+        m_undo.push(m_redo.top());
+      };
+      m_redo.pop();
+    }
   }
 };
 

@@ -13,12 +13,12 @@ sf::Color m_prevColor;
 
 Draw::Draw(int pixelX, int pixelY, const sf::Color &newColor, sf::Image &image)
     : Command("Draw"), m_pixelX(pixelX), m_pixelY(pixelY), m_color(newColor),
-      m_prevColor(image.getPixel(pixelX, pixelY)), m_ptrImage(&image) {}
+      m_prevColor(image.getPixel(pixelX, pixelY)), m_ptrImage(&image), m_inverted(false) {}
 
 Draw::Draw(int pixelX, int pixelY, const sf::Color &newColor,
            const sf::Color &prevColor)
     : Command("Draw"), m_pixelX(pixelX), m_pixelY(pixelY), m_color(newColor),
-      m_prevColor(prevColor), m_ptrImage(nullptr) {}
+      m_prevColor(prevColor), m_ptrImage(nullptr), m_inverted(false) {}
 
 Draw::Draw(const Draw &obj)
     : Command("Draw"), m_pixelX(obj.m_pixelX), m_pixelY(obj.m_pixelX),
@@ -43,8 +43,13 @@ bool Draw::IsEqual(const Command &other) {
 bool Draw::Execute() {
   int xSize = (int)(*m_ptrImage).getSize().x;
   int ySize = (int)(*m_ptrImage).getSize().y;
+
   if (m_pixelX >= 0 && m_pixelX < xSize && m_pixelY >= 0 && m_pixelY < ySize) {
-    (*m_ptrImage).setPixel(m_pixelX, m_pixelY, m_color);
+    if (m_inverted) {
+      (*m_ptrImage).setPixel(m_pixelX, m_pixelY, m_prevColor);
+    } else {
+      (*m_ptrImage).setPixel(m_pixelX, m_pixelY, m_color);
+    }
     return true;
   }
   return false;
@@ -59,7 +64,11 @@ bool Draw::Execute(sf::Image &image){
   int xSize = (int)(*m_ptrImage).getSize().x;
   int ySize = (int)(*m_ptrImage).getSize().y;
   if (m_pixelX >= 0 && m_pixelX < xSize && m_pixelY >= 0 && m_pixelY < ySize) {
-    (*m_ptrImage).setPixel(m_pixelX, m_pixelY, m_color);
+    if (m_inverted) {
+      (*m_ptrImage).setPixel(m_pixelX, m_pixelY, m_prevColor);
+    } else {
+      (*m_ptrImage).setPixel(m_pixelX, m_pixelY, m_color);
+    }
     return true;
   }
   return false;
@@ -69,7 +78,8 @@ bool Draw::Execute(sf::Image &image){
  * return false.
  *
  */
-bool Draw::Undo() {
+bool Draw::Undo(sf::Image &image) {
+  m_ptrImage = &image;
   int xSize = (int)(*m_ptrImage).getSize().x;
   int ySize = (int)(*m_ptrImage).getSize().y;
   if (m_pixelX >= 0 && m_pixelX < xSize && m_pixelY >= 0 && m_pixelY < ySize) {
@@ -85,7 +95,7 @@ bool Draw::Undo() {
 std::string Draw::ToString() const {
   std::stringstream ss;
   ss << Command::ToString() << ": (" << m_pixelX << "," << m_pixelY << ")"
-     << ", sz=" << 1;
+     << ", sz=" << 1 << "Inverted " << m_inverted;
   return ss.str();
 }
 
@@ -95,8 +105,21 @@ std::string Draw::ToString() const {
 sf::Packet Draw::Serialize() const {
   std::cout << "Serializing" << std::endl;
   sf::Packet packet;
-  packet << "Draw" << m_pixelX << m_pixelY << 1 << m_color.r << m_color.g
+  if (m_inverted) {
+    packet << "Draw" << m_pixelX << m_pixelY << 1 << m_prevColor.r << m_prevColor.g
+         << m_prevColor.b << m_prevColor.a << m_color.r << m_color.g
+         << m_color.b << m_color.a;
+  } else {
+    packet << "Draw" << m_pixelX << m_pixelY << 1 << m_color.r << m_color.g
          << m_color.b << m_color.a << m_prevColor.r << m_prevColor.g
          << m_prevColor.b << m_prevColor.a;
+  }
+
   return packet;
+}
+
+
+/*! \brief inverts the command for undoing purposes*/
+void Draw::Invert() {
+  m_inverted = !m_inverted;
 }

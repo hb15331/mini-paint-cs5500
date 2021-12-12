@@ -70,15 +70,27 @@ int UDPNetworkServer::start() {
       try {
         std::shared_ptr<Command> command = Deserialize(packet);
         if (command) {
-          std::cout << *command << std::endl;
+          if (command->m_command_description == "Undo") {
+            command = Undo();
+            packet = command->Serialize();
+            packet << "Server";
+            std::cout << "Undoing" << std::endl;
+
+          } else if (command->m_command_description == "Redo") {
+            command = Redo();
+            packet = command->Serialize();
+            packet << "Server";
+          } else {
+            AddCommand(command);
+
+          }
+          if (command) {
+            std::cout << *command << std::endl;
+          }
         }
       } catch (std::runtime_error e) {
         std::cout << e.what() << std::endl;
       }
-
-      // if (packet >> cmd_type >> xcoord >> ycoord >> sz >> username) {
-      //  std::cout << "Hello" << xcoord << "|" << ycoord << std::endl;
-      //}
 
       // Check if this is the first message sent by the client
       // by iterating through all of our current clients.
@@ -99,7 +111,7 @@ int UDPNetworkServer::start() {
       // for the server which receives messages. 1 socket thus per connection
       // and then we may then also have a lock on any shared data structures.
       // m_sentHistory.push_back(in);
-      std::cout << "total messages: " << m_sentHistory.size() << std::endl;
+      std::cout << "total messages: " << m_commands.size() << std::endl;
       // We create an iterator that looks through our map
       // For each of our clients we are going to send to them
       // (including the client that just joined) the message that
@@ -143,6 +155,45 @@ int UDPNetworkServer::handleClientJoining(unsigned short clientPort,
     char in[128];
     m_socket.send(m_sentHistory[i].c_str(), m_sentHistory[i].length() + 1,
                   clientIpAddress, clientPort);
+  }
+}
+
+/*! \brief 	Undo the latest command that has executed.
+ *		The command that's been undone can be invoked again in redo
+ */
+std::shared_ptr<Command> UDPNetworkServer::Undo()
+{
+  if (!m_undo.empty())
+  {
+    std::shared_ptr<Command> undo = m_undo.top();
+    undo->Invert();
+    m_redo.push(undo);
+    m_undo.pop();
+    return undo;
+  } else {
+    return nullptr;
+  }
+}
+
+/*! \brief 	Redo the latest command that has undone.
+ *		The command that's been re-done can be invoked again in undo
+ */
+std::shared_ptr<Command> UDPNetworkServer::Redo()
+{
+  if (!m_redo.empty())
+  {
+    m_undo.push(m_redo.top());
+    auto redo =  m_redo.top();
+    m_redo.pop();
+    redo->Invert();
+    return redo;
+  }
+}
+
+void UDPNetworkServer::AddCommand(std::shared_ptr<Command> c) {
+  if(c) {
+    m_commands.push(c);
+    m_undo.push(c);
   }
 }
 

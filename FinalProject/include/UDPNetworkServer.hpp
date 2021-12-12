@@ -36,6 +36,15 @@ public:
   // Default Destructor
   ~UDPNetworkServer();
 
+  // Adds a command to the command queue
+  void AddCommand(std::shared_ptr<Command> c);
+
+  // Undo last command
+  std::shared_ptr<Command> Undo();
+
+  // Redo last command
+  std::shared_ptr<Command>Redo();
+
   // Start the server
   int start();
   // Stops the server from running and removes all clients

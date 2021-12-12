@@ -33,7 +33,10 @@ private:
   sf::Color m_prevColor;
   // pointer to the image
   sf::Image *m_ptrImage;
+  // Used for undoing
+  bool m_inverted;
   Draw &operator=(const Draw &) = delete;
+
 
 public:
   Draw(int pixelX, int pixelY, const sf::Color &newColor, sf::Image &image);
@@ -41,10 +44,11 @@ public:
   Draw(const Draw &obj);
   bool IsEqual(const Command &other) override;
   bool Execute() override;
-  bool Execute(sf::Image &image);
-  std::string ToString() const;
-  bool Undo() override;
-  sf::Packet Serialize() const;
+  bool Execute(sf::Image &image) override;
+  void Invert() override;
+  std::string ToString() const override;
+  bool Undo(sf::Image &image) override;
+  sf::Packet Serialize() const override;
 };
 
 /*! \brief Override to allow simple printing of a Draw object */

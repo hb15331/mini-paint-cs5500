@@ -74,10 +74,10 @@ link_directories("/usr/lib/x86_64-linux-gnu/")
 # to generate.
 #
 # Here is an example below adding multiple files
-add_executable(App ./src/App.cpp ./src/Draw.cpp ./src/Command.cpp ./src/UDPNetworkClient.cpp ./src/main.cpp)
-add_executable(App_Test ./src/App.cpp ./src/Command.cpp ./src/Draw.cpp ./src/UDPNetworkClient.cpp ./tests/main_test.cpp ./tests/catch_amalgamated.cpp)
-add_executable(Server ./src/Draw.cpp ./src/Command.cpp ./src/UDPNetworkServer.cpp ./src/server_main.cpp)
-add_executable(Server_Test ./src/Command.cpp ./src/Draw.cpp ./src/UDPNetworkServer.cpp ./tests/server_main_test.cpp ./tests/catch_amalgamated.cpp)
+add_executable(App ./src/App.cpp ./src/Draw.cpp ./src/Command.cpp ./src/UDPNetworkClient.cpp ./src/main.cpp ./src/UndoRedo.cpp)
+add_executable(App_Test ./src/App.cpp ./src/Command.cpp ./src/Draw.cpp ./src/UDPNetworkClient.cpp ./tests/main_test.cpp ./tests/catch_amalgamated.cpp ./src/UndoRedo.cpp)
+add_executable(Server ./src/Draw.cpp ./src/Command.cpp ./src/UDPNetworkServer.cpp ./src/server_main.cpp ./src/UndoRedo.cpp)
+add_executable(Server_Test ./src/Command.cpp ./src/Draw.cpp ./src/UDPNetworkServer.cpp ./tests/server_main_test.cpp ./tests/catch_amalgamated.cpp ./src/UndoRedo.cpp)
 
 # Add any libraries
 # On linux, you can use the handy 'apt-file' tool to find
