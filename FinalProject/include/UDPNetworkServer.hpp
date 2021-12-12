@@ -49,6 +49,10 @@ public:
   int start();
   // Stops the server from running and removes all clients
   int stop();
+  //Bind to port
+  bool bindToPort();
+  //Receive a packet
+  bool receivePacket();
 
 private:
 

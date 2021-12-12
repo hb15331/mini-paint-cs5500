@@ -131,6 +131,32 @@ int UDPNetworkServer::start() {
 // Stops the server from running and removes all clients
 int UDPNetworkServer::stop() { m_start = false; }
 
+// Bind server to given port.
+// Return true if bind is successful, false if not.
+bool UDPNetworkServer::bindToPort() {
+  int status;
+  status = m_socket.bind(m_port);
+  if (status != sf::Socket::Done) {
+    return false;
+  }
+  return true;
+}
+
+// Receive a packet if one is sent
+// Return true if packet received, false if not
+bool UDPNetworkServer::receivePacket() {
+  m_socket.setBlocking(false);
+  sf::Packet packet;
+  sf::IpAddress senderIp;
+  size_t received;
+  unsigned short senderPort;
+  sf::Socket::Status status = m_socket.receive(packet, m_ipAddress, senderPort);
+  if (status == sf::Socket::Done) {
+    return true;
+  }
+  return false;
+}
+
 // Typically we'll want to update the client to get the log
 // of all of the things that have happened.
 // For a 'painting' application this is likely appropriate, for

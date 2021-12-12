@@ -136,27 +136,6 @@ TEST_CASE("test draw command") {
     REQUIRE(testApp.GetImage().getPixel(0,0)==sf::Color::Red);
 }
 
-// invalid draw command location fails
-// because draw constructor requires previous color
-// TEST_CASE("test invalid draw command") {
-//     App testApp;
-//     testApp.Init(&mock_initialization);
-//     testApp.UpdateCallback(&mock_update);
-//     testApp.DrawCallback(&mock_draw);
-//     REQUIRE(testApp.GetImage().getPixel(0,0)==sf::Color::White);
-//     Draw* command = new Draw(-1, -1, sf::Color::Red, testApp.GetImage());
-//     testApp.AddCommand(command);
-//     testApp.ExecuteCommand();
-    //make sure the entirely white image stays unmodified
-    // int xSize = testApp.GetImage().getSize().x;
-    // int ySize = testApp.GetImage().getSize().y;
-    // for (unsigned int pixelX = 0; pixelX < xSize; pixelX++) {
-    //     for (unsigned int pixelY = 0; pixelY < ySize; pixelY++) {
-    //         REQUIRE(testApp.GetImage().getPixel(pixelX,pixelY)==sf::Color::White);
-    //     }
-    // }
-// }
-
 TEST_CASE("test undo on single valid command") {
     App testApp("test_user");
     testApp.Init(&mock_initialization);
