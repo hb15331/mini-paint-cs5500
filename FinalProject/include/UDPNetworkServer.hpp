@@ -24,6 +24,8 @@
 // Other standard libraries
 #include <string>
 #include <vector>
+#include <queue>
+#include <stack>
 
 // Create a non-blocking UDP server
 class UDPNetworkServer {
@@ -40,6 +42,16 @@ public:
   int stop();
 
 private:
+
+  // Member variables
+  // Queue stores the next command to do.
+  std::queue<std::shared_ptr<Command>> m_commands;
+  // Stack that stores the last action to occur.
+  std::stack<std::shared_ptr<Command>> m_undo;
+  // Stack that stores the last action to redo.
+  std::stack<std::shared_ptr<Command>> m_redo;
+  // Color that is selected for painting. Default is red
+
   // What to do when the client joins the server
   int handleClientJoining(unsigned short clientPort,
                           sf::IpAddress clientIpAddress);

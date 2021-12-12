@@ -57,6 +57,24 @@ int UDPNetworkClient::joinServer(sf::IpAddress serverAddress,
   std::cout << "UDPClient will attempt to join server: " << std::endl;
   m_serverIpAddress = serverAddress;
   m_serverPort = serverPort;
+
+
+  sendString("Hello, " + m_username + " is joining!");
+
+  sf::Clock clock;
+  clock.restart();
+  while(clock.getElapsedTime() < sf::seconds(2)) {
+      sf::Packet pack = ReceiveData();
+      std::string initString, message;
+      if (pack >> initString >> message) {
+        if (initString == "String") {
+          std::cout << message << std::endl;
+          return 1; // Online
+        }
+      }
+  }
+  return 0; // Offline
+
 }
 
 // Send data to server
@@ -82,58 +100,9 @@ int UDPNetworkClient::SendPacket(sf::Packet packet) {
 // As an alternative, we may want to send string messages to the server.
 // This can be a quick way to log, or perhaps 'chat' with the server
 int UDPNetworkClient::sendString(std::string s) {
-  if (s.length() <= 0) {
-    return -1;
-  }
-  // Here we send a specific string
-  // Let's keep things interesting by forcing the client to
-  // append their user name to the message they send.
-  s += " (from " + m_username + ")";
-
-  // Note that we are sending this message to our server:serverPort
-  // Note that we add 1 more charater for the NULL terminator on our string
-  if (m_socket.send(s.c_str(), s.length() + 1, m_serverIpAddress,
-                    m_serverPort) == sf::Socket::Done) {
-    std::cout << "Client(" << m_username << ") sending packet" << std::endl;
-  }
-}
-
-// Receive data from the server
-//
-// As a client, we will receive data from our server.
-// Clients can send '2' types of messages to server given our API.
-// One type is a string, the other is our custom packet.
-// We will handle both.
-//
-// FIXME Depending on how you want to handle returning of data
-// you can modify the return type.
-void /*myPacket*/ UDPNetworkClient::receiveData() {
-  // 1.) Situation 1 -- we receive a packet from sendCommand
-  // Create a temporary packet and see
-  // if something was received from our server
-  // myPacket temp;
-  // std::string client;
-  // Command* c;
-  // if(temp.getDataSize()>0){
-  //    std::cout << "Some Custom packet receieved from:" << client <<
-  //    std::endl; return temp;
-  //}
-
-  // 2.) Situation 2 -- we receive a string from sendString
-  // This situation is a little bit simpler, in that we can
-  // received a fixed size message from the server.
-  // For now '128' is a magic number FIXME and make me something configurable
-  // :)
-  char in[128];
-  size_t received;
-  sf::IpAddress copyAddress = m_serverIpAddress;
-  unsigned short copyPort = m_serverPort;
-  if (m_socket.receive(in, sizeof(in), received, copyAddress, copyPort) ==
-      sf::Socket::Done) {
-    if (received > 0) {
-      std::cout << "From Server: " << in << std::endl;
-    }
-  }
+  sf::Packet stringpacket;
+  stringpacket << "String" << s;
+  SendPacket(stringpacket);
 }
 
 sf::Packet UDPNetworkClient::ReceiveData() {
@@ -143,7 +112,6 @@ sf::Packet UDPNetworkClient::ReceiveData() {
   sf::Socket::Status status = m_socket.receive(packet, copyAddress, copyPort);
 
   if (status == sf::Socket::Done) {
-    std::cout << "Got a packet" << std::endl;
     return packet;
   } else {
     return packet;

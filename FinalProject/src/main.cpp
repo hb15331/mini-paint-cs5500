@@ -112,10 +112,16 @@ void update(App &appObject) {
     if (coordinate.x >= 0 && coordinate.x < xSize && coordinate.y >= 0 &&
         coordinate.y < ySize) {
       sf::Color current_color = image.getPixel(coordinate.x, coordinate.y);
-      appObject.AddCommand(std::make_shared<Draw>(coordinate.x, coordinate.y,
-                                                  appObject.GetSelectedColor(),
-                                                  current_color));
-      appObject.SendPacket(appObject.GetCommandQueue().front()->Serialize());
+      if (!appObject.IsOnline()) {
+        appObject.AddCommand(std::make_shared<Draw>(coordinate.x, coordinate.y,
+                                                    appObject.GetSelectedColor(),
+                                                    current_color));
+      } else {
+        auto command = std::make_shared<Draw>(coordinate.x, coordinate.y,
+                                                    appObject.GetSelectedColor(),
+                                                    current_color);
+        appObject.SendPacket(command->Serialize());
+      }
       appObject.ExecuteCommand();
     }
   }
@@ -159,14 +165,17 @@ void update(App &appObject) {
   // Draw our GUI
   appObject.drawLayout(appObject.m_ctx);
 
-  std::shared_ptr<Command> received_command;
-  received_command = appObject.ReceiveData();
 
-  if(received_command != nullptr){
-    std::cout << "Data received from server." << std::endl;
-    // Need to update command's stored image here.
-    appObject.AddCommand(received_command);
-    appObject.ExecuteCommand();
+  if (appObject.IsOnline()) {
+    std::shared_ptr<Command> received_command;
+    received_command = appObject.ReceiveData();
+
+    if(received_command != nullptr){
+      std::cout << "Data received from server." << std::endl;
+      // Need to update command's stored image here.
+      appObject.AddCommand(received_command);
+      appObject.ExecuteCommand();
+    }
   }
 
   // Where was the mouse previously before going to the next frame

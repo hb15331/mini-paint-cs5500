@@ -21,6 +21,7 @@ App::App(std::string uname)
       m_selected_color(sf::Color::Red), m_image(new sf::Image),
       m_sprite(new sf::Sprite), m_texture(new sf::Texture), m_window(nullptr),
       m_option_window(nullptr), m_initFunc(nullptr), m_updateFunc(nullptr), m_drawFunc(nullptr),
+      m_is_online(false),
       pmouseX(0), pmouseY(0), mouseX(0), mouseY(0), m_uname(uname),
       m_udp_client(uname), m_ctx(new struct nk_context),
       m_pen_size(1) {}
@@ -252,9 +253,15 @@ void App::CreateUDPNetworkClient()
   // One could improve this code by communicating with the server
   // what ports are 'open' for connection in the 'joinServer' function.
   // For now, we will create clients that can simply join however!
-  m_udp_client.joinServer(sf::IpAddress::getLocalAddress(), 50000);
   m_udp_client.setUsername(m_uname);
-  m_udp_client.sendString("Hello, " + m_uname + " is joining!");
+  int result = m_udp_client.joinServer(sf::IpAddress::getLocalAddress(), 50000);
+  if(result == 1) {
+    std::cout << "Online mode!" << std::endl;
+    m_is_online = true;
+  } else {
+    std::cout << "Offline mode!" << std::endl;
+    m_is_online = false;
+  }
 }
 
 /*! \brief Gets the udp client
@@ -287,7 +294,6 @@ std::shared_ptr<Command> App::ReceiveData()
     }
     else
     {
-      std::cout << "command!" << std::endl;
       std::cout << *command << std::endl;
       return command;
     }
@@ -299,6 +305,16 @@ std::shared_ptr<Command> App::ReceiveData()
   }
 }
 
+/*! \brief Returns online status of the app
+ * \return true if the app is online, false otherwise
+ */
+bool App::IsOnline() {
+  return m_is_online;
+}
+
+/*! \brief Draws the GUI
+ * \param nk_context Nuklear GUI context pointer
+ */
 void App::drawLayout(struct nk_context *ctx)
 {
   /* GUI */
@@ -373,6 +389,9 @@ void App::drawLayout(struct nk_context *ctx)
   nk_end(ctx);
 }
 
+/*! Returns the pen size in pixels
+ * \return Pen size in pixels
+ */
 int App::GetPenSize()
 {
   return m_pen_size;

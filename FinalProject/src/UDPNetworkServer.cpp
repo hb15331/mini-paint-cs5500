@@ -66,7 +66,6 @@ int UDPNetworkServer::start() {
         m_socket.receive(packet, m_ipAddress, senderPort);
 
     if (status == sf::Socket::Done) {
-      std::cout << &packet << std::endl;
 
       try {
         std::shared_ptr<Command> command = Deserialize(packet);
@@ -127,6 +126,18 @@ int UDPNetworkServer::stop() { m_start = false; }
 int UDPNetworkServer::handleClientJoining(unsigned short clientPort,
                                           sf::IpAddress clientIpAddress) {
   std::cout << "Updating new client" << std::endl;
+  sf::Packet stringpacket;
+  stringpacket << "String" << "Initialize";
+
+  if (m_socket.send(stringpacket, clientIpAddress, clientPort) !=
+      sf::Socket::Done) {
+    std::cout << "Server error? Wrong IP?" << std::endl;
+  } else {
+    std::cout << "Server sending init packet" << std::endl;
+  }
+
+  sf::sleep(sf::seconds(3.f));
+
   // Iterate through every message sent and send it to the client.
   for (int i = 0; i < m_sentHistory.size(); i++) {
     char in[128];

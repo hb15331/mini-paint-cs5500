@@ -86,7 +86,7 @@ private:
   App &operator=(const App &) = delete;
 
   // Is the app connected to the server?
-  bool is_online = true;
+  bool m_is_online;
 
 public:
 
@@ -152,7 +152,11 @@ public:
   // Send packet to server
   void SendPacket(sf::Packet packet);
 
+  // Gets the pen size in pixels
   int GetPenSize();
+
+  // Returns true if the app has an active connection to the server, false otherwise
+  bool IsOnline();
 
   // Get the current udp client (Note: You should check that you're online
   //before you use it...)
