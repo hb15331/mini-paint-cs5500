@@ -11,8 +11,7 @@ int m_pixelX, m_pixelY;
 sf::Color m_color;
 std::vector<std::vector<sf::Color>> m_old_colors;
 
-/*!	\brief Constructor for a Draw object. Used for transmission of commands, as it
- *            does not include a reference to an image.
+/*!	\brief Constructor for a Draw object.
  * \return New Draw object.
  */
 Draw::Draw(int pixelX, int pixelY, const sf::Color &newColor, sf::Image &image, const int pen_size)
