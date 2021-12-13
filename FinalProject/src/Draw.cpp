@@ -78,7 +78,15 @@ bool Draw::Execute()
     }
     else
     {
-      (*m_ptrImage).setPixel(m_pixelX, m_pixelY, m_color);
+      for (int i = -m_pen_size; i <= m_pen_size; ++i)
+      {
+        for (int j = -m_pen_size; j <= m_pen_size; ++j)
+        {
+          int x = std::clamp(m_pixelX + i, 0, (int)(*m_ptrImage).getSize().x);
+          int y = std::clamp(m_pixelY + j, 0, (int)(*m_ptrImage).getSize().y);
+          (*m_ptrImage).setPixel(x, y, m_color);
+        }
+      }
     }
     return true;
   }
@@ -102,15 +110,23 @@ bool Draw::Execute(sf::Image &image)
       {
         for (int j = -m_pen_size; j <= m_pen_size; ++j)
         {
-          int x = std::clamp(m_pixelX + i, 0, (int)(*m_ptrImage).getSize().x);
-          int y = std::clamp(m_pixelY + j, 0, (int)(*m_ptrImage).getSize().y);
+          int x = std::clamp(m_pixelX + i, 0, xSize);
+          int y = std::clamp(m_pixelY + j, 0, ySize);
           (*m_ptrImage).setPixel(x, y, m_old_colors[i + m_pen_size][j + m_pen_size]);
         }
       }
     }
     else
     {
-      (*m_ptrImage).setPixel(m_pixelX, m_pixelY, m_color);
+      for (int i = -m_pen_size; i <= m_pen_size; ++i)
+      {
+        for (int j = -m_pen_size; j <= m_pen_size; ++j)
+        {
+          int x = std::clamp(m_pixelX + i, 0, xSize);
+          int y = std::clamp(m_pixelY + j, 0, ySize);
+          (*m_ptrImage).setPixel(x, y, m_color);
+        }
+      }
     }
     return true;
   }
@@ -129,14 +145,14 @@ bool Draw::Undo(sf::Image &image)
   if (m_pixelX >= 0 && m_pixelX < xSize && m_pixelY >= 0 && m_pixelY < ySize)
   {
     for (int i = -m_pen_size; i <= m_pen_size; ++i)
+    {
+      for (int j = -m_pen_size; j <= m_pen_size; ++j)
       {
-        for (int j = -m_pen_size; j <= m_pen_size; ++j)
-        {
-          int x = std::clamp(m_pixelX + i, 0, (int)(*m_ptrImage).getSize().x);
-          int y = std::clamp(m_pixelY + j, 0, (int)(*m_ptrImage).getSize().y);
-          (*m_ptrImage).setPixel(x, y, m_old_colors[i + m_pen_size][j + m_pen_size]);
-        }
+        int x = std::clamp(m_pixelX + i, 0, xSize);
+        int y = std::clamp(m_pixelY + j, 0, ySize);
+        (*m_ptrImage).setPixel(x, y, m_old_colors[i + m_pen_size][j + m_pen_size]);
       }
+    }
     return true;
   }
   return true;
@@ -162,15 +178,17 @@ sf::Packet Draw::Serialize() const
   sf::Packet packet;
   if (m_inverted)
   {
-    packet << "Draw" << m_pixelX << m_pixelY << 1 << m_prevColor.r << m_prevColor.g
-           << m_prevColor.b << m_prevColor.a << m_color.r << m_color.g
+    packet << "Draw" << m_pixelX << m_pixelY << 1
+           // << m_prevColor.r << m_prevColor.g << m_prevColor.b << m_prevColor.a
+           << m_color.r << m_color.g
            << m_color.b << m_color.a;
   }
   else
   {
     packet << "Draw" << m_pixelX << m_pixelY << 1 << m_color.r << m_color.g
-           << m_color.b << m_color.a << m_prevColor.r << m_prevColor.g
-           << m_prevColor.b << m_prevColor.a;
+           << m_color.b << m_color.a;
+    //  << m_prevColor.r << m_prevColor.g
+    //  << m_prevColor.b << m_prevColor.a;
   }
 
   return packet;
