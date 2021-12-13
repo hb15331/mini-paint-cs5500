@@ -33,8 +33,11 @@ inline std::shared_ptr<Command> Deserialize(sf::Packet packet) {
               << " size: " << packet.getDataSize() << std::endl;
       return nullptr;
     }
+    //TODO: code is modified simply for the build to pass, need to refactor
+    std::vector<sf::Color> temp({sf::Color(p_r, p_g, p_b, p_a)});
+    std::vector<std::vector<sf::Color>> temp2({temp});
     return (std::make_shared<Draw>(xcoord, ycoord, sf::Color(r, g, b, a),
-                                   sf::Color(p_r, p_g, p_b, p_a)));
+                                   temp2, 20));
   } else if (cmd_type == "UndoRedo") {
     std::string cmd;
     if (!(packet >> cmd >> username)) {

@@ -37,7 +37,8 @@
  *		doing nothing at all.
  *
  */
-void initialization(App &appObject) {
+void initialization(App &appObject)
+{
   appObject.CreateUDPNetworkClient();
   std::cout << "Starting the App" << std::endl;
 }
@@ -47,57 +48,74 @@ void initialization(App &appObject) {
  *		and exit.
  *
  */
-void update(App &appObject) {
+void update(App &appObject)
+{
   // Update our canvas
   sf::Event event;
-  while (appObject.GetWindow().pollEvent(event)) {
-    if (event.type == sf::Event::KeyPressed) {
-      if (event.key.code == sf::Keyboard::Escape) {
+  while (appObject.GetWindow().pollEvent(event))
+  {
+    if (event.type == sf::Event::KeyPressed)
+    {
+      if (event.key.code == sf::Keyboard::Escape)
+      {
         exit(EXIT_SUCCESS);
       }
-      if (event.key.code == sf::Keyboard::Y) {
+      if (event.key.code == sf::Keyboard::Y)
+      {
         appObject.Redo();
-      } else if (event.key.code == sf::Keyboard::Z) {
+      }
+      else if (event.key.code == sf::Keyboard::Z)
+      {
         appObject.Undo();
       }
       if (event.key.code == sf::Keyboard::Num1 ||
-          event.key.code == sf::Keyboard::Numpad1) {
+          event.key.code == sf::Keyboard::Numpad1)
+      {
         appObject.SetSelectedColor(sf::Color::Black);
       }
       if (event.key.code == sf::Keyboard::Num2 ||
-          event.key.code == sf::Keyboard::Numpad2) {
+          event.key.code == sf::Keyboard::Numpad2)
+      {
         appObject.SetSelectedColor(sf::Color::White);
       }
       if (event.key.code == sf::Keyboard::Num3 ||
-          event.key.code == sf::Keyboard::Numpad3) {
+          event.key.code == sf::Keyboard::Numpad3)
+      {
         appObject.SetSelectedColor(sf::Color::Red);
       }
       if (event.key.code == sf::Keyboard::Num4 ||
-          event.key.code == sf::Keyboard::Numpad4) {
+          event.key.code == sf::Keyboard::Numpad4)
+      {
         appObject.SetSelectedColor(sf::Color::Green);
       }
       if (event.key.code == sf::Keyboard::Num5 ||
-          event.key.code == sf::Keyboard::Numpad5) {
+          event.key.code == sf::Keyboard::Numpad5)
+      {
         appObject.SetSelectedColor(sf::Color::Blue);
       }
       if (event.key.code == sf::Keyboard::Num6 ||
-          event.key.code == sf::Keyboard::Numpad6) {
+          event.key.code == sf::Keyboard::Numpad6)
+      {
         appObject.SetSelectedColor(sf::Color::Yellow);
       }
       if (event.key.code == sf::Keyboard::Num7 ||
-          event.key.code == sf::Keyboard::Numpad7) {
+          event.key.code == sf::Keyboard::Numpad7)
+      {
         appObject.SetSelectedColor(sf::Color::Magenta);
       }
       if (event.key.code == sf::Keyboard::Num8 ||
-          event.key.code == sf::Keyboard::Numpad8) {
+          event.key.code == sf::Keyboard::Numpad8)
+      {
         appObject.SetSelectedColor(sf::Color::Cyan);
       }
     }
     // handle the keyReleased events
-    if (event.type == sf::Event::KeyReleased) {
-      if (event.key.code == sf::Keyboard::Space) {
+    if (event.type == sf::Event::KeyReleased)
+    {
+      if (event.key.code == sf::Keyboard::Space)
+      {
         std::cout << "Clear the canvas" << std::endl;
-       appObject.ClearCanvas(appObject.GetSelectedColor());
+        appObject.ClearCanvas(appObject.GetSelectedColor());
       }
     }
   }
@@ -110,16 +128,34 @@ void update(App &appObject) {
     int xSize = (int)image.getSize().x;
     int ySize = (int)(image.getSize().y);
     if (coordinate.x >= 0 && coordinate.x < xSize && coordinate.y >= 0 &&
-        coordinate.y < ySize) {
+        coordinate.y < ySize)
+    {
       sf::Color current_color = image.getPixel(coordinate.x, coordinate.y);
-      if (!appObject.IsOnline()) {
+      std::vector<std::vector<sf::Color>> current_colors;
+      for (int i = -appObject.GetPenSize(); i <= appObject.GetPenSize(); ++i)
+      {
+        // We need to keep track of all the old pixels so that we can revert to them
+        std::vector<sf::Color> row;
+        for (int j = -appObject.GetPenSize(); j <= appObject.GetPenSize(); ++j)
+        {
+          int x = std::clamp(coordinate.x + i, 0, xSize);
+          int y = std::clamp(coordinate.y + j, 0, ySize);
+          row.push_back(image.getPixel(x, y));
+        }
+        // Keep track of the previous pixel color
+        current_colors.push_back(row);
+      }
+      if (!appObject.IsOnline())
+      {
         appObject.AddCommand(std::make_shared<Draw>(coordinate.x, coordinate.y,
                                                     appObject.GetSelectedColor(),
-                                                    current_color));
-      } else {
+                                                    current_colors, appObject.GetPenSize()));
+      }
+      else
+      {
         auto command = std::make_shared<Draw>(coordinate.x, coordinate.y,
-                                                    appObject.GetSelectedColor(),
-                                                    current_color);
+                                              appObject.GetSelectedColor(),
+                                              current_colors, appObject.GetPenSize());
         appObject.SendPacket(command->Serialize());
       }
       appObject.ExecuteCommand();
@@ -165,12 +201,13 @@ void update(App &appObject) {
   // Draw our GUI
   appObject.drawLayout(appObject.m_ctx);
 
-
-  if (appObject.IsOnline()) {
+  if (appObject.IsOnline())
+  {
     std::shared_ptr<Command> received_command;
     received_command = appObject.ReceiveData();
 
-    if(received_command != nullptr){
+    if (received_command != nullptr)
+    {
       //std::cout << "Data received from server." << std::endl;
       // Need to update command's stored image here.
       appObject.AddCommand(received_command);
@@ -186,7 +223,8 @@ void update(App &appObject) {
 /*! \brief 	The draw call
  *
  */
-void draw(App &appObject) {
+void draw(App &appObject)
+{
   // Static variable
   static int refreshRate = 0;
   ++refreshRate; // Increment
@@ -196,7 +234,8 @@ void draw(App &appObject) {
   // between the GPU and CPU.
   // Ask yourself: Could we do better with sf::Clock and refresh once
   // 	 	 every 'x' frames?
-  if (refreshRate > 10) {
+  if (refreshRate > 10)
+  {
     appObject.GetTexture().loadFromImage(appObject.GetImage());
     refreshRate = 0;
   }
@@ -205,7 +244,8 @@ void draw(App &appObject) {
 /*! \brief 	The entry point into our program.
  *
  */
-int main() {
+int main()
+{
   std::string username;
   sf::IpAddress ip_address;
   std::cout << "Enter your username:";

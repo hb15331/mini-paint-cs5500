@@ -15,6 +15,7 @@
 #include <sstream>
 #include <iostream>
 #include <string>
+#include <vector>
 // Project header files
 #include "Command.hpp"
 
@@ -30,7 +31,8 @@ class Draw : public Command {
 private:
   int m_pixelX, m_pixelY;
   sf::Color m_color;
-  sf::Color m_prevColor;
+  std::vector<std::vector<sf::Color>> m_old_colors;
+  const int m_pen_size;
   // pointer to the image
   sf::Image *m_ptrImage;
   // Used for undoing
@@ -39,8 +41,8 @@ private:
 
 
 public:
-  Draw(int pixelX, int pixelY, const sf::Color &newColor, sf::Image &image);
-  Draw(int pixelX, int pixelY, const sf::Color &newColor, const sf::Color &prevColor);
+  Draw(int pixelX, int pixelY, const sf::Color &newColor, sf::Image &image, const int pen_size);
+  Draw(int pixelX, int pixelY, const sf::Color &newColor, const std::vector<std::vector<sf::Color>> &oldColors, const int pen_size);
   Draw(const Draw &obj);
   bool IsEqual(const Command &other) override;
   bool Execute() override;
