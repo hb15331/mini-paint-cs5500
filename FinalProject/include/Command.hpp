@@ -1,8 +1,8 @@
 /**
  *  @file   Command.hpp
  *  @brief  Represents an actionable command by the user.
- *  @author Mike and Yufeng Gao
- *  @date   2021-18-10
+ *  @author Alex, Hualin, Jackson and Yufeng
+ *  @date   2021-12-13
  ***********************************************/
 #ifndef COMMAND_HPP
 #define COMMAND_HPP

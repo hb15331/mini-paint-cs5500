@@ -1,0 +1,9 @@
+<map id="include/deserialize.hpp" name="include/deserialize.hpp">
+<area shape="rect" id="node1" title="Deserializer for receiving packets." alt="" coords="187,5,359,32"/>
+<area shape="rect" id="node2" href="$App_8hpp.html" title="Main class for program." alt="" coords="109,80,236,107"/>
+<area shape="rect" id="node5" href="$UDPNetworkServer_8hpp.html" title="Server side of UDP implementation." alt="" coords="260,80,485,107"/>
+<area shape="rect" id="node3" href="$App_8cpp.html" title="Main class for program." alt="" coords="5,155,103,181"/>
+<area shape="rect" id="node4" href="$main_8cpp.html" title="Entry point into the program." alt="" coords="127,155,232,181"/>
+<area shape="rect" id="node6" href="$UDPNetworkServer_8cpp.html" title="Server side of UDP implementation." alt="" coords="268,155,464,181"/>
+<area shape="rect" id="node7" href="$server__main_8cpp.html" title="Main for server app." alt="" coords="488,155,641,181"/>
+</map>

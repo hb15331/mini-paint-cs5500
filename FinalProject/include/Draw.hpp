@@ -1,8 +1,8 @@
 /**
  *  @file   Draw.hpp
  *  @brief  Drawing actions interface.
- *  @author Mike and Yufeng Gao
- *  @date   2021-18-10
+ *  @author Alex, Hualin, Jackson and Yufeng
+ *  @date   2021-12-13
  ***********************************************/
 #ifndef DRAW_H
 #define DRAW_H

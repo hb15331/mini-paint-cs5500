@@ -1,13 +1,19 @@
+/**
+ *  @file   UDPNetworkServer.cpp
+ *  @brief  Server side of UDP implementation.
+ *  @author Alex, Hualin, Jackson and Yufeng
+ *  @date   2021-12-13
+ ***********************************************/
+
 #include "UDPNetworkServer.hpp"
 #include "Draw.hpp"
 
 #include <iostream>
 
-// Here we are going to 'name' our server and specify the address and port.
-// It might seem a little weird to specify our own address, but we will want
-// to use this information so we know where data is being received from.
-// The port again we get to choose, as long as it is not previously being used
-// we can use it.
+/*!	\brief Constructor for UDPNetworkServer object, takes name,
+ *      IP address, and port as params.
+ * \return UDPNetworkServer object
+ */
 UDPNetworkServer::UDPNetworkServer(std::string name, sf::IpAddress address,
                                    unsigned short port) {
   m_name = name;
@@ -15,21 +21,14 @@ UDPNetworkServer::UDPNetworkServer(std::string name, sf::IpAddress address,
   m_port = port;
   std::cout << "Server Constructor" << std::endl;
 }
-
-// Our destructor
+/*!	\brief Destructor.
+ */
 UDPNetworkServer::~UDPNetworkServer() {
   std::cout << "Server Destructor" << std::endl;
 }
 
-// Start the server
-//
-// Here we are going to start a non-blocking UDP server.
-// We'll bind to a port to see if it is available. If it is,
-// then we are going to run the server forever.
-//
-// The key to our server will be that we are going to listen
-// to where clients are communicating from, and store that information
-// in a map.
+/*!	\brief Starts server, prepares it to send/receive.
+ */
 int UDPNetworkServer::start() {
   std::cout << "Starting UDP Network server" << std::endl;
   std::cout << "Server's IP address is: " << m_ipAddress << std::endl;
@@ -129,11 +128,13 @@ int UDPNetworkServer::start() {
   } // End our server while loop
 }
 
-// Stops the server from running and removes all clients
+/*!	\brief Stops server, disconnects clients.
+ */
 int UDPNetworkServer::stop() { m_start = false; }
 
-// Bind server to given port.
-// Return true if bind is successful, false if not.
+/*!	\brief Binds server to a given port.
+ * \return True or false  depending on whether bind is successful.
+ */
 bool UDPNetworkServer::bindToPort() {
   int status;
   status = m_socket.bind(m_port);
@@ -143,8 +144,9 @@ bool UDPNetworkServer::bindToPort() {
   return true;
 }
 
-// Receive a packet if one is sent
-// Return true if packet received, false if not
+/*!	\brief Receives a packet if possible.
+ * \return True or false depending on whether a packet is received.
+ */
 bool UDPNetworkServer::receivePacket() {
   m_socket.setBlocking(false);
   sf::Packet packet;
@@ -158,10 +160,8 @@ bool UDPNetworkServer::receivePacket() {
   return false;
 }
 
-// Typically we'll want to update the client to get the log
-// of all of the things that have happened.
-// For a 'painting' application this is likely appropriate, for
-// other applicatinos (e.g. a game) this may not be necessary.
+/*!	\brief Processes joining of client.
+ */
 int UDPNetworkServer::handleClientJoining(unsigned short clientPort,
                                           sf::IpAddress clientIpAddress) {
   std::cout << "Updating new client" << std::endl;
@@ -186,7 +186,7 @@ int UDPNetworkServer::handleClientJoining(unsigned short clientPort,
 }
 
 /*! \brief 	Undo the latest command that has executed.
- *		The command that's been undone can be invoked again in redo
+ *		The command that's been undone can be invoked again in redo.
  */
 std::shared_ptr<Command> UDPNetworkServer::Undo()
 {
@@ -203,7 +203,7 @@ std::shared_ptr<Command> UDPNetworkServer::Undo()
 }
 
 /*! \brief 	Redo the latest command that has undone.
- *		The command that's been re-done can be invoked again in undo
+ *		The command that's been re-done can be invoked again in undo.
  */
 std::shared_ptr<Command> UDPNetworkServer::Redo()
 {
@@ -217,6 +217,8 @@ std::shared_ptr<Command> UDPNetworkServer::Redo()
   }
 }
 
+/*! \brief Adds command to relevant queue and stack.
+ */
 void UDPNetworkServer::AddCommand(std::shared_ptr<Command> c) {
   if(c) {
     m_commands.push(c);
@@ -224,9 +226,6 @@ void UDPNetworkServer::AddCommand(std::shared_ptr<Command> c) {
   }
 }
 
-// FIXME Think about how you would know a client left?
-// When a client leaves (intentionally) they can send a message
-// to the server and then be removed from the map.
-// When a client leaves (unintentionally), because of a failed m_socket.send
-// they may also be removed.
+/*! \brief Processes departure of client (not in use)
+ */
 int UDPNetworkServer::handleClientLeaving() {}

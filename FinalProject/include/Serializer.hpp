@@ -1,3 +1,10 @@
+/**
+ *  @file   Serializer.hpp
+ *  @brief  Serializer for sending packets.
+ *  @author Alex, Hualin, Jackson and Yufeng
+ *  @date   2021-12-13
+ ***********************************************/
+
 #ifndef SERIALIZE_H
 #define SERIALIZE_H
 

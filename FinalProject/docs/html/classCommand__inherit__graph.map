@@ -1,0 +1,5 @@
+<map id="Command" name="Command">
+<area shape="rect" id="node1" title=" " alt="" coords="25,5,227,200"/>
+<area shape="rect" id="node2" href="$classDraw.html" title=" " alt="" coords="5,248,108,457"/>
+<area shape="rect" id="node3" href="$classUndoRedo.html" title=" " alt="" coords="133,255,258,450"/>
+</map>

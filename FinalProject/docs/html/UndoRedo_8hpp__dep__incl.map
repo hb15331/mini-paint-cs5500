@@ -1,0 +1,11 @@
+<map id="include/UndoRedo.hpp" name="include/UndoRedo.hpp">
+<area shape="rect" id="node1" title="Undo/redo functionality, adjusted to work with network implementation." alt="" coords="213,5,381,32"/>
+<area shape="rect" id="node2" href="$App_8hpp.html" title="Main class for program." alt="" coords="109,155,236,181"/>
+<area shape="rect" id="node5" href="$deserialize_8hpp.html" title="Deserializer for receiving packets." alt="" coords="211,80,383,107"/>
+<area shape="rect" id="node9" href="$UndoRedo_8cpp.html" title="Undo/redo functionality, adjusted to work with network implementation." alt="" coords="407,80,546,107"/>
+<area shape="rect" id="node3" href="$App_8cpp.html" title="Main class for program." alt="" coords="5,229,103,256"/>
+<area shape="rect" id="node4" href="$main_8cpp.html" title="Entry point into the program." alt="" coords="127,229,232,256"/>
+<area shape="rect" id="node6" href="$UDPNetworkServer_8hpp.html" title="Server side of UDP implementation." alt="" coords="260,155,485,181"/>
+<area shape="rect" id="node7" href="$UDPNetworkServer_8cpp.html" title="Server side of UDP implementation." alt="" coords="268,229,464,256"/>
+<area shape="rect" id="node8" href="$server__main_8cpp.html" title="Main for server app." alt="" coords="488,229,641,256"/>
+</map>

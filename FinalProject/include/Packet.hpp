@@ -1,3 +1,10 @@
+/**
+ *  @file   packet.hpp
+ *  @brief  Packet implementation (based on SFML).
+ *  @author Alex, Hualin, Jackson and Yufeng
+ *  @date   2021-12-13
+ ***********************************************/
+
 #ifndef PACKET_HPP
 #define PACKET_HPP
 

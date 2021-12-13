@@ -1,3 +1,10 @@
+/**
+ *  @file   deserialize.hpp
+ *  @brief  Deserializer for receiving packets.
+ *  @author Alex, Hualin, Jackson and Yufeng
+ *  @date   2021-12-13
+ ***********************************************/
+
 #ifndef DESERIALIZE_HPP_INCLUDED
 #define DESERIALIZE_HPP_INCLUDED
 

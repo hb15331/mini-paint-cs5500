@@ -1,0 +1,12 @@
+<map id="include/deserialize.hpp" name="include/deserialize.hpp">
+<area shape="rect" id="node1" title="Deserializer for receiving packets." alt="" coords="250,5,422,32"/>
+<area shape="rect" id="node2" href="$Command_8hpp.html" title="Represents an actionable command by the user." alt="" coords="181,155,299,181"/>
+<area shape="rect" id="node8" href="$UndoRedo_8hpp.html" title="Undo/redo functionality, adjusted to work with network implementation." alt="" coords="277,80,395,107"/>
+<area shape="rect" id="node10" title=" " alt="" coords="419,80,506,107"/>
+<area shape="rect" id="node3" title=" " alt="" coords="5,229,85,256"/>
+<area shape="rect" id="node4" title=" " alt="" coords="109,229,187,256"/>
+<area shape="rect" id="node5" title=" " alt="" coords="211,229,269,256"/>
+<area shape="rect" id="node6" title=" " alt="" coords="293,229,437,256"/>
+<area shape="rect" id="node7" title=" " alt="" coords="462,229,653,256"/>
+<area shape="rect" id="node9" title=" " alt="" coords="323,155,397,181"/>
+</map>
