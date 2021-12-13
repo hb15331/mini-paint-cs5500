@@ -1,3 +1,10 @@
+/**
+ *  @file   UDPNetworkClient.hpp
+ *  @brief  Client side of UDP implementation.
+ *  @author Alex, Hualin, Jackson and Yufeng
+ *  @date   2021-12-13
+ ***********************************************/
+
 #ifndef UDP_NETWORK_CLIENT_HPP
 #define UDP_NETWORK_CLIENT_HPP
 

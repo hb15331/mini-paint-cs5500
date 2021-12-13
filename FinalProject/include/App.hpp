@@ -1,9 +1,10 @@
 /**
  *  @file   App.hpp
- *  @brief  App class interface
- *  @author Mike and Yufeng Gao
- *  @date   2021-18-10
+ *  @brief  Main class for program
+ *  @author Alex, Hualin, Jackson and Yufeng
+ *  @date   2021-12-13
  ***********************************************/
+
 #ifndef APP_HPP
 #define APP_HPP
 

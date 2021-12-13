@@ -1,3 +1,10 @@
+/**
+ *  @file   UndoRedo.hpp
+ *  @brief  Undo/redo functionality, adjusted to work with network implementation.
+ *  @author Alex, Hualin, Jackson and Yufeng
+ *  @date   2021-12-13
+ ***********************************************/
+
 #ifndef UNDOREDO_HPP
 #define UNDOREDO_HPP
 
