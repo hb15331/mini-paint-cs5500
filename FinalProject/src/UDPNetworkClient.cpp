@@ -1,15 +1,16 @@
+/**
+ *  @file   UDPNetworkClient.cpp
+ *  @brief  Client side of UDP implementation.
+ *  @author Alex, Hualin, Jackson and Yufeng
+ *  @date   2021-12-13
+ ***********************************************/
+
 #include "UDPNetworkClient.hpp"
 #include <list>
 
-// Default Constructor
-// In our constructor, we will want to setup our clients
-// 1.) username
-// 2.) port
-//
-// Then we will bind a socket to this port for which we will
-// communicate over.
-//
-// Our UDPNetworkClient will be non-blocking by default
+/*!	\brief Constructor for UDPNetworkClient object, takes username as a parameter.
+ * \return UDPNetworkClient object
+ */
 UDPNetworkClient::UDPNetworkClient(std::string username) {
   // Adding in a list of valid ports to automate the binding process.
   int valid_ports[] = {50001, 50002, 50003, 50004, 50005,
@@ -42,16 +43,15 @@ UDPNetworkClient::UDPNetworkClient(std::string username) {
   m_socket.setBlocking(false);
 }
 
-// Default Destructor
+/*!	\brief Destructor.
+ */
 UDPNetworkClient::~UDPNetworkClient() {
   std::cout << "Client destructor called" << std::endl;
 }
 
-// Join a server
-// For this function, we will setup the server for which we will attempt to
-// communicate Since this is a UDP network, we will keep things quite simple,
-// meaning we will not do any error checking to see if the server even exists.
-// We simply try to send messages to a server.
+/*!	\brief Joins to server if available.
+ * \return 1 if connected, 0 if not.
+ */
 int UDPNetworkClient::joinServer(sf::IpAddress serverAddress,
                                  unsigned short serverPort) {
   std::cout << "UDPClient will attempt to join server: " << std::endl;
@@ -77,11 +77,8 @@ int UDPNetworkClient::joinServer(sf::IpAddress serverAddress,
 
 }
 
-// Send data to server
-// Now is the fun part, for which we will attempt to send
-// some data to the UDPNetworkServer.
-//
-// In this example, we will try to send over commands.
+/*!	\brief Sends a given packet to the server.
+ */
 int UDPNetworkClient::SendPacket(sf::Packet packet) {
   packet << m_username;
 
@@ -96,15 +93,17 @@ int UDPNetworkClient::SendPacket(sf::Packet packet) {
   return 0;
 }
 
-// Send 'string' data to server
-// As an alternative, we may want to send string messages to the server.
-// This can be a quick way to log, or perhaps 'chat' with the server
+/*!	\brief Send a string to the server.
+ */
 int UDPNetworkClient::sendString(std::string s) {
   sf::Packet stringpacket;
   stringpacket << "String" << s;
   SendPacket(stringpacket);
 }
 
+/*!	\brief Receive any information sent from server.
+ * \return A packet.
+ */
 sf::Packet UDPNetworkClient::ReceiveData() {
   sf::IpAddress copyAddress = m_serverIpAddress;
   unsigned short copyPort = m_serverPort;
@@ -117,8 +116,12 @@ sf::Packet UDPNetworkClient::ReceiveData() {
     return packet;
   }
 }
-// Return our username
+
+/*!	\brief Username getter.
+ * \return Username.
+ */
 std::string UDPNetworkClient::getUsername() { return m_username; }
 
-// Set our username
+/*!	\brief Username setter.
+ */
 int UDPNetworkClient::setUsername(std::string name) { m_username = name; }

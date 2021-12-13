@@ -1,14 +1,15 @@
 /**
  *  @file   Command.cpp
  *  @brief  Implementation of Command.hpp
- *  @author Mike and Yufeng Gao
- *  @date   2021-18-10
+ *  @author Alex, Hualin, Jackson and Yufeng
+ *  @date   2021-12-13
  ***********************************************/
 
 // Project header files
 #include "Command.hpp"
 
-/*! \brief 	N/A
+/*! \brief 	Constructor for new command object, which takes
+                a description in string form as a parameter.
  *
  */
 Command::Command(std::string command_description)
@@ -17,7 +18,7 @@ Command::Command(std::string command_description)
 /*! \brief Converts the command to a string, useful for debugging */
 std::string Command::ToString() const { return m_command_description; }
 
-/*! \brief 	N/A
+/*! \brief 	Command destructor.
  *
  */
 Command::~Command() {}

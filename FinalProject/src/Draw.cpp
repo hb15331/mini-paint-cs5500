@@ -1,8 +1,8 @@
 /**
  *  @file   Draw.cpp
  *  @brief  Draw implementation, all drawing actions are commands.
- *  @author Mike and Yufeng Gao
- *  @date   2021-18-10
+ *  @author Alex, Hualin, Jackson and Yufeng
+ *  @date   2021-12-13
  ***********************************************/
 
 #include "Draw.hpp"
@@ -11,15 +11,25 @@ int m_pixelX, m_pixelY;
 sf::Color m_color;
 sf::Color m_prevColor;
 
+/*!	\brief Constructor for a Draw object.
+ * \return New Draw object.
+ */
 Draw::Draw(int pixelX, int pixelY, const sf::Color &newColor, sf::Image &image)
     : Command("Draw"), m_pixelX(pixelX), m_pixelY(pixelY), m_color(newColor),
       m_prevColor(image.getPixel(pixelX, pixelY)), m_ptrImage(&image), m_inverted(false) {}
 
+/*!	\brief Constructor for a Draw object. Used for transmission of commands, as it
+ *            does not include a reference to an image.
+ * \return New Draw object.
+ */
 Draw::Draw(int pixelX, int pixelY, const sf::Color &newColor,
            const sf::Color &prevColor)
     : Command("Draw"), m_pixelX(pixelX), m_pixelY(pixelY), m_color(newColor),
       m_prevColor(prevColor), m_ptrImage(nullptr), m_inverted(false) {}
 
+/*!	\brief Constructor for a Draw object.
+ * \return New Draw object.
+ */
 Draw::Draw(const Draw &obj)
     : Command("Draw"), m_pixelX(obj.m_pixelX), m_pixelY(obj.m_pixelX),
       m_color(obj.m_color),
@@ -55,9 +65,8 @@ bool Draw::Execute() {
   return false;
 }
 
-/*! \brief 	Return true if the command is successfully executed. Otherwise
- * return false.
- *
+/*! \brief 	Executes given command.
+ *  \return Return a bool reflecting success or failure of operation.
  */
 bool Draw::Execute(sf::Image &image){
   m_ptrImage = &image;
@@ -74,9 +83,8 @@ bool Draw::Execute(sf::Image &image){
   return false;
 }
 
-/*! \brief 	Return true if the command is successfully undone. Otherwise
- * return false.
- *
+/*! \brief 	Undoes last operation/command.
+ * \return Return a bool value reflecting success or failure of operation.
  */
 bool Draw::Undo(sf::Image &image) {
   m_ptrImage = &image;
@@ -89,8 +97,8 @@ bool Draw::Undo(sf::Image &image) {
   return true;
 }
 
-/*! \brief Converts the Draw into a readable string
- * \return String that represents draw location, size and color
+/*! \brief Converts the Draw into a readable string.
+ * \return String that represents draw location, size and color.
  */
 std::string Draw::ToString() const {
   std::stringstream ss;
@@ -99,8 +107,8 @@ std::string Draw::ToString() const {
   return ss.str();
 }
 
-/*! \brief Converts the draw into a packet
- * \return Packet that represents the draw command
+/*! \brief Converts the draw into a packet.
+ * \return Packet that represents the draw command.
  */
 sf::Packet Draw::Serialize() const {
   std::cout << "Serializing" << std::endl;

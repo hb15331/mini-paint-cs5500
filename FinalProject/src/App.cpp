@@ -1,8 +1,8 @@
 /**
  *  @file   App.cpp
  *  @brief  Main class for program
- *  @author Mike and Yufeng Gao
- *  @date   2021-18-10
+ *  @author Alex, Hualin, Jackson and Yufeng
+ *  @date   2021-12-13
  ***********************************************/
 // Project header files
 #include "App.hpp"
@@ -158,6 +158,9 @@ sf::RenderWindow &App::GetWindow() { return *m_window; }
  */
 sf::RenderWindow &App::GetGUIWindow() { return *m_option_window; }
 
+/*!	\brief Create and set a new image/canvas for the app object,
+ *    taking the a color to set the canvas to as a parameter. 
+ */
 void App::ClearCanvas(sf::Color color)
 {
   m_image->create(WINDOW_WIDTH, WINDOW_HEIGHT, color);
@@ -211,7 +214,7 @@ void App::UpdateCallback(void (*updateFunction)(App &))
 }
 
 /*! \brief 	Set a callback function which will be called
-                each iteration of the main loop after update.
+*               each iteration of the main loop after update.
 *
 */
 void App::DrawCallback(void (*drawFunction)(App &))
@@ -220,9 +223,9 @@ void App::DrawCallback(void (*drawFunction)(App &))
 }
 
 /*! \brief 	The main loop function which handles initialization
-                and will be executed until the main window is closed.
-                Within the loop function the update and draw callback
-                functions will be called.
+*               and will be executed until the main window is closed.
+*               Within the loop function the update and draw callback
+*               functions will be called.
 *
 */
 void App::Loop()

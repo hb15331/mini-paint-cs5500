@@ -1,5 +1,5 @@
 <map id="src/UDPNetworkClient.cpp" name="src/UDPNetworkClient.cpp">
-<area shape="rect" id="node1" title=" " alt="" coords="614,5,807,32"/>
+<area shape="rect" id="node1" title="Client side of UDP implementation." alt="" coords="614,5,807,32"/>
 <area shape="rect" id="node2" href="$UDPNetworkClient_8hpp.html" title=" " alt="" coords="560,80,731,107"/>
 <area shape="rect" id="node14" title=" " alt="" coords="755,80,797,107"/>
 <area shape="rect" id="node3" title=" " alt="" coords="428,379,572,405"/>

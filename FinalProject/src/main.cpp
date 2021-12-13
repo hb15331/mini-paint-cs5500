@@ -1,8 +1,8 @@
 /**
  *  @file   main.cpp
  *  @brief  Entry point into the program.
- *  @author Mike and Yufeng Gao
- *  @date   2021-18-10
+ *  @author Alex, Hualin, Jackson and Yufeng
+ *  @date   2021-12-13
  ***********************************************/
 
 // Compile: Use a CMakeLists.txt to generate a build file or you can try
