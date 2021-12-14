@@ -24,7 +24,7 @@
 #include "Draw.hpp"
 #include "UDPNetworkClient.hpp"
 #include "UDPNetworkServer.hpp"
-#include "Packet.hpp"
+// #include "Packet.hpp"
 #include "deserialize.hpp"
 
 TEST_CASE("Create server object, bind to port") {
