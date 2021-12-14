@@ -126,7 +126,7 @@ TEST_CASE("init and mock draw") {
     REQUIRE(testLog == "App initialized.Mock draw has been called.");
 }
 
-TEST_CASE("test draw command") {
+TEST_CASE("test draw command, min pen size") {
     App testApp("test_user", sf::IpAddress::getLocalAddress());
     testApp.Init(&mock_initialization);
     testApp.UpdateCallback(&mock_update);
@@ -135,6 +135,20 @@ TEST_CASE("test draw command") {
     testApp.AddCommand(std::make_shared<Draw>(0, 0, sf::Color::Red, testApp.GetImage(), 1));
     testApp.ExecuteCommand();
     REQUIRE(testApp.GetImage().getPixel(0,0)==sf::Color::Red);
+}
+
+TEST_CASE("test draw command, max pen size") {
+    App testApp("test_user", sf::IpAddress::getLocalAddress());
+    testApp.Init(&mock_initialization);
+    testApp.UpdateCallback(&mock_update);
+    testApp.DrawCallback(&mock_draw);
+    REQUIRE(testApp.GetImage().getPixel(0,0)==sf::Color::White);
+    testApp.AddCommand(std::make_shared<Draw>(300, 200, sf::Color::Red, testApp.GetImage(), 40));
+    testApp.ExecuteCommand();
+    REQUIRE(testApp.GetImage().getPixel(260,160)==sf::Color::Red);
+    REQUIRE(testApp.GetImage().getPixel(260,240)==sf::Color::Red);
+    REQUIRE(testApp.GetImage().getPixel(340,160)==sf::Color::Red);
+    REQUIRE(testApp.GetImage().getPixel(340,240)==sf::Color::Red);
 }
 
 TEST_CASE("test undo on single valid command") {
