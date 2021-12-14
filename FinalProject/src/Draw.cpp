@@ -185,7 +185,7 @@ std::string Draw::ToString() const
  */
 sf::Packet Draw::Serialize() const
 {
-  std::cout << "Serializing" << this->ToString() <<  std::endl;
+  std::cout << "Serializing " << this->ToString() <<  std::endl;
   sf::Packet packet;
 
   uint32_t col_size = (uint32_t)m_old_colors.size();

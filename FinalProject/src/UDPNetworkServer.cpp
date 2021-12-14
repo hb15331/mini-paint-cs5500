@@ -123,7 +123,12 @@ int UDPNetworkServer::start() {
       std::map<unsigned short, sf::IpAddress>::iterator ipIterator;
       for (ipIterator = m_activeClients.begin();
            ipIterator != m_activeClients.end(); ipIterator++) {
-        m_socket.send(packet, ipIterator->second, ipIterator->first);
+        int send_status = m_socket.send(packet, ipIterator->second, ipIterator->first);
+        if(send_status == sf::Socket::Done) {
+
+        } else if (send_status != 1) {
+          std::cout << "Problem: " << send_status << std::endl;
+        }
       }
       m_packetHistory.push_back(packet);
     } else if (status != 1) {
@@ -180,18 +185,17 @@ int UDPNetworkServer::handleClientJoining(unsigned short clientPort,
     std::cout << "Server sending init packet" << std::endl;
   }
 
-  sf::sleep(sf::seconds(3.f));
+  sf::sleep(sf::seconds(1.f));
   std::cout << m_packetHistory.size() << std::endl;
   for (int i = 0; i < m_packetHistory.size(); i++) {
-    m_socket.send(m_packetHistory.at(i), clientIpAddress, clientPort);;
-  }
+    sf::sleep(sf::seconds(.1f));
+    int send_status = m_socket.send(m_packetHistory.at(i), clientIpAddress, clientPort);
+    if(send_status == sf::Socket::Done) {
 
-  // // Iterate through every message sent and send it to the client.
-  // for (int i = 0; i < m_sentHistory.size(); i++) {
-  //   char in[128];
-  //   m_socket.send(m_sentHistory[i].c_str(), m_sentHistory[i].length() + 1,
-  //                 clientIpAddress, clientPort);
-  // }
+    } else if (send_status != 1) {
+      std::cout << "Problem: " << send_status << std::endl;
+    }
+  }
 }
 
 /*! \brief 	Undo the latest command that has executed.
