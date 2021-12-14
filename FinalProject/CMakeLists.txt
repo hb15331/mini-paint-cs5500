@@ -57,6 +57,9 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 #  clang-tidy;
 #  -checks=*;)
 
+set(CMAKE_BUILD_TYPE Debug)
+
+
 # Where are the include directories
 include_directories("/usr/include/")
 include_directories("./include/")

@@ -7,16 +7,12 @@
 
 #include "Draw.hpp"
 
-int m_pixelX, m_pixelY;
-sf::Color m_color;
-std::vector<std::vector<sf::Color>> m_old_colors;
-
 /*!	\brief Constructor for a Draw object.
  * \return New Draw object.
  */
-Draw::Draw(int pixelX, int pixelY, const sf::Color &newColor, sf::Image &image, const int pen_size)
+Draw::Draw(int pixelX, int pixelY, const sf::Color &newColor, sf::Image &image, const int pen_size, bool inverted)
     : Command("Draw"), m_pixelX(pixelX), m_pixelY(pixelY), m_color(newColor),
-      m_old_colors(), m_ptrImage(&image), m_inverted(false), m_pen_size(pen_size)
+      m_old_colors(), m_ptrImage(&image), m_pen_size(pen_size), m_inverted(inverted)
 {
   for (int i = -m_pen_size; i <= m_pen_size; ++i)
   {
@@ -38,9 +34,9 @@ Draw::Draw(int pixelX, int pixelY, const sf::Color &newColor, sf::Image &image, 
  * \return New Draw object.
  */
 Draw::Draw(int pixelX, int pixelY, const sf::Color &newColor,
-           const std::vector<std::vector<sf::Color>> &oldColors, const int pen_size)
+           const std::vector<std::vector<sf::Color>> &oldColors, const int pen_size, bool inverted)
     : Command("Draw"), m_pixelX(pixelX), m_pixelY(pixelY), m_color(newColor),
-      m_old_colors(oldColors), m_ptrImage(nullptr), m_inverted(false), m_pen_size(pen_size) {}
+      m_old_colors(oldColors), m_ptrImage(nullptr), m_inverted(inverted), m_pen_size(pen_size) {}
 
 /*!	\brief Constructor for a Draw object.
  * \return New Draw object.
@@ -50,7 +46,8 @@ Draw::Draw(const Draw &obj)
       m_color(obj.m_color),
       m_old_colors(),
       m_ptrImage(obj.m_ptrImage),
-      m_pen_size(obj.m_pen_size) {}
+      m_pen_size(obj.m_pen_size),
+      m_inverted(false) {}
 
 /*! \brief 	The isEqual method compares the command with another command
  *object. If the command has the same pixel location and color, the bool value
@@ -59,7 +56,7 @@ Draw::Draw(const Draw &obj)
 bool Draw::IsEqual(const Command &other)
 {
   const Draw *another = dynamic_cast<const Draw *>(&other);
-  return another != nullptr && m_pixelX == another->m_pixelX &&
+  return another != nullptr && m_pixelX == another->m_pixelX && m_inverted == another->m_inverted &&
          m_pixelY == another->m_pixelY && m_color == (another->m_color) && m_pen_size == another->m_pen_size;
 }
 
@@ -147,6 +144,7 @@ bool Draw::Execute(sf::Image &image)
  */
 bool Draw::Undo(sf::Image &image)
 {
+
   m_ptrImage = &image;
   int xSize = (int)(*m_ptrImage).getSize().x;
   int ySize = (int)(*m_ptrImage).getSize().y;
@@ -158,6 +156,11 @@ bool Draw::Undo(sf::Image &image)
       {
         int x = std::clamp(m_pixelX + i, 0, xSize);
         int y = std::clamp(m_pixelY + j, 0, ySize);
+        if (i + m_pen_size >= m_old_colors.size()) {
+          continue;
+        } else if (j + m_pen_size >= m_old_colors[0].size()) {
+          continue;
+        }
         (*m_ptrImage).setPixel(x, y, m_old_colors[i + m_pen_size][j + m_pen_size]);
       }
     }
@@ -173,7 +176,7 @@ std::string Draw::ToString() const
 {
   std::stringstream ss;
   ss << Command::ToString() << ": (" << m_pixelX << "," << m_pixelY << ")"
-     << ", sz=" << m_pen_size << "Inverted " << m_inverted;
+     << ", sz=" << m_pen_size << ", Inverted " << m_inverted;
   return ss.str();
 }
 
@@ -182,22 +185,26 @@ std::string Draw::ToString() const
  */
 sf::Packet Draw::Serialize() const
 {
-  std::cout << "Serializing" << std::endl;
+  std::cout << "Serializing" << this->ToString() <<  std::endl;
   sf::Packet packet;
-  if (m_inverted)
-  {
-    packet << "Draw" << m_pixelX << m_pixelY << 1
-           // << m_prevColor.r << m_prevColor.g << m_prevColor.b << m_prevColor.a
-           << m_color.r << m_color.g
-           << m_color.b << m_color.a;
+
+  uint32_t col_size = (uint32_t)m_old_colors.size();
+  uint32_t row_size;
+  if(col_size > 0) {
+    row_size = (unsigned int)m_old_colors.at(0).size();
+  } else {
+    row_size = 0;
   }
-  else
-  {
-    packet << "Draw" << m_pixelX << m_pixelY << 1 << m_color.r << m_color.g
-           << m_color.b << m_color.a;
-    //  << m_prevColor.r << m_prevColor.g
-    //  << m_prevColor.b << m_prevColor.a;
+
+  packet << "Draw" << m_pixelX << m_pixelY << m_pen_size
+    << m_inverted << m_color.toInteger()
+    << col_size << row_size;
+  for(auto row : m_old_colors) {
+    for (auto color: row) {
+      packet << color.toInteger();
+    }
   }
+
 
   return packet;
 }

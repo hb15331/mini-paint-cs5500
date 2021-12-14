@@ -112,11 +112,8 @@ void update(App &appObject)
     // handle the keyReleased events
     if (event.type == sf::Event::KeyReleased)
     {
-      if (event.key.code == sf::Keyboard::Space)
-      {
-        std::cout << "Clear the canvas" << std::endl;
-        appObject.ClearCanvas(appObject.GetSelectedColor());
-      }
+      std::cout << "Clear the canvas" << std::endl;
+      appObject.ClearCanvas(appObject.GetSelectedColor());
     }
   }
 
@@ -130,7 +127,7 @@ void update(App &appObject)
     if (coordinate.x >= 0 && coordinate.x < xSize && coordinate.y >= 0 &&
         coordinate.y < ySize)
     {
-      sf::Color current_color = image.getPixel(coordinate.x, coordinate.y);
+      //sf::Color current_color = image.getPixel(coordinate.x, coordinate.y);
       std::vector<std::vector<sf::Color>> current_colors;
       for (int i = -appObject.GetPenSize(); i <= appObject.GetPenSize(); ++i)
       {
@@ -208,7 +205,7 @@ void update(App &appObject)
 
     if (received_command != nullptr)
     {
-      //std::cout << "Data received from server." << std::endl;
+      std::cout << "Data received from server: " << received_command->ToString() << std::endl;
       // Need to update command's stored image here.
       appObject.AddCommand(received_command);
       appObject.ExecuteCommand();

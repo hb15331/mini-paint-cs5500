@@ -25,7 +25,6 @@
 // Our Command library
 #include "Command.hpp"
 #include "Draw.hpp"
-#include "Packet.hpp"
 #include "deserialize.hpp"
 
 // Other standard libraries
@@ -94,7 +93,7 @@ private:
   // The second is the IpAddress of the client.
   std::map<unsigned short, sf::IpAddress> m_activeClients;
   // A data structure to hold all of the packets
-  std::vector<myPacket> m_packetHistory;
+  std::vector<sf::Packet> m_packetHistory;
   // A data structure to hold all of the messages sent
   std::vector<std::string> m_sentHistory;
 };

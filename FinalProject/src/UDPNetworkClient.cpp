@@ -11,7 +11,7 @@
 /*!	\brief Constructor for UDPNetworkClient object, takes username as a parameter.
  * \return UDPNetworkClient object
  */
-UDPNetworkClient::UDPNetworkClient(std::string username) {
+UDPNetworkClient::UDPNetworkClient(std::string username) : m_username(username), m_port(), m_ipAddress(), m_serverPort(), m_serverIpAddress(), m_socket(){
   // Adding in a list of valid ports to automate the binding process.
   int valid_ports[] = {50001, 50002, 50003, 50004, 50005,
                        50006, 50007, 50008, 50009, 50010};
@@ -81,9 +81,6 @@ int UDPNetworkClient::joinServer(sf::IpAddress serverAddress,
  */
 int UDPNetworkClient::SendPacket(sf::Packet packet) {
   packet << m_username;
-
-  std::cout << "Packet Data:" << packet << std::endl;
-
   if (m_socket.send(packet, m_serverIpAddress, m_serverPort) !=
       sf::Socket::Done) {
     std::cout << "Client error? Wrong IP?" << std::endl;
@@ -98,7 +95,7 @@ int UDPNetworkClient::SendPacket(sf::Packet packet) {
 int UDPNetworkClient::sendString(std::string s) {
   sf::Packet stringpacket;
   stringpacket << "String" << s;
-  SendPacket(stringpacket);
+  return SendPacket(stringpacket);
 }
 
 /*!	\brief Receive any information sent from server.
@@ -124,4 +121,4 @@ std::string UDPNetworkClient::getUsername() { return m_username; }
 
 /*!	\brief Username setter.
  */
-int UDPNetworkClient::setUsername(std::string name) { m_username = name; }
+int UDPNetworkClient::setUsername(std::string name) { m_username = name; return 1; }

@@ -72,14 +72,18 @@ int UDPNetworkServer::start() {
         if (command) {
           if (command->m_command_description == "Undo") {
             command = Undo();
-            packet = command->Serialize();
-            packet << "Server";
-            std::cout << "Undoing" << std::endl;
+            if (command) {
+              packet = command->Serialize();
+              packet << "Server";
+              std::cout << "Undoing" << std::endl;
+            }
 
           } else if (command->m_command_description == "Redo") {
             command = Redo();
-            packet = command->Serialize();
-            packet << "Server";
+            if (command) {
+              packet = command->Serialize();
+              packet << "Server";
+            }
           } else {
             AddCommand(command);
 
@@ -220,7 +224,7 @@ std::shared_ptr<Command> UDPNetworkServer::Redo()
 /*! \brief Adds command to relevant queue and stack.
  */
 void UDPNetworkServer::AddCommand(std::shared_ptr<Command> c) {
-  if(c) {
+  if(c && (m_undo.empty() || !(c->IsEqual(*m_undo.top())))) {
     m_commands.push(c);
     m_undo.push(c);
   }

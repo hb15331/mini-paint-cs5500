@@ -159,7 +159,7 @@ sf::RenderWindow &App::GetWindow() { return *m_window; }
 sf::RenderWindow &App::GetGUIWindow() { return *m_option_window; }
 
 /*!	\brief Create and set a new image/canvas for the app object,
- *    taking the a color to set the canvas to as a parameter. 
+ *    taking the a color to set the canvas to as a parameter.
  */
 void App::ClearCanvas(sf::Color color)
 {
@@ -309,7 +309,6 @@ std::shared_ptr<Command> App::ReceiveData()
     }
     else
     {
-      std::cout << *command << std::endl;
       return command;
     }
   }

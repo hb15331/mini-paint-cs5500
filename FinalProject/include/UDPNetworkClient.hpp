@@ -14,7 +14,6 @@
 // Our Command library
 #include "Command.hpp"
 #include "Draw.hpp"
-#include "Packet.hpp"
 
 // Other standard libraries
 #include <iostream>
