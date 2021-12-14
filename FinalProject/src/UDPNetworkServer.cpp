@@ -125,6 +125,7 @@ int UDPNetworkServer::start() {
            ipIterator != m_activeClients.end(); ipIterator++) {
         m_socket.send(packet, ipIterator->second, ipIterator->first);
       }
+      m_packetHistory.push_back(packet);
     } else if (status != 1) {
       std::cout << status << std::endl;
     }
@@ -180,13 +181,17 @@ int UDPNetworkServer::handleClientJoining(unsigned short clientPort,
   }
 
   sf::sleep(sf::seconds(3.f));
-
-  // Iterate through every message sent and send it to the client.
-  for (int i = 0; i < m_sentHistory.size(); i++) {
-    char in[128];
-    m_socket.send(m_sentHistory[i].c_str(), m_sentHistory[i].length() + 1,
-                  clientIpAddress, clientPort);
+  std::cout << m_packetHistory.size() << std::endl;
+  for (int i = 0; i < m_packetHistory.size(); i++) {
+    m_socket.send(m_packetHistory.at(i), clientIpAddress, clientPort);;
   }
+
+  // // Iterate through every message sent and send it to the client.
+  // for (int i = 0; i < m_sentHistory.size(); i++) {
+  //   char in[128];
+  //   m_socket.send(m_sentHistory[i].c_str(), m_sentHistory[i].length() + 1,
+  //                 clientIpAddress, clientPort);
+  // }
 }
 
 /*! \brief 	Undo the latest command that has executed.
