@@ -1,23 +1,22 @@
-
 <hr>
 
 # Feature Use Case
 
 <hr>
 
-**Use Case**: Launch Client
+**Use Case**: Starting the Server
 
-**Primary Actor**: User
+**Primary Actor**: User/Admin
 
-**Goal in Context**: Start the client paint program.
+**Goal in Context**: Start the server, allowing clients to join.
 
-**Preconditions**: User has built from source code and have access to the executable file "App".
+**Preconditions**: The server executible has been make by the user, using cmake .. and then make within the bin directory.
 
-**Trigger**: running "App" file from CLI interface. i.e. using command line "./App"
+**Trigger**: Running "Server" file from CLI interface. i.e. using command line "./Server" within bin directory.
   
-**Scenario**: User navigates to the binary file directory from CLI interface, and runs the client-side program.
+**Scenario**: *an enumerated list of steps describing the actions and interactions of the primary actor with the system*
  
-**Exceptions**: App may not build or run. Check system environment to make sure all required libraries and files are present.
+**Exceptions**: Server may not build or run. Check system environment to make sure all required libraries and files are present.
 
 **Priority**: Medium
 

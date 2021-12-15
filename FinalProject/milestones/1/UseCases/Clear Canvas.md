@@ -1,27 +1,26 @@
-
 <hr>
 
 # Feature Use Case
 
 <hr>
 
-**Use Case**: Launch Client
+**Use Case**: Clear Canvas
 
 **Primary Actor**: User
 
-**Goal in Context**: Start the client paint program.
+**Goal in Context**: Set canvas to all one color
 
-**Preconditions**: User has built from source code and have access to the executable file "App".
+**Preconditions**: Client is running (offline or online mode).
 
-**Trigger**: running "App" file from CLI interface. i.e. using command line "./App"
+**Trigger**: Spacebar on keyboard is clicked.
   
-**Scenario**: User navigates to the binary file directory from CLI interface, and runs the client-side program.
+**Scenario**: 1: A user starts the client (App), 2: A pixel is drawn, 3: The space key is pressed, 4: The canvas's is color is set to that of the pixel.
  
-**Exceptions**: App may not build or run. Check system environment to make sure all required libraries and files are present.
+**Exceptions**: There is some delay when using this funcionality in online mode. If clearing the canvas is not working, try drawing another pixel/pen stroke and then clearing.
 
 **Priority**: Medium
 
-**When available**: *the targeted release that covers this use case*
+**When available**: Final release.
 
 **Channel to actor**: Keyboard, Mouse, Monitor, IO devices.
 
