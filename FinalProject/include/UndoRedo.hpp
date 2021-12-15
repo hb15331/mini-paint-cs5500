@@ -9,6 +9,7 @@
 #define UNDOREDO_HPP
 
 #include <sstream>
+#include <vector>
 #include "Command.hpp"
 
 
@@ -19,19 +20,15 @@ class UndoRedo : public Command
     ~UndoRedo();
 
     std::string ToString() const override;
-    sf::Packet Serialize() const override;
+    std::vector<sf::Packet> Serialize() const override;
 
-    bool Execute() override;
     bool Execute(sf::Image &image) override;
     bool Undo(sf::Image &image) override;
     void Invert() override;
+    bool IsComponent() const override;
 
     bool IsEqual(const Command &other) override;
 
-
-  protected:
-
-  private:
 };
 
 /*! \brief Override to allow simple printing of a Draw object */

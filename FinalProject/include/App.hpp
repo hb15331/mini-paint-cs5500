@@ -21,9 +21,11 @@
 // Include standard library C++ libraries.
 #include "Command.hpp"
 #include "UDPNetworkClient.hpp"
+#include "ClearCanvas.hpp"
 #include "deserialize.hpp"
 #include "UndoRedo.hpp"
 #include <cassert>
+#include <exception>
 #include <memory>
 #include <queue>
 #include <stack>
@@ -66,6 +68,9 @@ private:
   // Our rendering window
   sf::RenderWindow *m_window;
   sf::RenderWindow *m_option_window;
+
+  // Queue of packets to send to server
+  std::queue<sf::Packet> m_packet_queue;
 
   // Username
   std::string m_uname;
@@ -149,13 +154,16 @@ public:
   void Loop();
 
   // Set canvas to a given color
-  void ClearCanvas(sf::Color color);
+  void ClearTheCanvas(sf::Color color);
 
   // Attempt to connect to the server. If connected then m_is_online becomes true
   void CreateUDPNetworkClient();
 
   // Send packet to server
-  void SendPacket(sf::Packet packet);
+  bool SendPacket();
+
+  // Adds a packet to the send queue
+  void AddPacket(sf::Packet packet);
 
   // Gets the pen size in pixels
   int GetPenSize();
@@ -169,6 +177,9 @@ public:
 
   // Receive command from the server
   std::shared_ptr<Command> ReceiveData();
+
+  // Used to time sending packets to the server
+  sf::Clock m_packet_send_clock;
 };
 
 #endif

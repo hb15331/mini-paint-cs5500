@@ -8,10 +8,12 @@
 #include "UDPNetworkClient.hpp"
 #include <list>
 
-/*!	\brief Constructor for UDPNetworkClient object, takes username as a parameter.
- * \return UDPNetworkClient object
+/*!	\brief Constructor for UDPNetworkClient object, takes username as a
+ * parameter. \return UDPNetworkClient object
  */
-UDPNetworkClient::UDPNetworkClient(std::string username) : m_username(username), m_port(), m_ipAddress(), m_serverPort(), m_serverIpAddress(), m_socket(){
+UDPNetworkClient::UDPNetworkClient(std::string username)
+    : m_username(username), m_port(), m_ipAddress(), m_serverPort(),
+      m_serverIpAddress(), m_socket() {
   // Adding in a list of valid ports to automate the binding process.
   int valid_ports[] = {50001, 50002, 50003, 50004, 50005,
                        50006, 50007, 50008, 50009, 50010};
@@ -58,23 +60,21 @@ int UDPNetworkClient::joinServer(sf::IpAddress serverAddress,
   m_serverIpAddress = serverAddress;
   m_serverPort = serverPort;
 
-
   sendString("Hello, " + m_username + " is joining!");
 
   sf::Clock clock;
   clock.restart();
-  while(clock.getElapsedTime() < sf::seconds(2)) {
-      sf::Packet pack = ReceiveData();
-      std::string initString, message;
-      if (pack >> initString >> message) {
-        if (initString == "String") {
-          std::cout << message << std::endl;
-          return 1; // Online
-        }
+  while (clock.getElapsedTime() < sf::seconds(2)) {
+    sf::Packet pack = ReceiveData();
+    std::string initString, message;
+    if (pack >> initString >> message) {
+      if (initString == "String") {
+        std::cout << message << std::endl;
+        return 1; // Online
       }
+    }
   }
   return 0; // Offline
-
 }
 
 /*!	\brief Sends a given packet to the server.
@@ -121,4 +121,7 @@ std::string UDPNetworkClient::getUsername() { return m_username; }
 
 /*!	\brief Username setter.
  */
-int UDPNetworkClient::setUsername(std::string name) { m_username = name; return 1; }
+int UDPNetworkClient::setUsername(std::string name) {
+  m_username = name;
+  return 1;
+}

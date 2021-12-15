@@ -37,8 +37,7 @@
  *		doing nothing at all.
  *
  */
-void initialization(App &appObject)
-{
+void initialization(App &appObject) {
   appObject.CreateUDPNetworkClient();
   std::cout << "Starting the App" << std::endl;
 }
@@ -48,97 +47,66 @@ void initialization(App &appObject)
  *		and exit.
  *
  */
-void update(App &appObject)
-{
+void update(App &appObject) {
   // Update our canvas
   sf::Event event;
-  while (appObject.GetWindow().pollEvent(event))
-  {
-    if (event.type == sf::Event::KeyPressed)
-    {
-      if (event.key.code == sf::Keyboard::Escape)
-      {
+  while (appObject.GetWindow().pollEvent(event)) {
+    if (event.type == sf::Event::KeyPressed) {
+      if (event.key.code == sf::Keyboard::Escape) {
         exit(EXIT_SUCCESS);
-      }
-      if (event.key.code == sf::Keyboard::Y)
-      {
+      } else if (event.key.code == sf::Keyboard::Y) {
         appObject.Redo();
-      }
-      else if (event.key.code == sf::Keyboard::Z)
-      {
+      } else if (event.key.code == sf::Keyboard::Z) {
         appObject.Undo();
-      }
-      if (event.key.code == sf::Keyboard::Num1 ||
-          event.key.code == sf::Keyboard::Numpad1)
-      {
+      } else if (event.key.code == sf::Keyboard::Num1 ||
+                 event.key.code == sf::Keyboard::Numpad1) {
         appObject.SetSelectedColor(sf::Color::Black);
-      }
-      if (event.key.code == sf::Keyboard::Num2 ||
-          event.key.code == sf::Keyboard::Numpad2)
-      {
+      } else if (event.key.code == sf::Keyboard::Num2 ||
+                 event.key.code == sf::Keyboard::Numpad2) {
         appObject.SetSelectedColor(sf::Color::White);
-      }
-      if (event.key.code == sf::Keyboard::Num3 ||
-          event.key.code == sf::Keyboard::Numpad3)
-      {
+      } else if (event.key.code == sf::Keyboard::Num3 ||
+                 event.key.code == sf::Keyboard::Numpad3) {
         appObject.SetSelectedColor(sf::Color::Red);
-      }
-      if (event.key.code == sf::Keyboard::Num4 ||
-          event.key.code == sf::Keyboard::Numpad4)
-      {
+      } else if (event.key.code == sf::Keyboard::Num4 ||
+                 event.key.code == sf::Keyboard::Numpad4) {
         appObject.SetSelectedColor(sf::Color::Green);
-      }
-      if (event.key.code == sf::Keyboard::Num5 ||
-          event.key.code == sf::Keyboard::Numpad5)
-      {
+      } else if (event.key.code == sf::Keyboard::Num5 ||
+                 event.key.code == sf::Keyboard::Numpad5) {
         appObject.SetSelectedColor(sf::Color::Blue);
-      }
-      if (event.key.code == sf::Keyboard::Num6 ||
-          event.key.code == sf::Keyboard::Numpad6)
-      {
+      } else if (event.key.code == sf::Keyboard::Num6 ||
+                 event.key.code == sf::Keyboard::Numpad6) {
         appObject.SetSelectedColor(sf::Color::Yellow);
-      }
-      if (event.key.code == sf::Keyboard::Num7 ||
-          event.key.code == sf::Keyboard::Numpad7)
-      {
+      } else if (event.key.code == sf::Keyboard::Num7 ||
+                 event.key.code == sf::Keyboard::Numpad7) {
         appObject.SetSelectedColor(sf::Color::Magenta);
-      }
-      if (event.key.code == sf::Keyboard::Num8 ||
-          event.key.code == sf::Keyboard::Numpad8)
-      {
+      } else if (event.key.code == sf::Keyboard::Num8 ||
+                 event.key.code == sf::Keyboard::Numpad8) {
         appObject.SetSelectedColor(sf::Color::Cyan);
       }
     }
     // handle the keyReleased events
-    if (event.type == sf::Event::KeyReleased &&
-        event.key.code == sf::Keyboard::Space)
-    {
-      if (event.key.code == sf::Keyboard::Escape)
-      {
-      std::cout << "Clear the canvas" << std::endl;
-      appObject.ClearCanvas(appObject.GetSelectedColor());
-      }
+    else if (event.type == sf::Event::KeyReleased &&
+        event.key.code == sf::Keyboard::Space) {
+      appObject.ClearTheCanvas(appObject.GetSelectedColor());
     }
   }
 
-  if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
-  {
+  if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
     sf::Vector2i coordinate = sf::Mouse::getPosition(appObject.GetWindow());
     sf::Image image = appObject.GetImage();
     // assuming the image size does not reach INT_MAX
     int xSize = (int)image.getSize().x;
     int ySize = (int)(image.getSize().y);
     if (coordinate.x >= 0 && coordinate.x < xSize && coordinate.y >= 0 &&
-        coordinate.y < ySize)
-    {
-      //sf::Color current_color = image.getPixel(coordinate.x, coordinate.y);
+        coordinate.y < ySize) {
+      // sf::Color current_color = image.getPixel(coordinate.x, coordinate.y);
       std::vector<std::vector<sf::Color>> current_colors;
-      for (int i = -appObject.GetPenSize(); i <= appObject.GetPenSize(); ++i)
-      {
-        // We need to keep track of all the old pixels so that we can revert to them
+      for (int i = -appObject.GetPenSize(); i <= appObject.GetPenSize(); ++i) {
+        // We need to keep track of all the old pixels so that we can revert to
+        // them
         std::vector<sf::Color> row;
-        for (int j = -appObject.GetPenSize(); j <= appObject.GetPenSize(); ++j)
-        {
+        for (int j = -appObject.GetPenSize(); j <= appObject.GetPenSize();
+             ++j) {
           int x = std::clamp(coordinate.x + i, 0, xSize);
           int y = std::clamp(coordinate.y + j, 0, ySize);
           row.push_back(image.getPixel(x, y));
@@ -146,51 +114,49 @@ void update(App &appObject)
         // Keep track of the previous pixel color
         current_colors.push_back(row);
       }
-      if (!appObject.IsOnline())
-      {
-        appObject.AddCommand(std::make_shared<Draw>(coordinate.x, coordinate.y,
-                                                    appObject.GetSelectedColor(),
-                                                    current_colors, appObject.GetPenSize()));
-      }
-      else
-      {
-        auto command = std::make_shared<Draw>(coordinate.x, coordinate.y,
-                                              appObject.GetSelectedColor(),
-                                              current_colors, appObject.GetPenSize());
-        appObject.SendPacket(command->Serialize());
+      if (!appObject.IsOnline()) {
+        appObject.AddCommand(std::make_shared<Draw>(
+            coordinate.x, coordinate.y, appObject.GetSelectedColor(),
+            current_colors, appObject.GetPenSize()));
+      } else {
+        auto command = std::make_shared<Draw>(
+            coordinate.x, coordinate.y, appObject.GetSelectedColor(),
+            current_colors, appObject.GetPenSize());
+        for (auto packet : command->Serialize()) {
+          appObject.AddPacket(packet);
+        }
+        // appObject.AddPacket(command->Serialize());
       }
       appObject.ExecuteCommand();
     }
   }
 
+  appObject.SendPacket();
+
   // Capture input from the nuklear GUI
   nk_input_begin(appObject.m_ctx);
-  while (appObject.GetGUIWindow().pollEvent(event))
-  {
+  while (appObject.GetGUIWindow().pollEvent(event)) {
     // Our close event.
     // Note: We only have a 'minimize' button
     //       in our window right now, so this event is not
     //       going to fire.
-    if (event.type == sf::Event::Closed)
-    {
+    if (event.type == sf::Event::Closed) {
       nk_sfml_shutdown();
       appObject.GetGUIWindow().close();
       exit(EXIT_SUCCESS);
     }
 
     // Capture any keys that are released
-    else if (event.type == sf::Event::KeyReleased)
-    {
+    else if (event.type == sf::Event::KeyReleased) {
       std::cout << "Key Pressed" << std::endl;
       // Check if the escape key is pressed.
-      if (event.key.code == sf::Keyboard::Escape)
-      {
+      if (event.key.code == sf::Keyboard::Escape) {
         nk_sfml_shutdown();
         appObject.GetGUIWindow().close();
         exit(EXIT_SUCCESS);
       }
     }
-    //else if(event.type == sf::Event::Resized){
+    // else if(event.type == sf::Event::Resized){
     //    glViewport(0, 0, event.size.width, event.size.height);
     //}
     nk_sfml_handle_event(&event);
@@ -202,14 +168,13 @@ void update(App &appObject)
   // Draw our GUI
   appObject.drawLayout(appObject.m_ctx);
 
-  if (appObject.IsOnline())
-  {
+  if (appObject.IsOnline()) {
     std::shared_ptr<Command> received_command;
     received_command = appObject.ReceiveData();
 
-    if (received_command != nullptr)
-    {
-      std::cout << "Data received from server: " << received_command->ToString() << std::endl;
+    if (received_command != nullptr) {
+      std::cout << "Data received from server: " << received_command->ToString()
+                << std::endl;
       // Need to update command's stored image here.
       appObject.AddCommand(received_command);
       appObject.ExecuteCommand();
@@ -224,8 +189,7 @@ void update(App &appObject)
 /*! \brief 	The draw call
  *
  */
-void draw(App &appObject)
-{
+void draw(App &appObject) {
   // Static variable
   static int refreshRate = 0;
   ++refreshRate; // Increment
@@ -235,8 +199,7 @@ void draw(App &appObject)
   // between the GPU and CPU.
   // Ask yourself: Could we do better with sf::Clock and refresh once
   // 	 	 every 'x' frames?
-  if (refreshRate > 10)
-  {
+  if (refreshRate > 10) {
     appObject.GetTexture().loadFromImage(appObject.GetImage());
     refreshRate = 0;
   }
@@ -245,8 +208,7 @@ void draw(App &appObject)
 /*! \brief 	The entry point into our program.
  *
  */
-int main()
-{
+int main() {
   std::string username;
   sf::IpAddress ip_address;
   std::cout << "Enter your username:";

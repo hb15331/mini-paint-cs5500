@@ -32,25 +32,24 @@ private:
   int m_pixelX, m_pixelY;
   sf::Color m_color;
   std::vector<std::vector<sf::Color>> m_old_colors;
-  // pointer to the image
-  sf::Image *m_ptrImage;
   const int m_pen_size;
   // Used for undoing
   bool m_inverted;
   Draw &operator=(const Draw &) = delete;
+  bool m_is_component;
 
 
 public:
-  Draw(int pixelX, int pixelY, const sf::Color &newColor, sf::Image &image, const int pen_size, bool inverted=false);
-  Draw(int pixelX, int pixelY, const sf::Color &newColor, const std::vector<std::vector<sf::Color>> &oldColors, const int pen_size, bool inverted=false);
+  Draw(int pixelX, int pixelY, const sf::Color &newColor, sf::Image &image, const int pen_size, bool inverted=false, bool is_component=false);
+  Draw(int pixelX, int pixelY, const sf::Color &newColor, const std::vector<std::vector<sf::Color>> &oldColors, const int pen_size, bool inverted=false, bool is_component=false);
   Draw(const Draw &obj);
   bool IsEqual(const Command &other) override;
-  bool Execute() override;
   bool Execute(sf::Image &image) override;
   void Invert() override;
   std::string ToString() const override;
   bool Undo(sf::Image &image) override;
-  sf::Packet Serialize() const override;
+  std::vector<sf::Packet> Serialize() const override;
+  bool IsComponent() const override;
 };
 
 /*! \brief Override to allow simple printing of a Draw object */
