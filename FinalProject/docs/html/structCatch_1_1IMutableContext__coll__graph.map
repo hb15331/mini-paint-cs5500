@@ -1,4 +1,3 @@
 <map id="Catch::IMutableContext" name="Catch::IMutableContext">
-<area shape="rect" id="node1" title=" " alt="" coords="5,175,180,296"/>
-<area shape="rect" id="node2" href="$structCatch_1_1IContext.html" title=" " alt="" coords="13,5,173,127"/>
+<area shape="rect" id="node2" href="$structCatch_1_1IContext.html" title="{Catch::IContext\n||+ ~IContext()\l+ getResultCapture()\l+ getRunner()\l+ getConfig()\l}" alt="" coords="14,5,158,127"/>
 </map>

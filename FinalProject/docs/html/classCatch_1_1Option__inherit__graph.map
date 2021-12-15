@@ -1,4 +1,8 @@
 <map id="Catch::Option&lt; T &gt;" name="Catch::Option&lt; T &gt;">
-<area shape="rect" id="node1" title=" " alt="" coords="12,5,160,303"/>
-<area shape="rect" id="node2" href="$structCatch_1_1LazyStat.html" title=" " alt="" coords="5,351,167,443"/>
+<area shape="rect" id="node2" href="$structCatch_1_1LazyStat.html" title="{Catch::LazyStat\&lt; T \&gt;\n|+ used\l|+ operator=()\l+ reset()\l}" alt="" coords="185,475,334,567"/>
+<area shape="rect" id="node5" href="$classCatch_1_1Option.html" title="{Catch::Option\&lt; Catch\l::GroupInfo \&gt;\n||+ Option()\l+ Option()\l+ Option()\l+ ~Option()\l+ operator=()\l+ operator=()\l+ reset()\l+ operator*()\l+ operator*()\l+ operator&#45;\&gt;()\l+ operator&#45;\&gt;()\l+ valueOr()\l+ some()\l+ none()\l+ operator!()\l+ operator bool()\l}" alt="" coords="5,365,156,677"/>
+<area shape="rect" id="node6" href="$classCatch_1_1Option.html" title="{Catch::Option\&lt; Catch\l::TestRunInfo \&gt;\n||+ Option()\l+ Option()\l+ Option()\l+ ~Option()\l+ operator=()\l+ operator=()\l+ reset()\l+ operator*()\l+ operator*()\l+ operator&#45;\&gt;()\l+ operator&#45;\&gt;()\l+ valueOr()\l+ some()\l+ none()\l+ operator!()\l+ operator bool()\l}" alt="" coords="359,365,509,677"/>
+<area shape="rect" id="node7" href="$classCatch_1_1Option.html" title="{Catch::Option\&lt; Catch\l::AssertionResult \&gt;\n||+ Option()\l+ Option()\l+ Option()\l+ ~Option()\l+ operator=()\l+ operator=()\l+ reset()\l+ operator*()\l+ operator*()\l+ operator&#45;\&gt;()\l+ operator&#45;\&gt;()\l+ valueOr()\l+ some()\l+ none()\l+ operator!()\l+ operator bool()\l}" alt="" coords="533,365,684,677"/>
+<area shape="rect" id="node3" href="$structCatch_1_1LazyStat.html" title="{Catch::LazyStat\&lt; Catch\l::GroupInfo \&gt;\n|+ used\l|+ operator=()\l+ reset()\l}" alt="" coords="15,740,179,847"/>
+<area shape="rect" id="node4" href="$structCatch_1_1LazyStat.html" title="{Catch::LazyStat\&lt; Catch\l::TestRunInfo \&gt;\n|+ used\l|+ operator=()\l+ reset()\l}" alt="" coords="211,740,375,847"/>
 </map>

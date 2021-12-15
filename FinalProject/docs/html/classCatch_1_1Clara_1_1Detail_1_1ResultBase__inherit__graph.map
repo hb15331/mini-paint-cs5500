@@ -1,6 +1,5 @@
 <map id="Catch::Clara::Detail::ResultBase" name="Catch::Clara::Detail::ResultBase">
-<area shape="rect" id="node1" title=" " alt="" coords="125,5,273,185"/>
-<area shape="rect" id="node2" href="$classCatch_1_1Clara_1_1Detail_1_1ResultValueBase.html" title=" " alt="" coords="5,233,183,413"/>
-<area shape="rect" id="node3" href="$classCatch_1_1Clara_1_1Detail_1_1ResultValueBase_3_01void_01_4.html" title=" " alt="" coords="207,263,405,384"/>
-<area shape="rect" id="node4" href="$classCatch_1_1Clara_1_1Detail_1_1BasicResult.html" title=" " alt="" coords="232,461,380,700"/>
+<area shape="rect" id="node2" href="$classCatch_1_1Clara_1_1Detail_1_1ResultValueBase.html" title="{Catch::Clara::Detail\l::ResultValueBase\&lt; T \&gt;\n|+ m_value\l# @1\l|+ value()\l# ResultValueBase()\l# ResultValueBase()\l# ResultValueBase()\l# operator=()\l# ~ResultValueBase()\l}" alt="" coords="5,233,168,413"/>
+<area shape="rect" id="node4" href="$classCatch_1_1Clara_1_1Detail_1_1ResultValueBase_3_01void_01_4.html" title="{Catch::Clara::Detail\l::ResultValueBase\&lt; void \&gt;\n||}" alt="" coords="192,277,371,369"/>
+<area shape="rect" id="node3" href="$classCatch_1_1Clara_1_1Detail_1_1BasicResult.html" title="{Catch::Clara::Detail\l::BasicResult\&lt; T \&gt;\n|# m_errorMessage\l|+ BasicResult()\l+ operator bool()\l+ type()\l+ errorMessage()\l+ ok()\l+ ok()\l+ logicError()\l+ runtimeError()\l# enforceOk()\l# BasicResult()\l}" alt="" coords="17,461,156,685"/>
 </map>

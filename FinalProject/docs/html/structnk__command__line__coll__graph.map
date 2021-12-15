@@ -1,10 +1,5 @@
 <map id="nk_command_line" name="nk_command_line">
-<area shape="rect" id="node1" title=" " alt="" coords="341,344,483,421"/>
-<area shape="rect" id="node2" href="$structnk__command.html" title=" " alt="" coords="199,189,310,267"/>
-<area shape="rect" id="node3" title=" " alt="" coords="5,5,192,83"/>
-<area shape="rect" id="node4" title=" " alt="" coords="217,5,333,83"/>
-<area shape="rect" id="node5" title=" " alt="" coords="399,5,454,83"/>
-<area shape="rect" id="node6" href="$structnk__vec2i.html" title=" " alt="" coords="492,189,572,267"/>
-<area shape="rect" id="node7" href="$structnk__color.html" title=" " alt="" coords="596,189,673,267"/>
-<area shape="rect" id="node8" title=" " alt="" coords="591,5,679,83"/>
+<area shape="rect" id="node2" href="$structnk__color.html" title="{nk_color\n||}" alt="" coords="16,189,87,267"/>
+<area shape="rect" id="node4" href="$structnk__vec2i.html" title="{nk_vec2i\n||}" alt="" coords="119,189,194,267"/>
+<area shape="rect" id="node6" href="$structnk__command.html" title="{nk_command\n||}" alt="" coords="223,189,323,267"/>
 </map>

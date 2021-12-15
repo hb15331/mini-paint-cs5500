@@ -1,3 +1,2 @@
 <map id="Catch::ErrnoGuard" name="Catch::ErrnoGuard">
-<area shape="rect" id="node1" title="Simple RAII class that stores the value of errno at construction and restores it at destruction." alt="" coords="5,5,145,97"/>
 </map>

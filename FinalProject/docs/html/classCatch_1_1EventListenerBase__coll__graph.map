@@ -1,6 +1,4 @@
 <map id="Catch::EventListenerBase" name="Catch::EventListenerBase">
-<area shape="rect" id="node1" title="Base class identifying listeners." alt="" coords="12,749,200,1047"/>
-<area shape="rect" id="node2" href="$structCatch_1_1IStreamingReporter.html" title=" " alt="" coords="5,300,207,700"/>
-<area shape="rect" id="node3" href="$structCatch_1_1ReporterPreferences.html" title="By setting up its preferences, a reporter can modify Catch2&#39;s behaviour in some regards,..." alt="" coords="6,160,206,237"/>
-<area shape="rect" id="node4" title=" " alt="" coords="81,5,131,83"/>
+<area shape="rect" id="node2" href="$structCatch_1_1IStreamingReporter.html" title="{Catch::IStreamingReporter\n||+ ~IStreamingReporter()\l+ getPreferences()\l+ noMatchingTestCases()\l+ reportInvalidArguments()\l+ testRunStarting()\l+ testGroupStarting()\l+ testCaseStarting()\l+ sectionStarting()\l+ benchmarkPreparing()\l+ benchmarkStarting()\l+ benchmarkEnded()\l+ benchmarkFailed()\l+ assertionStarting()\l+ assertionEnded()\l+ sectionEnded()\l+ testCaseEnded()\l+ testGroupEnded()\l+ testRunEnded()\l+ skipTest()\l+ fatalErrorEncountered()\l+ listReporters()\l+ listTests()\l+ listTags()\l}" alt="" coords="9,300,187,700"/>
+<area shape="rect" id="node3" href="$structCatch_1_1ReporterPreferences.html" title="By setting up its preferences, a reporter can modify Catch2&#39;s behaviour in some regards, e.g. " alt="" coords="5,160,191,237"/>
 </map>

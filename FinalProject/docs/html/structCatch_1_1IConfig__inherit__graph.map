@@ -1,5 +1,4 @@
 <map id="Catch::IConfig" name="Catch::IConfig">
-<area shape="rect" id="node1" title=" " alt="" coords="5,131,248,560"/>
-<area shape="rect" id="node3" href="$classCatch_1_1Config.html" title=" " alt="" coords="5,608,248,1169"/>
-<area shape="rect" id="node2" href="$classCatch_1_1Detail_1_1NonCopyable.html" title="Deriving classes become noncopyable and nonmovable." alt="" coords="26,5,227,83"/>
+<area shape="rect" id="node3" href="$classCatch_1_1Config.html" title="{Catch::Config\n||+ Config()\l+ Config()\l+ ~Config()\l+ getFilename()\l+ listTests()\l+ listTags()\l+ listReporters()\l+ getProcessName()\l+ getReporterName()\l+ getTestsOrTags()\l+ getSectionsToRun()\l+ testSpec()\l+ hasTestFilters()\l+ showHelp()\l+ allowThrows()\l+ stream()\l+ name()\l+ includeSuccessfulResults()\l+ warnAboutMissingAssertions()\l+ warnAboutNoTests()\l+ showDurations()\l+ minDuration()\l+ runOrder()\l+ rngSeed()\l+ useColour()\l+ shouldDebugBreak()\l+ abortAfter()\l+ showInvisibles()\l+ verbosity()\l+ benchmarkNoAnalysis()\l+ benchmarkSamples()\l+ benchmarkConfidenceInterval()\l+ benchmarkResamples()\l+ benchmarkWarmupTime()\l}" alt="" coords="5,608,220,1169"/>
+<area shape="rect" id="node2" href="$classCatch_1_1Detail_1_1NonCopyable.html" title="Deriving classes become noncopyable and nonmovable. " alt="" coords="19,5,206,83"/>
 </map>

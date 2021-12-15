@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['usecolour_0',['UseColour',['../namespaceCatch.html#a78e9eddf0bc9b2f4f0e4f3e232131b9c',1,'Catch']]]
+  ['verbosity',['Verbosity',['../namespaceCatch.html#af85c0d46dfe687d923a157362fd07737',1,'Catch']]]
 ];

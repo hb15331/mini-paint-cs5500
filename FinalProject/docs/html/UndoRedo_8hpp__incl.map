@@ -1,10 +1,3 @@
 <map id="include/UndoRedo.hpp" name="include/UndoRedo.hpp">
-<area shape="rect" id="node1" title="Undo/redo functionality, adjusted to work with network implementation." alt="" coords="96,5,264,32"/>
-<area shape="rect" id="node2" title=" " alt="" coords="83,80,157,107"/>
-<area shape="rect" id="node3" href="$Command_8hpp.html" title="Represents an actionable command by the user." alt="" coords="181,80,299,107"/>
-<area shape="rect" id="node4" title=" " alt="" coords="5,155,85,181"/>
-<area shape="rect" id="node5" title=" " alt="" coords="109,155,187,181"/>
-<area shape="rect" id="node6" title=" " alt="" coords="211,155,269,181"/>
-<area shape="rect" id="node7" title=" " alt="" coords="293,155,437,181"/>
-<area shape="rect" id="node8" title=" " alt="" coords="462,155,653,181"/>
+<area shape="rect" id="node4" href="$Command_8hpp.html" title="Represents an actionable command by the user. " alt="" coords="196,80,303,107"/>
 </map>

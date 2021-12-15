@@ -1,5 +1,4 @@
 <map id="Catch::is_range&lt; T &gt;" name="Catch::is_range&lt; T &gt;">
-<area shape="rect" id="node1" title=" " alt="" coords="11,271,171,348"/>
-<area shape="rect" id="node2" href="$structCatch_1_1detail_1_1is__range__impl.html" title=" " alt="" coords="5,131,176,223"/>
-<area shape="rect" id="node3" title=" " alt="" coords="31,5,150,83"/>
+<area shape="rect" id="node2" href="$structCatch_1_1detail_1_1is__range__impl.html" title="{Catch::detail::is_range\l_impl\&lt; T \&gt;\n||}" alt="" coords="32,287,185,379"/>
+<area shape="rect" id="node4" href="$structCatch_1_1detail_1_1is__range__impl.html" title="{Catch::detail::is_range\l_impl\&lt; T, typename \&gt;\n||}" alt="" coords="137,132,291,224"/>
 </map>

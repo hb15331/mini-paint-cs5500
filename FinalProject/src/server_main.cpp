@@ -8,6 +8,7 @@
 #include "UDPNetworkServer.hpp"
 
 /*!	\brief Main for running the server.
+ * \return 0 if successful, not 0 otherwise
  */
 int main() {
   UDPNetworkServer server("Server Name", sf::IpAddress::getLocalAddress(),

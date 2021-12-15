@@ -1,6 +1,5 @@
 <map id="Catch::Generators::ChunkGenerator&lt; T &gt;" name="Catch::Generators::ChunkGenerator&lt; T &gt;">
-<area shape="rect" id="node1" title=" " alt="" coords="33,633,199,755"/>
-<area shape="rect" id="node2" href="$structCatch_1_1Generators_1_1IGenerator.html" title=" " alt="" coords="29,419,203,584"/>
-<area shape="rect" id="node3" href="$classCatch_1_1Generators_1_1GeneratorUntypedBase.html" title=" " alt="" coords="5,5,216,156"/>
-<area shape="rect" id="node4" href="$structCatch_1_1Generators_1_1IGenerator.html" title=" " alt="" coords="132,205,279,356"/>
+<area shape="rect" id="node2" href="$structCatch_1_1Generators_1_1IGenerator.html" title="{Catch::Generators::\lIGenerator\&lt; std::vector\l\&lt; T \&gt; \&gt;\n||+ ~IGenerator()\l+ IGenerator()\l+ IGenerator()\l+ operator=()\l+ get()\l}" alt="" coords="25,419,183,584"/>
+<area shape="rect" id="node3" href="$classCatch_1_1Generators_1_1GeneratorUntypedBase.html" title="{Catch::Generators::\lGeneratorUntypedBase\n||+ GeneratorUntypedBase()\l+ GeneratorUntypedBase()\l+ operator=()\l+ ~GeneratorUntypedBase()\l+ next()\l}" alt="" coords="5,5,192,156"/>
+<area shape="rect" id="node4" href="$structCatch_1_1Generators_1_1IGenerator.html" title="{Catch::Generators::\lIGenerator\&lt; T \&gt;\n||+ ~IGenerator()\l+ IGenerator()\l+ IGenerator()\l+ operator=()\l+ get()\l}" alt="" coords="121,205,258,356"/>
 </map>

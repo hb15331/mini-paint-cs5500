@@ -1,10 +1,5 @@
 <map id="Catch::TestRunStats" name="Catch::TestRunStats">
-<area shape="rect" id="node1" title=" " alt="" coords="159,557,309,635"/>
-<area shape="rect" id="node2" href="$structCatch_1_1TestRunInfo.html" title=" " alt="" coords="5,403,148,480"/>
-<area shape="rect" id="node3" title=" " alt="" coords="47,204,106,281"/>
-<area shape="rect" id="node4" href="$structCatch_1_1Totals.html" title=" " alt="" coords="172,388,296,495"/>
-<area shape="rect" id="node5" title=" " alt="" coords="177,204,216,281"/>
-<area shape="rect" id="node6" href="$structCatch_1_1Counts.html" title=" " alt="" coords="240,175,364,311"/>
-<area shape="rect" id="node7" title=" " alt="" coords="272,5,332,83"/>
-<area shape="rect" id="node8" title=" " alt="" coords="321,403,371,480"/>
+<area shape="rect" id="node2" href="$structCatch_1_1Totals.html" title="{Catch::Totals\n||+ operator&#45;()\l+ operator+=()\l+ delta()\l}" alt="" coords="49,388,155,495"/>
+<area shape="rect" id="node4" href="$structCatch_1_1Counts.html" title="{Catch::Counts\n||+ operator&#45;()\l+ operator+=()\l+ total()\l+ allPassed()\l+ allOk()\l}" alt="" coords="69,175,175,311"/>
+<area shape="rect" id="node6" href="$structCatch_1_1TestRunInfo.html" title="{Catch::TestRunInfo\n||+ TestRunInfo()\l}" alt="" coords="179,403,316,480"/>
 </map>

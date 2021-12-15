@@ -1,3 +1,6 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$structnk__command__arc.html" title=" " alt="" coords="5,5,143,32"/>
+<area shape="rect" id="node1" href="$classCommand.html" title="Represents a command that can be executed to serve some function, and sent to/from the server..." alt="" coords="5,56,88,83"/>
+<area shape="rect" id="node2" href="$classClearCanvas.html" title="Represents a canvas clearing operation. " alt="" coords="136,5,235,32"/>
+<area shape="rect" id="node3" href="$classDraw.html" title="Anytime we want to implement a new command in our paint tool, we have to inherit from the command cla..." alt="" coords="159,56,212,83"/>
+<area shape="rect" id="node4" href="$classUndoRedo.html" title="Represents either an undo or redoing of a command. " alt="" coords="143,107,227,133"/>
 </map>

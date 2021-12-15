@@ -1,5 +1,18 @@
+/**
+ *  @file   ClearCanvas.cpp
+ *  @brief  Implementation of Command.hpp
+ *  @author Alex, Hualin, Jackson and Yufeng
+ *  @date   2021-12-13
+ ***********************************************/
+
+
 #include "ClearCanvas.hpp"
 
+/*! \brief Creates a new ClearCanvas using given image to obtain previous colors
+ * \param clearColor the color to clear to
+ * \param image The image to use for obtaining old colors
+ * \param inverted Runs the command in reverse (un-clears)
+ */
 ClearCanvas::ClearCanvas(const sf::Color &clearColor, sf::Image &image,
                          bool inverted)
     : Command("ClearCanvas"), m_color(clearColor), m_components(),
@@ -18,6 +31,11 @@ ClearCanvas::ClearCanvas(const sf::Color &clearColor, sf::Image &image,
   }
 }
 
+/*! \brief Creates a new ClearCanvas using given image to obtain previous colors
+ * \param clearColor the color to clear to
+ * \param components Directly provide the old colors rather than finding them with the image
+ * \param inverted Runs the command in reverse (un-clears)
+ */
 ClearCanvas::ClearCanvas(const sf::Color &clearColor,
                          std::vector<std::shared_ptr<Draw>> components,
                          bool inverted)
@@ -47,16 +65,19 @@ bool ClearCanvas::Execute(sf::Image &image) {
   return true;
 }
 
-/*! \brief Inverts the clearcanvas
- *
+/*! \brief Inverts the clearcanvas, making it unclear the canvas when executed
  */
 void ClearCanvas::Invert() {
   m_inverted = !m_inverted;
   for (auto draw : m_components) {
+    // Invert components
     draw->Invert();
   }
 }
 
+/*! \brief Returns a string representing the command
+ *  \return string representing the command
+ */
 std::string ClearCanvas::ToString() const {
   std::stringstream ss;
   ss << Command::ToString() << ": chunk_size " << M_CHUNK_SIZE
@@ -64,6 +85,10 @@ std::string ClearCanvas::ToString() const {
   return ss.str();
 }
 
+/*! \brief Undoes the clearcanvas command (used for offline drawing)
+ * \param image Image used for drawing the undone commands
+ * \return true if successful, false otherwise
+ */
 bool ClearCanvas::Undo(sf::Image &image) {
   for (std::shared_ptr<Draw> component : m_components) {
     if (!(component->Undo(image))) {
@@ -73,8 +98,14 @@ bool ClearCanvas::Undo(sf::Image &image) {
   return true;
 }
 
+/*! \brief Returns false because the ClearCanvas is not itself ever part of a larger command
+ * \return false
+ */
 bool ClearCanvas::IsComponent() const { return false; }
 
+/*! \brief Turns the ClearCanvas into several packets (which are themselves IsComponent()==true)
+ *  \returns a vector of packets representing the ClearCanvas as several Draws
+ */
 std::vector<sf::Packet> ClearCanvas::Serialize() const {
   std::vector<sf::Packet> vec;
   for (auto component : m_components) {

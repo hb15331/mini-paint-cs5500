@@ -1,5 +1,5 @@
 <map id="Command" name="Command">
-<area shape="rect" id="node1" title=" " alt="" coords="25,5,227,200"/>
-<area shape="rect" id="node2" href="$classDraw.html" title=" " alt="" coords="5,248,108,457"/>
-<area shape="rect" id="node3" href="$classUndoRedo.html" title=" " alt="" coords="133,255,258,450"/>
+<area shape="rect" id="node2" href="$classClearCanvas.html" title="Represents a canvas clearing operation. " alt="" coords="5,248,125,457"/>
+<area shape="rect" id="node3" href="$classDraw.html" title="Anytime we want to implement a new command in our paint tool, we have to inherit from the command cla..." alt="" coords="149,248,269,457"/>
+<area shape="rect" id="node4" href="$classUndoRedo.html" title="Represents either an undo or redoing of a command. " alt="" coords="293,255,413,450"/>
 </map>

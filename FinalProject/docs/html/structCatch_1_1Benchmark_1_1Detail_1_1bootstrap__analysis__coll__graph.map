@@ -1,5 +1,4 @@
 <map id="Catch::Benchmark::Detail::bootstrap_analysis" name="Catch::Benchmark::Detail::bootstrap_analysis">
-<area shape="rect" id="node1" title=" " alt="" coords="41,160,229,252"/>
-<area shape="rect" id="node2" title=" " alt="" coords="5,5,96,83"/>
-<area shape="rect" id="node3" title=" " alt="" coords="185,5,252,83"/>
+<area shape="rect" id="node3" href="$structCatch_1_1Benchmark_1_1Estimate.html" title="{Catch::Benchmark::Estimate\l\&lt; double \&gt;\n||+ operator Estimate\&lt;\l Duration2 \&gt;()\l}" alt="" coords="109,344,299,451"/>
+<area shape="rect" id="node4" href="$structCatch_1_1Benchmark_1_1Estimate.html" title="{Catch::Benchmark::Estimate\l\&lt; Duration \&gt;\n||+ operator Estimate\&lt;\l Duration2 \&gt;()\l}" alt="" coords="345,175,535,281"/>
 </map>

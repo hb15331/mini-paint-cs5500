@@ -1,5 +1,4 @@
 <map id="Catch::CompactReporter" name="Catch::CompactReporter">
-<area shape="rect" id="node1" title=" " alt="" coords="15,828,218,1008"/>
-<area shape="rect" id="node2" href="$structCatch_1_1StreamingReporterBase.html" title=" " alt="" coords="5,453,228,780"/>
-<area shape="rect" id="node3" href="$structCatch_1_1IStreamingReporter.html" title=" " alt="" coords="16,5,217,405"/>
+<area shape="rect" id="node2" href="$structCatch_1_1StreamingReporterBase.html" title="{Catch::StreamingReporterBase\n|+ m_config\l+ stream\l+ currentTestRunInfo\l+ currentGroupInfo\l+ currentTestCaseInfo\l+ m_sectionStack\l|+ StreamingReporterBase()\l+ ~StreamingReporterBase()\l+ noMatchingTestCases()\l+ reportInvalidArguments()\l+ testRunStarting()\l+ testGroupStarting()\l+ testCaseStarting()\l+ sectionStarting()\l+ sectionEnded()\l+ testCaseEnded()\l+ testGroupEnded()\l+ testRunEnded()\l+ skipTest()\l}" alt="" coords="5,453,209,780"/>
+<area shape="rect" id="node3" href="$structCatch_1_1IStreamingReporter.html" title="{Catch::IStreamingReporter\n|# m_preferences\l|+ ~IStreamingReporter()\l+ getPreferences()\l+ noMatchingTestCases()\l+ reportInvalidArguments()\l+ testRunStarting()\l+ testGroupStarting()\l+ testCaseStarting()\l+ sectionStarting()\l+ benchmarkPreparing()\l+ benchmarkStarting()\l+ benchmarkEnded()\l+ benchmarkFailed()\l+ assertionStarting()\l+ assertionEnded()\l+ sectionEnded()\l+ testCaseEnded()\l+ testGroupEnded()\l+ testRunEnded()\l+ skipTest()\l+ fatalErrorEncountered()\l+ listReporters()\l+ listTests()\l+ listTags()\l}" alt="" coords="18,5,197,405"/>
 </map>

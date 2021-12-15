@@ -10,6 +10,8 @@ xyfile 1.6.2
 
 PROJECT_NAME           = "CS5500 Final Project, Team 20 The Dangling Pointers"
 
+EXCLUDE = ./include/nuklear.h
+
 # The OUTPUT_DIRECTORY tag is used to specify the (relative or absolute) 
 # base path where the generated documentation will be put. 
 # If a relative path is entered, it will be relative to the location 

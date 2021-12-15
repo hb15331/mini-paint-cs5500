@@ -1,9 +1,8 @@
 <map id="Catch::Clara::Opt" name="Catch::Clara::Opt">
-<area shape="rect" id="node1" title=" " alt="" coords="33,1115,187,1309"/>
-<area shape="rect" id="node7" href="$structCatch_1_1Clara_1_1Help.html" title=" " alt="" coords="41,1359,179,1436"/>
-<area shape="rect" id="node2" href="$classCatch_1_1Clara_1_1Detail_1_1ParserRefImpl.html" title=" " alt="" coords="23,812,197,1065"/>
-<area shape="rect" id="node3" href="$classCatch_1_1Clara_1_1Detail_1_1ComposableParserImpl.html" title=" " alt="" coords="5,351,185,472"/>
-<area shape="rect" id="node4" href="$classCatch_1_1Clara_1_1Detail_1_1ParserBase.html" title=" " alt="" coords="41,5,189,156"/>
-<area shape="rect" id="node6" href="$classCatch_1_1Clara_1_1Detail_1_1ComposableParserImpl.html" title=" " alt="" coords="139,205,319,327"/>
-<area shape="rect" id="node5" href="$classCatch_1_1Clara_1_1Detail_1_1ParserRefImpl.html" title=" " alt="" coords="126,496,337,749"/>
+<area shape="rect" id="node7" href="$structCatch_1_1Clara_1_1Help.html" title="{Catch::Clara::Help\n||+ Help()\l}" alt="" coords="123,1252,254,1329"/>
+<area shape="rect" id="node2" href="$classCatch_1_1Clara_1_1Detail_1_1ParserRefImpl.html" title="{Catch::Clara::Detail\l::ParserRefImpl\&lt; Opt \&gt;\n|# m_optionality\l# m_ref\l# m_hint\l# m_description\l|+ ParserRefImpl()\l+ ParserRefImpl()\l+ operator()()\l+ optional()\l+ required()\l+ isOptional()\l+ cardinality()\l+ hint()\l# ParserRefImpl()\l}" alt="" coords="109,705,268,959"/>
+<area shape="rect" id="node3" href="$classCatch_1_1Clara_1_1Detail_1_1ComposableParserImpl.html" title="{Catch::Clara::Detail\l::ComposableParserImpl\l\&lt; Opt \&gt;\n||+ operator\|()\l+ operator\|()\l}" alt="" coords="5,455,172,577"/>
+<area shape="rect" id="node4" href="$classCatch_1_1Clara_1_1Detail_1_1ParserBase.html" title="{Catch::Clara::Detail\l::ParserBase\n||+ ~ParserBase()\l+ validate()\l+ parse()\l+ cardinality()\l+ parse()\l}" alt="" coords="35,5,174,156"/>
+<area shape="rect" id="node5" href="$classCatch_1_1Clara_1_1Detail_1_1ComposableParserImpl.html" title="{Catch::Clara::Detail\l::ComposableParserImpl\l\&lt; DerivedT \&gt;\n||+ operator\|()\l+ operator\|()\l}" alt="" coords="127,205,293,327"/>
+<area shape="rect" id="node6" href="$classCatch_1_1Clara_1_1Detail_1_1ParserRefImpl.html" title="{Catch::Clara::Detail\l::ParserRefImpl\&lt; DerivedT \&gt;\n|# m_optionality\l# m_ref\l# m_hint\l# m_description\l|+ ParserRefImpl()\l+ ParserRefImpl()\l+ operator()()\l+ optional()\l+ required()\l+ isOptional()\l+ cardinality()\l+ hint()\l# ParserRefImpl()\l}" alt="" coords="196,389,387,643"/>
 </map>

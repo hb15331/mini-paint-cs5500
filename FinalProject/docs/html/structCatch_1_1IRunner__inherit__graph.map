@@ -1,4 +1,3 @@
 <map id="Catch::IRunner" name="Catch::IRunner">
-<area shape="rect" id="node1" title=" " alt="" coords="59,5,177,97"/>
-<area shape="rect" id="node2" href="$classCatch_1_1RunContext.html" title=" " alt="" coords="5,145,231,692"/>
+<area shape="rect" id="node2" href="$classCatch_1_1RunContext.html" title="{Catch::RunContext\n||+ RunContext()\l+ operator=()\l+ RunContext()\l+ ~RunContext()\l+ testGroupStarting()\l+ testGroupEnded()\l+ runTest()\l+ handleExpr()\l+ handleMessage()\l+ handleUnexpectedException\lNotThrown()\l+ handleUnexpectedInflight\lException()\l+ handleIncomplete()\l+ handleNonExpr()\l+ sectionStarted()\l+ sectionEnded()\l+ sectionEndedEarly()\l+ acquireGeneratorTracker()\l+ benchmarkPreparing()\l+ benchmarkStarting()\l+ benchmarkEnded()\l+ benchmarkFailed()\l+ pushScopedMessage()\l+ popScopedMessage()\l+ emplaceUnscopedMessage()\l+ getCurrentTestName()\l+ getLastResult()\l+ exceptionEarlyReported()\l+ handleFatalErrorCondition()\l+ lastAssertionPassed()\l+ assertionPassed()\l+ aborting()\l}" alt="" coords="5,145,208,692"/>
 </map>

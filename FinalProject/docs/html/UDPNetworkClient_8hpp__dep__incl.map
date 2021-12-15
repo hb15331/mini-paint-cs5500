@@ -1,7 +1,6 @@
 <map id="include/UDPNetworkClient.hpp" name="include/UDPNetworkClient.hpp">
-<area shape="rect" id="node1" title="Client side of UDP implementation." alt="" coords="97,5,320,32"/>
-<area shape="rect" id="node2" href="$App_8hpp.html" title="Main class for program." alt="" coords="53,80,180,107"/>
-<area shape="rect" id="node5" href="$UDPNetworkClient_8cpp.html" title="Client side of UDP implementation." alt="" coords="204,80,397,107"/>
-<area shape="rect" id="node3" href="$App_8cpp.html" title="Main class for program." alt="" coords="5,155,103,181"/>
-<area shape="rect" id="node4" href="$main_8cpp.html" title="Entry point into the program." alt="" coords="127,155,232,181"/>
+<area shape="rect" id="node2" href="$UDPNetworkClient_8cpp.html" title="Client side of UDP implementation. " alt="" coords="5,80,187,107"/>
+<area shape="rect" id="node3" href="$App_8hpp.html" title="Main class for program. " alt="" coords="211,80,325,107"/>
+<area shape="rect" id="node4" href="$App_8cpp.html" title="Main class for program. " alt="" coords="162,155,254,181"/>
+<area shape="rect" id="node5" href="$main_8cpp.html" title="Entry point into the program. " alt="" coords="278,155,375,181"/>
 </map>

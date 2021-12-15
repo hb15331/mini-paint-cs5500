@@ -1,12 +1,6 @@
 <map id="nk_buffer" name="nk_buffer">
-<area shape="rect" id="node1" title=" " alt="" coords="416,455,499,532"/>
-<area shape="rect" id="node2" href="$structnk__buffer__marker.html" title=" " alt="" coords="5,315,141,392"/>
-<area shape="rect" id="node3" title=" " alt="" coords="181,5,219,83"/>
-<area shape="rect" id="node6" href="$unionnk__handle.html" title=" " alt="" coords="398,145,487,223"/>
-<area shape="rect" id="node4" title=" " alt="" coords="153,145,269,223"/>
-<area shape="rect" id="node9" href="$structnk__memory.html" title=" " alt="" coords="290,315,390,392"/>
-<area shape="rect" id="node5" href="$structnk__allocator.html" title=" " alt="" coords="626,315,729,392"/>
-<area shape="rect" id="node7" title=" " alt="" coords="340,5,401,83"/>
-<area shape="rect" id="node8" title=" " alt="" coords="415,315,601,392"/>
-<area shape="rect" id="node10" title=" " alt="" coords="753,315,804,392"/>
+<area shape="rect" id="node2" href="$structnk__allocator.html" title="{nk_allocator\n||}" alt="" coords="5,315,97,392"/>
+<area shape="rect" id="node3" href="$unionnk__handle.html" title="{nk_handle\n||}" alt="" coords="297,145,379,223"/>
+<area shape="rect" id="node8" href="$structnk__buffer__marker.html" title="{nk_buffer_marker\n||}" alt="" coords="383,315,506,392"/>
+<area shape="rect" id="node10" href="$structnk__memory.html" title="{nk_memory\n||}" alt="" coords="639,315,730,392"/>
 </map>

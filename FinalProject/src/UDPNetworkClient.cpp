@@ -6,10 +6,11 @@
  ***********************************************/
 
 #include "UDPNetworkClient.hpp"
-#include <list>
 
 /*!	\brief Constructor for UDPNetworkClient object, takes username as a
- * parameter. \return UDPNetworkClient object
+ * parameter.
+ * \param username the username to log into the server with
+ * \return UDPNetworkClient object
  */
 UDPNetworkClient::UDPNetworkClient(std::string username)
     : m_username(username), m_port(), m_ipAddress(), m_serverPort(),
@@ -19,12 +20,6 @@ UDPNetworkClient::UDPNetworkClient(std::string username)
                        50006, 50007, 50008, 50009, 50010};
   std::list<int>::iterator it;
   m_username = username;
-  // m_port = port;
-  // Setup a socket for a UDP connection
-  // Multiple computers can have the same port
-  // However, the IP addresses would need to be different.
-  // Listening to a port
-  // m_socket.bind(m_port);
 
   // Logic for testing ports to see which are available.
   for (int i = 0; i < 10; ++i) {
@@ -52,6 +47,8 @@ UDPNetworkClient::~UDPNetworkClient() {
 }
 
 /*!	\brief Joins to server if available.
+ * \param serverAddress the server to connect to
+ * \param serverPort the port to connect to
  * \return 1 if connected, 0 if not.
  */
 int UDPNetworkClient::joinServer(sf::IpAddress serverAddress,
@@ -60,11 +57,16 @@ int UDPNetworkClient::joinServer(sf::IpAddress serverAddress,
   m_serverIpAddress = serverAddress;
   m_serverPort = serverPort;
 
+  // Lets the server know we're joining
   sendString("Hello, " + m_username + " is joining!");
 
+  /*
+  * We continually wait for a reply from the server, if we get none then we go into
+  * offline mode
+  */
   sf::Clock clock;
   clock.restart();
-  while (clock.getElapsedTime() < sf::seconds(2)) {
+  while (clock.getElapsedTime() < sf::seconds(1.5f)) {
     sf::Packet pack = ReceiveData();
     std::string initString, message;
     if (pack >> initString >> message) {
@@ -78,12 +80,15 @@ int UDPNetworkClient::joinServer(sf::IpAddress serverAddress,
 }
 
 /*!	\brief Sends a given packet to the server.
+ * \param The packet to send
+ * \return 0 if successfully sent the packet, not 0 if we didn't
  */
 int UDPNetworkClient::SendPacket(sf::Packet packet) {
   packet << m_username;
   if (m_socket.send(packet, m_serverIpAddress, m_serverPort) !=
       sf::Socket::Done) {
     std::cout << "Client error? Wrong IP?" << std::endl;
+    return -1;
   } else {
     std::cout << "Client(" << m_username << ") sending packet" << std::endl;
   }
@@ -91,6 +96,8 @@ int UDPNetworkClient::SendPacket(sf::Packet packet) {
 }
 
 /*!	\brief Send a string to the server.
+ * \param s The string to send to the server
+ * \return 0 if successful, nonzero if not
  */
 int UDPNetworkClient::sendString(std::string s) {
   sf::Packet stringpacket;
@@ -99,7 +106,7 @@ int UDPNetworkClient::sendString(std::string s) {
 }
 
 /*!	\brief Receive any information sent from server.
- * \return A packet.
+ * \return A packet if any are received, otherwise an empty packet
  */
 sf::Packet UDPNetworkClient::ReceiveData() {
   sf::IpAddress copyAddress = m_serverIpAddress;
@@ -115,11 +122,12 @@ sf::Packet UDPNetworkClient::ReceiveData() {
 }
 
 /*!	\brief Username getter.
- * \return Username.
+ * \return Username
  */
 std::string UDPNetworkClient::getUsername() { return m_username; }
 
-/*!	\brief Username setter.
+/*!	\brief Username setter
+ * \param name new username
  */
 int UDPNetworkClient::setUsername(std::string name) {
   m_username = name;

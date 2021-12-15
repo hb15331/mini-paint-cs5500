@@ -1,10 +1,8 @@
 <map id="Catch::Matchers::ExceptionMessageMatcher" name="Catch::Matchers::ExceptionMessageMatcher">
-<area shape="rect" id="node1" title=" " alt="" coords="205,700,428,821"/>
-<area shape="rect" id="node2" href="$structCatch_1_1Matchers_1_1MatcherBase.html" title=" " alt="" coords="223,559,411,651"/>
-<area shape="rect" id="node3" href="$classCatch_1_1Matchers_1_1MatcherUntypedBase.html" title=" " alt="" coords="217,160,416,355"/>
-<area shape="rect" id="node6" href="$structCatch_1_1Matchers_1_1MatcherBase.html" title=" " alt="" coords="76,404,264,496"/>
-<area shape="rect" id="node4" title=" " alt="" coords="287,13,346,90"/>
-<area shape="rect" id="node5" href="$structCatch_1_1Matchers_1_1MatcherMethod.html" title=" " alt="" coords="355,404,543,496"/>
-<area shape="rect" id="node7" href="$structCatch_1_1Matchers_1_1MatcherMethod.html" title=" " alt="" coords="5,211,193,303"/>
-<area shape="rect" id="node8" href="$structCatch_1_1Matchers_1_1MatcherMethod.html" title=" " alt="" coords="5,5,193,97"/>
+<area shape="rect" id="node2" href="$structCatch_1_1Matchers_1_1MatcherBase.html" title="{Catch::Matchers::Matcher\lBase\&lt; std::exception \&gt;\n||}" alt="" coords="180,649,355,741"/>
+<area shape="rect" id="node3" href="$classCatch_1_1Matchers_1_1MatcherUntypedBase.html" title="{Catch::Matchers::Matcher\lUntypedBase\n||+ MatcherUntypedBase()\l+ MatcherUntypedBase()\l+ MatcherUntypedBase()\l+ operator=()\l+ operator=()\l+ toString()\l# ~MatcherUntypedBase()\l# describe()\l}" alt="" coords="337,160,512,355"/>
+<area shape="rect" id="node7" href="$structCatch_1_1Matchers_1_1MatcherBase.html" title="{Catch::Matchers::Matcher\lBase\&lt; T \&gt;\n||}" alt="" coords="180,495,355,587"/>
+<area shape="rect" id="node5" href="$structCatch_1_1Matchers_1_1MatcherMethod.html" title="{Catch::Matchers::Matcher\lMethod\&lt; std::exception \&gt;\n||+ match()\l}" alt="" coords="5,379,180,471"/>
+<area shape="rect" id="node6" href="$structCatch_1_1Matchers_1_1MatcherMethod.html" title="{Catch::Matchers::Matcher\lMethod\&lt; ObjectT \&gt;\n||+ match()\l}" alt="" coords="76,5,251,97"/>
+<area shape="rect" id="node8" href="$structCatch_1_1Matchers_1_1MatcherMethod.html" title="{Catch::Matchers::Matcher\lMethod\&lt; T \&gt;\n||+ match()\l}" alt="" coords="139,211,313,303"/>
 </map>

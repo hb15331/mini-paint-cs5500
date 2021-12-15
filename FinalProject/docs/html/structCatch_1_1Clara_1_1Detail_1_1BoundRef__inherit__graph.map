@@ -1,11 +1,10 @@
 <map id="Catch::Clara::Detail::BoundRef" name="Catch::Clara::Detail::BoundRef">
-<area shape="rect" id="node1" title=" " alt="" coords="308,131,456,252"/>
-<area shape="rect" id="node3" href="$structCatch_1_1Clara_1_1Detail_1_1BoundFlagRefBase.html" title=" " alt="" coords="215,300,368,407"/>
-<area shape="rect" id="node6" href="$structCatch_1_1Clara_1_1Detail_1_1BoundValueRefBase.html" title=" " alt="" coords="484,307,645,399"/>
-<area shape="rect" id="node2" href="$classCatch_1_1Detail_1_1NonCopyable.html" title="Deriving classes become noncopyable and nonmovable." alt="" coords="281,5,483,83"/>
-<area shape="rect" id="node4" href="$structCatch_1_1Clara_1_1Detail_1_1BoundFlagLambda.html" title=" " alt="" coords="5,469,193,576"/>
-<area shape="rect" id="node5" href="$structCatch_1_1Clara_1_1Detail_1_1BoundFlagRef.html" title=" " alt="" coords="217,469,365,576"/>
-<area shape="rect" id="node7" href="$structCatch_1_1Clara_1_1Detail_1_1BoundLambda.html" title=" " alt="" coords="390,469,550,576"/>
-<area shape="rect" id="node8" href="$structCatch_1_1Clara_1_1Detail_1_1BoundValueRef.html" title=" " alt="" coords="575,469,741,576"/>
-<area shape="rect" id="node9" href="$structCatch_1_1Clara_1_1Detail_1_1BoundValueRef_3_01std_1_1vector_3_01T_01_4_01_4.html" title=" " alt="" coords="765,455,929,591"/>
+<area shape="rect" id="node3" href="$structCatch_1_1Clara_1_1Detail_1_1BoundFlagRefBase.html" title="{Catch::Clara::Detail\l::BoundFlagRefBase\n||+ setFlag()\l+ isFlag()\l}" alt="" coords="197,300,340,407"/>
+<area shape="rect" id="node6" href="$structCatch_1_1Clara_1_1Detail_1_1BoundValueRefBase.html" title="{Catch::Clara::Detail\l::BoundValueRefBase\n||+ setValue()\l}" alt="" coords="448,307,599,399"/>
+<area shape="rect" id="node2" href="$classCatch_1_1Detail_1_1NonCopyable.html" title="Deriving classes become noncopyable and nonmovable. " alt="" coords="261,5,447,83"/>
+<area shape="rect" id="node4" href="$structCatch_1_1Clara_1_1Detail_1_1BoundFlagLambda.html" title="{Catch::Clara::Detail\l::BoundFlagLambda\&lt; L \&gt;\n|+ m_lambda\l|+ BoundFlagLambda()\l+ setFlag()\l}" alt="" coords="5,469,175,576"/>
+<area shape="rect" id="node5" href="$structCatch_1_1Clara_1_1Detail_1_1BoundFlagRef.html" title="{Catch::Clara::Detail\l::BoundFlagRef\n|+ m_ref\l|+ BoundFlagRef()\l+ setFlag()\l}" alt="" coords="199,469,338,576"/>
+<area shape="rect" id="node7" href="$structCatch_1_1Clara_1_1Detail_1_1BoundLambda.html" title="{Catch::Clara::Detail\l::BoundLambda\&lt; L \&gt;\n|+ m_lambda\l|+ BoundLambda()\l+ setValue()\l}" alt="" coords="362,469,506,576"/>
+<area shape="rect" id="node8" href="$structCatch_1_1Clara_1_1Detail_1_1BoundValueRef.html" title="{Catch::Clara::Detail\l::BoundValueRef\&lt; T \&gt;\n|+ m_ref\l|+ BoundValueRef()\l+ setValue()\l}" alt="" coords="531,469,684,576"/>
+<area shape="rect" id="node9" href="$structCatch_1_1Clara_1_1Detail_1_1BoundValueRef_3_01std_1_1vector_3_01T_01_4_01_4.html" title="{Catch::Clara::Detail\l::BoundValueRef\&lt; std\l::vector\&lt; T \&gt; \&gt;\n|+ m_ref\l|+ BoundValueRef()\l+ isContainer()\l+ setValue()\l}" alt="" coords="708,455,859,591"/>
 </map>

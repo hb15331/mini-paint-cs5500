@@ -1,4 +1,3 @@
 <map id="Catch::ExceptionTranslatorRegistry" name="Catch::ExceptionTranslatorRegistry">
-<area shape="rect" id="node1" title=" " alt="" coords="7,160,247,296"/>
-<area shape="rect" id="node2" href="$structCatch_1_1IExceptionTranslatorRegistry.html" title=" " alt="" coords="5,5,249,112"/>
+<area shape="rect" id="node2" href="$structCatch_1_1IExceptionTranslatorRegistry.html" title="{Catch::IExceptionTranslator\lRegistry\n||+ ~IExceptionTranslatorRegistry()\l+ translateActiveException()\l}" alt="" coords="5,5,224,112"/>
 </map>

@@ -1,5 +1,4 @@
 <map id="Catch::Clara::Detail::BasicResult&lt; T &gt;" name="Catch::Clara::Detail::BasicResult&lt; T &gt;">
-<area shape="rect" id="node1" title=" " alt="" coords="30,403,178,641"/>
-<area shape="rect" id="node2" href="$classCatch_1_1Clara_1_1Detail_1_1ResultValueBase_3_01void_01_4.html" title=" " alt="" coords="5,233,203,355"/>
-<area shape="rect" id="node3" href="$classCatch_1_1Clara_1_1Detail_1_1ResultBase.html" title=" " alt="" coords="30,5,178,185"/>
+<area shape="rect" id="node2" href="$classCatch_1_1Clara_1_1Detail_1_1ResultValueBase.html" title="{Catch::Clara::Detail\l::ResultValueBase\&lt; T \&gt;\n|+ m_value\l# @1\l|+ value()\l# ResultValueBase()\l# ResultValueBase()\l# ResultValueBase()\l# operator=()\l# ~ResultValueBase()\l}" alt="" coords="5,233,168,413"/>
+<area shape="rect" id="node3" href="$classCatch_1_1Clara_1_1Detail_1_1ResultBase.html" title="{Catch::Clara::Detail\l::ResultBase\n|# m_type\l|# ResultBase()\l# ~ResultBase()\l# ResultBase()\l# operator=()\l# ResultBase()\l# operator=()\l# enforceOk()\l}" alt="" coords="17,5,156,185"/>
 </map>

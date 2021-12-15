@@ -1,8 +1,4 @@
 <map id="nk_draw_null_texture" name="nk_draw_null_texture">
-<area shape="rect" id="node1" title=" " alt="" coords="64,300,227,377"/>
-<area shape="rect" id="node2" href="$unionnk__handle.html" title=" " alt="" coords="47,160,137,237"/>
-<area shape="rect" id="node3" title=" " alt="" coords="5,5,67,83"/>
-<area shape="rect" id="node4" title=" " alt="" coords="91,5,130,83"/>
-<area shape="rect" id="node5" href="$structnk__vec2.html" title=" " alt="" coords="161,160,237,237"/>
-<area shape="rect" id="node6" title=" " alt="" coords="173,5,224,83"/>
+<area shape="rect" id="node2" href="$structnk__vec2.html" title="{nk_vec2\n||}" alt="" coords="5,160,76,237"/>
+<area shape="rect" id="node4" href="$unionnk__handle.html" title="{nk_handle\n||}" alt="" coords="100,160,181,237"/>
 </map>

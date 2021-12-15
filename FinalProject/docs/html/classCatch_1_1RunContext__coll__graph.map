@@ -1,5 +1,4 @@
 <map id="Catch::RunContext" name="Catch::RunContext">
-<area shape="rect" id="node1" title=" " alt="" coords="103,497,328,1044"/>
-<area shape="rect" id="node2" href="$structCatch_1_1IResultCapture.html" title=" " alt="" coords="5,5,231,449"/>
-<area shape="rect" id="node3" href="$structCatch_1_1IRunner.html" title=" " alt="" coords="254,181,371,273"/>
+<area shape="rect" id="node2" href="$structCatch_1_1IResultCapture.html" title="{Catch::IResultCapture\n||+ ~IResultCapture()\l+ sectionStarted()\l+ sectionEnded()\l+ sectionEndedEarly()\l+ acquireGeneratorTracker()\l+ benchmarkPreparing()\l+ benchmarkStarting()\l+ benchmarkEnded()\l+ benchmarkFailed()\l+ pushScopedMessage()\l+ popScopedMessage()\l+ emplaceUnscopedMessage()\l+ handleFatalErrorCondition()\l+ handleExpr()\l+ handleMessage()\l+ handleUnexpectedException\lNotThrown()\l+ handleUnexpectedInflight\lException()\l+ handleIncomplete()\l+ handleNonExpr()\l+ lastAssertionPassed()\l+ assertionPassed()\l+ getCurrentTestName()\l+ getLastResult()\l+ exceptionEarlyReported()\l}" alt="" coords="5,5,208,449"/>
+<area shape="rect" id="node3" href="$structCatch_1_1IRunner.html" title="{Catch::IRunner\n||+ ~IRunner()\l+ aborting()\l}" alt="" coords="233,181,343,273"/>
 </map>

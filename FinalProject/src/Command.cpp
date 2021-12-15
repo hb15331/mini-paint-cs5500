@@ -5,7 +5,6 @@
  *  @date   2021-12-13
  ***********************************************/
 
-// Project header files
 #include "Command.hpp"
 
 /*! \brief 	Constructor for new command object, which takes

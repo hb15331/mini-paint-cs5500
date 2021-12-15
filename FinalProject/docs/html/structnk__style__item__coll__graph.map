@@ -1,12 +1,6 @@
 <map id="nk_style_item" name="nk_style_item">
-<area shape="rect" id="node1" title=" " alt="" coords="81,609,195,687"/>
-<area shape="rect" id="node2" title=" " alt="" coords="5,469,196,547"/>
-<area shape="rect" id="node3" href="$unionnk__style__item__data.html" title=" " alt="" coords="220,469,371,547"/>
-<area shape="rect" id="node4" href="$structnk__image.html" title=" " alt="" coords="197,329,284,407"/>
-<area shape="rect" id="node5" href="$unionnk__handle.html" title=" " alt="" coords="87,145,176,223"/>
-<area shape="rect" id="node6" title=" " alt="" coords="63,5,125,83"/>
-<area shape="rect" id="node7" title=" " alt="" coords="149,5,188,83"/>
-<area shape="rect" id="node8" title=" " alt="" coords="200,145,281,223"/>
-<area shape="rect" id="node9" href="$structnk__color.html" title=" " alt="" coords="310,329,387,407"/>
-<area shape="rect" id="node10" title=" " alt="" coords="306,145,394,223"/>
+<area shape="rect" id="node2" href="$unionnk__style__item__data.html" title="{nk_style_item_data\n||}" alt="" coords="35,469,169,547"/>
+<area shape="rect" id="node3" href="$structnk__color.html" title="{nk_color\n||}" alt="" coords="17,329,88,407"/>
+<area shape="rect" id="node5" href="$structnk__image.html" title="{nk_image\n||}" alt="" coords="115,329,193,407"/>
+<area shape="rect" id="node7" href="$unionnk__handle.html" title="{nk_handle\n||}" alt="" coords="216,145,297,223"/>
 </map>

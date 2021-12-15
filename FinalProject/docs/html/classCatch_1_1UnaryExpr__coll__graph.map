@@ -1,5 +1,3 @@
 <map id="Catch::UnaryExpr&lt; LhsT &gt;" name="Catch::UnaryExpr&lt; LhsT &gt;">
-<area shape="rect" id="node1" title=" " alt="" coords="37,389,231,467"/>
-<area shape="rect" id="node2" href="$structCatch_1_1ITransientExpression.html" title=" " alt="" coords="5,160,263,340"/>
-<area shape="rect" id="node3" title=" " alt="" coords="109,5,159,83"/>
+<area shape="rect" id="node2" href="$structCatch_1_1ITransientExpression.html" title="{Catch::ITransientExpression\n||+ isBinaryExpression()\l+ getResult()\l+ streamReconstructedExpression()\l+ ITransientExpression()\l+ ITransientExpression()\l+ ITransientExpression()\l+ operator=()\l+ ~ITransientExpression()\l}" alt="" coords="5,160,237,340"/>
 </map>

@@ -1,5 +1,3 @@
 <map id="Catch::Clara::Detail::ResultValueBase&lt; void &gt;" name="Catch::Clara::Detail::ResultValueBase&lt; void &gt;">
-<area shape="rect" id="node1" title=" " alt="" coords="5,233,203,355"/>
-<area shape="rect" id="node3" href="$classCatch_1_1Clara_1_1Detail_1_1BasicResult.html" title=" " alt="" coords="30,403,178,641"/>
-<area shape="rect" id="node2" href="$classCatch_1_1Clara_1_1Detail_1_1ResultBase.html" title=" " alt="" coords="30,5,178,185"/>
+<area shape="rect" id="node2" href="$classCatch_1_1Clara_1_1Detail_1_1ResultBase.html" title="{Catch::Clara::Detail\l::ResultBase\n|# m_type\l|# ResultBase()\l# ~ResultBase()\l# ResultBase()\l# operator=()\l# ResultBase()\l# operator=()\l# enforceOk()\l}" alt="" coords="25,5,164,185"/>
 </map>

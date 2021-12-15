@@ -1,5 +1,4 @@
 <map id="Catch::Generators::RepeatGenerator&lt; T &gt;" name="Catch::Generators::RepeatGenerator&lt; T &gt;">
-<area shape="rect" id="node1" title=" " alt="" coords="25,403,196,524"/>
-<area shape="rect" id="node2" href="$structCatch_1_1Generators_1_1IGenerator.html" title=" " alt="" coords="37,204,184,355"/>
-<area shape="rect" id="node3" href="$classCatch_1_1Generators_1_1GeneratorUntypedBase.html" title=" " alt="" coords="5,5,216,156"/>
+<area shape="rect" id="node2" href="$structCatch_1_1Generators_1_1IGenerator.html" title="{Catch::Generators::\lIGenerator\&lt; T \&gt;\n||+ ~IGenerator()\l+ IGenerator()\l+ IGenerator()\l+ operator=()\l+ get()\l}" alt="" coords="30,204,167,355"/>
+<area shape="rect" id="node3" href="$classCatch_1_1Generators_1_1GeneratorUntypedBase.html" title="{Catch::Generators::\lGeneratorUntypedBase\n||+ GeneratorUntypedBase()\l+ GeneratorUntypedBase()\l+ operator=()\l+ ~GeneratorUntypedBase()\l+ next()\l}" alt="" coords="5,5,192,156"/>
 </map>

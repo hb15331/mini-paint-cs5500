@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['resulttype_0',['ResultType',['../namespaceCatch_1_1Clara_1_1Detail.html#a58800f68faab69c44d58b2c0038875d1',1,'Catch::Clara::Detail']]]
+  ['showdurations',['ShowDurations',['../namespaceCatch.html#afcb41c3350d3488c0efb02816a8867c8',1,'Catch']]]
 ];

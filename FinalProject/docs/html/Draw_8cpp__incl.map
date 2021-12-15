@@ -1,12 +1,4 @@
 <map id="src/Draw.cpp" name="src/Draw.cpp">
-<area shape="rect" id="node1" title="Draw implementation, all drawing actions are commands." alt="" coords="375,5,480,32"/>
-<area shape="rect" id="node2" href="$Draw_8hpp.html" title="Drawing actions interface." alt="" coords="386,80,469,107"/>
-<area shape="rect" id="node3" title=" " alt="" coords="60,155,243,181"/>
-<area shape="rect" id="node4" title=" " alt="" coords="5,229,196,256"/>
-<area shape="rect" id="node5" title=" " alt="" coords="221,229,365,256"/>
-<area shape="rect" id="node6" title=" " alt="" coords="611,155,686,181"/>
-<area shape="rect" id="node7" title=" " alt="" coords="490,229,570,256"/>
-<area shape="rect" id="node8" title=" " alt="" coords="594,229,653,256"/>
-<area shape="rect" id="node9" href="$Command_8hpp.html" title="Represents an actionable command by the user." alt="" coords="369,155,486,181"/>
-<area shape="rect" id="node10" title=" " alt="" coords="389,229,466,256"/>
+<area shape="rect" id="node2" href="$Draw_8hpp.html" title="Drawing actions interface. " alt="" coords="410,80,489,107"/>
+<area shape="rect" id="node10" href="$Command_8hpp.html" title="Represents an actionable command by the user. " alt="" coords="441,155,548,181"/>
 </map>

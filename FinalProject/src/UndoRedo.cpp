@@ -9,6 +9,7 @@
 #include "UndoRedo.hpp"
 
 /*!	\brief Undo object constructor, takes command as param.
+ * \param command_description word describing the Undo/Redo
  * \return Undo object.
  */
 UndoRedo::UndoRedo(std::string command_description)
@@ -39,10 +40,15 @@ std::vector<sf::Packet> UndoRedo::Serialize() const {
   return vec;
 }
 
+/*! Returns false because undos/redos are never part of a larger command
+ * \return false
+ */
 bool UndoRedo::IsComponent() const { return false; }
 
 /*! \brief 	The isEqual method compares the command with another command
  *object.
+ * \param other Command to compare to
+ * \return true if equal commands, false otherwise
  */
 bool UndoRedo::IsEqual(const Command &other) {
   const UndoRedo *another = dynamic_cast<const UndoRedo *>(&other);
@@ -50,15 +56,17 @@ bool UndoRedo::IsEqual(const Command &other) {
          m_command_description == another->m_command_description;
 }
 
-/*!	\brief Executes operation, taking image reference as param.
+/*!	\brief Undos aren't executed in this manner so do nothing
  * \return True
  */
 bool UndoRedo::Execute(sf::Image &image) { return true; }
 
-/*!	\brief Undoes operation, taking image reference as param.
+/*!	\brief Undos can't be undone. Interesting possible extension is making undos themselves
+ * undoable. Emacs does this, and it essentially functions as a redo but prevents you from
+ * ever losing the redo stack if you add a new command after undoing.
  * \return True
  */
 bool UndoRedo::Undo(sf::Image &image) { return true; }
 
-/*! \brief inverts the command for undoing purposes*/
+/*! \brief Unused */
 void UndoRedo::Invert() {}

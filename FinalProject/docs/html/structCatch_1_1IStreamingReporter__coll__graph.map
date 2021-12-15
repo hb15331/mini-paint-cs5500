@@ -1,5 +1,3 @@
 <map id="Catch::IStreamingReporter" name="Catch::IStreamingReporter">
-<area shape="rect" id="node1" title=" " alt="" coords="5,300,207,700"/>
-<area shape="rect" id="node2" href="$structCatch_1_1ReporterPreferences.html" title="By setting up its preferences, a reporter can modify Catch2&#39;s behaviour in some regards,..." alt="" coords="6,160,206,237"/>
-<area shape="rect" id="node3" title=" " alt="" coords="81,5,131,83"/>
+<area shape="rect" id="node2" href="$structCatch_1_1ReporterPreferences.html" title="By setting up its preferences, a reporter can modify Catch2&#39;s behaviour in some regards, e.g. " alt="" coords="5,160,191,237"/>
 </map>

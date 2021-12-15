@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['parseresulttype_0',['ParseResultType',['../namespaceCatch_1_1Clara.html#aaef02c0376384b6e869e40b3dcc33f61',1,'Catch::Clara']]]
+  ['resulttype',['ResultType',['../namespaceCatch_1_1Clara_1_1Detail.html#a58800f68faab69c44d58b2c0038875d1',1,'Catch::Clara::Detail']]]
 ];

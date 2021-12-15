@@ -1,4 +1,5 @@
 <map id="Catch::Benchmark::Environment&lt; Clock &gt;" name="Catch::Benchmark::Environment&lt; Clock &gt;">
-<area shape="rect" id="node1" title=" " alt="" coords="5,160,237,252"/>
-<area shape="rect" id="node2" title=" " alt="" coords="34,5,209,83"/>
+<area shape="rect" id="node2" href="$structCatch_1_1Benchmark_1_1EnvironmentEstimate.html" title="{Catch::Benchmark::Environment\lEstimate\&lt; FloatDuration\&lt;\l Clock \&gt; \&gt;\n||+ operator EnvironmentEstimate\l\&lt; Duration2 \&gt;()\l}" alt="" coords="175,528,387,649"/>
+<area shape="rect" id="node3" href="$structCatch_1_1Benchmark_1_1OutlierClassification.html" title="{Catch::Benchmark::Outlier\lClassification\n||+ total()\l}" alt="" coords="173,204,351,296"/>
+<area shape="rect" id="node6" href="$structCatch_1_1Benchmark_1_1EnvironmentEstimate.html" title="{Catch::Benchmark::Environment\lEstimate\&lt; Duration \&gt;\n||+ operator EnvironmentEstimate\l\&lt; Duration2 \&gt;()\l}" alt="" coords="5,359,217,465"/>
 </map>

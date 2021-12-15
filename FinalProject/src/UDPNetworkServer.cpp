@@ -6,12 +6,12 @@
  ***********************************************/
 
 #include "UDPNetworkServer.hpp"
-#include "Draw.hpp"
-
-#include <iostream>
 
 /*!	\brief Constructor for UDPNetworkServer object, takes name,
  *      IP address, and port as params.
+ * \param name Name of the server
+ * \param IP address of the server\
+ * \param port to accept connections on
  * \return UDPNetworkServer object
  */
 UDPNetworkServer::UDPNetworkServer(std::string name, sf::IpAddress address,
@@ -21,13 +21,14 @@ UDPNetworkServer::UDPNetworkServer(std::string name, sf::IpAddress address,
   m_port = port;
   std::cout << "Server Constructor" << std::endl;
 }
-/*!	\brief Destructor.
- */
+
+/*!	\brief Destructor */
 UDPNetworkServer::~UDPNetworkServer() {
   std::cout << "Server Destructor" << std::endl;
 }
 
 /*!	\brief Starts server, prepares it to send/receive.
+ * \return 0 if successful, nonzero if not
  */
 int UDPNetworkServer::start() {
   std::cout << "Starting UDP Network server" << std::endl;
@@ -70,6 +71,7 @@ int UDPNetworkServer::start() {
     if (status == sf::Socket::Done) {
 
       try {
+        // Attempt to deserialize the packet; will be null if packet was empty/malformed
         std::shared_ptr<Command> command = Deserialize(packet);
         if (command) {
           if (command->m_command_description == "Undo") {
@@ -77,6 +79,7 @@ int UDPNetworkServer::start() {
             if (command == nullptr) {
               continue;
             }
+            // Attempt to undo all components of the command (if there are any)
             while (command->IsComponent() && !m_undo.empty() &&
                    m_undo.top()->IsComponent()) {
               if (command != nullptr) {
@@ -87,6 +90,7 @@ int UDPNetworkServer::start() {
               }
               command = Undo();
             }
+            // Get the last one
             if (command != nullptr) {
               packet = command->Serialize()[0];
               packet << "Server";
@@ -99,6 +103,7 @@ int UDPNetworkServer::start() {
             if (command == nullptr) {
               continue;
             }
+            // Attempt to redo all components of the command (if there are any)
             while (command->IsComponent() && !m_redo.empty() &&
                    m_redo.top()->IsComponent()) {
               if (command != nullptr) {
@@ -109,6 +114,7 @@ int UDPNetworkServer::start() {
               }
               command = Redo();
             }
+            // Get the last one
             if (command != nullptr) {
               packet = command->Serialize()[0];
               packet << "Server";
@@ -140,22 +146,16 @@ int UDPNetworkServer::start() {
         // messages that come in
         m_activeClients[senderPort] = senderIp;
       }
-      // TODO: What happens if lots of messages are sent all at once?
-      // Could this be a bottleneck?
-      // One such fix, is to have each client joined as a separate thread
-      // for the server which receives messages. 1 socket thus per connection
-      // and then we may then also have a lock on any shared data structures.
-      // m_sentHistory.push_back(in);
+
       std::cout << "total messages: " << m_commands.size() << std::endl;
-      // We create an iterator that looks through our map
-      // For each of our clients we are going to send to them
-      // (including the client that just joined) the message that
-      // was just received.
 
     } else if (status != 1) {
       std::cout << status << std::endl;
     }
 
+    // This is how we handle not sending all messages at once
+    // We keep track of when we last sent a packet and only send a new one if some time
+    // has passed. If the packet is very large we have to wait longer
     std::map<unsigned short, sf::IpAddress>::iterator ipIterator;
     float send_time = .0001f;
     if (!m_packets_to_send.empty() &&
@@ -164,9 +164,6 @@ int UDPNetworkServer::start() {
     }
     if (m_packet_clock.getElapsedTime() > sf::seconds(send_time) &&
         !m_packets_to_send.empty()) {
-
-      std::cout << "size" << m_packets_to_send.front().getDataSize()
-                << std::endl;
 
       m_packet_clock.restart();
       for (ipIterator = m_activeClients.begin();
@@ -181,6 +178,7 @@ int UDPNetworkServer::start() {
           std::cout << "Problem: " << send_status << std::endl;
         }
       }
+      // Confirm successful sending of packet
       m_packets_to_send.pop();
       m_packetHistory.push_back(packet);
     }
@@ -189,6 +187,7 @@ int UDPNetworkServer::start() {
 }
 
 /*!	\brief Stops server, disconnects clients.
+ * \return false
  */
 int UDPNetworkServer::stop() { m_start = false; }
 
@@ -220,7 +219,9 @@ bool UDPNetworkServer::receivePacket() {
   return false;
 }
 
-/*!	\brief Processes joining of client.
+/*!	\brief Processes joining of client
+ * \param clientPort port used by client
+ * \param clientIpAddress IP address used by client
  */
 int UDPNetworkServer::handleClientJoining(unsigned short clientPort,
                                           sf::IpAddress clientIpAddress) {
@@ -236,6 +237,7 @@ int UDPNetworkServer::handleClientJoining(unsigned short clientPort,
     std::cout << "Server sending init packet" << std::endl;
   }
 
+  // Client catch-up code. Send all packets in packet history to the client
   sf::sleep(sf::seconds(1.f));
   std::cout << m_packetHistory.size() << std::endl;
   for (int i = 0; i < m_packetHistory.size(); i++) {
@@ -260,6 +262,7 @@ int UDPNetworkServer::handleClientJoining(unsigned short clientPort,
 
 /*! \brief 	Undo the latest command that has executed.
  *		The command that's been undone can be invoked again in redo.
+ * \return the undoing version of the command
  */
 std::shared_ptr<Command> UDPNetworkServer::Undo() {
   if (!m_undo.empty()) {
@@ -275,6 +278,7 @@ std::shared_ptr<Command> UDPNetworkServer::Undo() {
 
 /*! \brief 	Redo the latest command that has undone.
  *		The command that's been re-done can be invoked again in undo.
+ * \return The redoing version of the command
  */
 std::shared_ptr<Command> UDPNetworkServer::Redo() {
   if (!m_redo.empty()) {
@@ -287,6 +291,7 @@ std::shared_ptr<Command> UDPNetworkServer::Redo() {
 }
 
 /*! \brief Adds command to relevant queue and stack.
+ * \param c Command to add to the queue and undo stack
  */
 void UDPNetworkServer::AddCommand(std::shared_ptr<Command> c) {
   if (c && (m_undo.empty() || !(c->IsEqual(*m_undo.top())))) {
@@ -297,4 +302,4 @@ void UDPNetworkServer::AddCommand(std::shared_ptr<Command> c) {
 
 /*! \brief Processes departure of client (not in use)
  */
-int UDPNetworkServer::handleClientLeaving() {}
+int UDPNetworkServer::handleClientLeaving() { return 0; }

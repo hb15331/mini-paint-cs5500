@@ -46,7 +46,7 @@
 #define WINDOW_WIDTH 600
 #define WINDOW_HEIGHT 400
 
-// Singleton for our Application called 'App'.
+/*! \brief Represents an app that can be used to draw with friends */
 class App {
 private:
   // Member variables
@@ -145,7 +145,7 @@ public:
   void drawLayout(struct nk_context* ctx);
   struct nk_context *m_ctx;
 
-
+  // Callbacks
   void Init(void (*initFunction)(App &));
   void UpdateCallback(void (*updateFunction)(App &));
   void DrawCallback(void (*drawFunction)(App &));

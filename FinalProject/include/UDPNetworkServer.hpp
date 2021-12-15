@@ -8,17 +8,6 @@
 #ifndef UDP_NETWORK_SERVER_HPP
 #define UDP_NETWORK_SERVER_HPP
 
-// We are going to build a UDP Server abstracted
-// over SFML's sockets. We can think of this as a 'Network Manager' class for
-// us. Building a general network manager is really cool, because we can reuse
-// it for other projects. And depending on our domain, we can potentially write
-// this part of the code in a completely different language. Remember, in our
-// networking application we are just passing data back and forth between two
-// endpoints after all.
-
-// Some nice resources to learn more about packet sending can be found:
-// https://www.sfml-dev.org/tutorials/2.5/network-packet.php
-
 // Include our Third-Party SFML Header
 #include <SFML/Network.hpp>
 
@@ -33,12 +22,16 @@
 #include <queue>
 #include <stack>
 
-// Create a non-blocking UDP server
+/*! \brief Non-blocking UDP server used to distribute command packets.
+ * UDP was used to enable easier handling of multiple connections and because
+ * the data to be sent is small and numerous
+ */
 class UDPNetworkServer {
 public:
   // Default Constructor
   UDPNetworkServer(std::string name, sf::IpAddress address,
                    unsigned short port);
+
   // Default Destructor
   ~UDPNetworkServer();
 
@@ -53,23 +46,25 @@ public:
 
   // Start the server
   int start();
+
   // Stops the server from running and removes all clients
   int stop();
+
   //Bind to port
   bool bindToPort();
+
   //Receive a packet
   bool receivePacket();
 
 private:
-
-  // Member variables
   // Queue stores the next command to do.
   std::queue<std::shared_ptr<Command>> m_commands;
+
   // Stack that stores the last action to occur.
   std::stack<std::shared_ptr<Command>> m_undo;
+
   // Stack that stores the last action to redo.
   std::stack<std::shared_ptr<Command>> m_redo;
-  // Color that is selected for painting. Default is red
 
   // What to do when the client joins the server
   int handleClientJoining(unsigned short clientPort,
@@ -79,11 +74,16 @@ private:
 
   // Name for our server
   std::string m_name;
+
   // Flag for if the server should stop.
   bool m_start;
+
   // Ip Address for our UDP Server
   sf::IpAddress m_ipAddress;
+
+  // Port for the server
   unsigned short m_port;
+
   // A UDP Socket for our server
   sf::UdpSocket m_socket;
 
@@ -92,10 +92,13 @@ private:
   // data was received.
   // The second is the IpAddress of the client.
   std::map<unsigned short, sf::IpAddress> m_activeClients;
+
   // A data structure to hold all of the packets
   std::vector<sf::Packet> m_packetHistory;
+
   // Packets not yet sent
   std::queue<sf::Packet> m_packets_to_send;
+
   // Timer to avoid overloading packets
   sf::Clock m_packet_clock;
 };

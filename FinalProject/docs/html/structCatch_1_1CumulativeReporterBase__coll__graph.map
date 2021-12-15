@@ -1,11 +1,6 @@
 <map id="Catch::CumulativeReporterBase" name="Catch::CumulativeReporterBase">
-<area shape="rect" id="node1" title=" " alt="" coords="428,865,659,1133"/>
-<area shape="rect" id="node2" href="$structCatch_1_1IStreamingReporter.html" title=" " alt="" coords="5,315,207,715"/>
-<area shape="rect" id="node3" href="$structCatch_1_1ReporterPreferences.html" title="By setting up its preferences, a reporter can modify Catch2&#39;s behaviour in some regards,..." alt="" coords="6,160,206,237"/>
-<area shape="rect" id="node4" title=" " alt="" coords="81,5,131,83"/>
-<area shape="rect" id="node5" href="$structCatch_1_1IConfig.html" title=" " alt="" coords="231,300,474,729"/>
-<area shape="rect" id="node6" href="$classCatch_1_1Detail_1_1NonCopyable.html" title="Deriving classes become noncopyable and nonmovable." alt="" coords="252,160,453,237"/>
-<area shape="rect" id="node7" title=" " alt="" coords="498,476,589,553"/>
-<area shape="rect" id="node8" title=" " alt="" coords="613,476,687,553"/>
-<area shape="rect" id="node9" title=" " alt="" coords="736,476,839,553"/>
+<area shape="rect" id="node2" href="$structCatch_1_1IStreamingReporter.html" title="{Catch::IStreamingReporter\n||+ ~IStreamingReporter()\l+ getPreferences()\l+ noMatchingTestCases()\l+ reportInvalidArguments()\l+ testRunStarting()\l+ testGroupStarting()\l+ testCaseStarting()\l+ sectionStarting()\l+ benchmarkPreparing()\l+ benchmarkStarting()\l+ benchmarkEnded()\l+ benchmarkFailed()\l+ assertionStarting()\l+ assertionEnded()\l+ sectionEnded()\l+ testCaseEnded()\l+ testGroupEnded()\l+ testRunEnded()\l+ skipTest()\l+ fatalErrorEncountered()\l+ listReporters()\l+ listTests()\l+ listTags()\l}" alt="" coords="9,315,187,715"/>
+<area shape="rect" id="node3" href="$structCatch_1_1ReporterPreferences.html" title="By setting up its preferences, a reporter can modify Catch2&#39;s behaviour in some regards, e.g. " alt="" coords="5,160,191,237"/>
+<area shape="rect" id="node7" href="$structCatch_1_1IConfig.html" title="{Catch::IConfig\n||+ ~IConfig()\l+ allowThrows()\l+ stream()\l+ name()\l+ includeSuccessfulResults()\l+ shouldDebugBreak()\l+ warnAboutMissingAssertions()\l+ warnAboutNoTests()\l+ abortAfter()\l+ showInvisibles()\l+ showDurations()\l+ minDuration()\l+ testSpec()\l+ hasTestFilters()\l+ getTestsOrTags()\l+ runOrder()\l+ rngSeed()\l+ useColour()\l+ getSectionsToRun()\l+ verbosity()\l+ benchmarkNoAnalysis()\l+ benchmarkSamples()\l+ benchmarkConfidenceInterval()\l+ benchmarkResamples()\l+ benchmarkWarmupTime()\l}" alt="" coords="559,300,773,729"/>
+<area shape="rect" id="node8" href="$classCatch_1_1Detail_1_1NonCopyable.html" title="Deriving classes become noncopyable and nonmovable. " alt="" coords="573,160,759,237"/>
 </map>

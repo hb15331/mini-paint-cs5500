@@ -1,5 +1,4 @@
 <map id="Catch::TestCaseTracking::SectionTracker" name="Catch::TestCaseTracking::SectionTracker">
-<area shape="rect" id="node1" title=" " alt="" coords="29,725,208,905"/>
-<area shape="rect" id="node2" href="$classCatch_1_1TestCaseTracking_1_1TrackerBase.html" title=" " alt="" coords="5,380,232,677"/>
-<area shape="rect" id="node3" href="$classCatch_1_1TestCaseTracking_1_1ITracker.html" title=" " alt="" coords="5,5,232,332"/>
+<area shape="rect" id="node2" href="$classCatch_1_1TestCaseTracking_1_1TrackerBase.html" title="{Catch::TestCaseTracking\l::TrackerBase\n|# m_ctx\l# m_parent\l# m_runState\l|+ TrackerBase()\l+ isComplete()\l+ isSuccessfullyCompleted()\l+ isOpen()\l+ hasStarted()\l+ parent()\l+ openChild()\l+ isSectionTracker()\l+ isGeneratorTracker()\l+ open()\l+ close()\l+ fail()\l+ markAsNeedingAnotherRun()\l}" alt="" coords="5,380,209,677"/>
+<area shape="rect" id="node3" href="$classCatch_1_1TestCaseTracking_1_1ITracker.html" title="{Catch::TestCaseTracking\l::ITracker\n|# m_children\l|+ ITracker()\l+ nameAndLocation()\l+ ~ITracker()\l+ isComplete()\l+ isSuccessfullyCompleted()\l+ isOpen()\l+ hasStarted()\l+ parent()\l+ close()\l+ fail()\l+ markAsNeedingAnotherRun()\l+ addChild()\l+ findChild()\l+ hasChildren()\l+ openChild()\l+ isSectionTracker()\l+ isGeneratorTracker()\l}" alt="" coords="5,5,209,332"/>
 </map>

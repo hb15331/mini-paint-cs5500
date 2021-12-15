@@ -1,6 +1,5 @@
 <map id="Catch::ITransientExpression" name="Catch::ITransientExpression">
-<area shape="rect" id="node1" title=" " alt="" coords="179,5,437,200"/>
-<area shape="rect" id="node2" href="$classCatch_1_1BinaryExpr.html" title=" " alt="" coords="5,248,155,457"/>
-<area shape="rect" id="node3" href="$classCatch_1_1MatchExpr.html" title=" " alt="" coords="179,299,437,406"/>
-<area shape="rect" id="node4" href="$classCatch_1_1UnaryExpr.html" title=" " alt="" coords="461,314,656,391"/>
+<area shape="rect" id="node2" href="$classCatch_1_1BinaryExpr.html" title="{Catch::BinaryExpr\&lt;\l LhsT, RhsT \&gt;\n||+ BinaryExpr()\l+ operator&amp;&amp;()\l+ operator\|\|()\l+ operator==()\l+ operator!=()\l+ operator\&gt;()\l+ operator\&lt;()\l+ operator\&gt;=()\l+ operator\&lt;=()\l}" alt="" coords="5,248,143,457"/>
+<area shape="rect" id="node3" href="$classCatch_1_1MatchExpr.html" title="{Catch::MatchExpr\&lt; ArgT,\l MatcherT \&gt;\n||+ MatchExpr()\l+ streamReconstructedExpression()\l}" alt="" coords="167,299,399,406"/>
+<area shape="rect" id="node4" href="$classCatch_1_1UnaryExpr.html" title="{Catch::UnaryExpr\&lt; LhsT \&gt;\n||+ UnaryExpr()\l}" alt="" coords="424,314,604,391"/>
 </map>

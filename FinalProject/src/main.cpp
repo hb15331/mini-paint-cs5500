@@ -35,7 +35,7 @@
  *		global variables, allocating memory,
  *		dynamically loading any libraries, or
  *		doing nothing at all.
- *
+ *  \param appObject the App to initialize
  */
 void initialization(App &appObject) {
   appObject.CreateUDPNetworkClient();
@@ -45,11 +45,12 @@ void initialization(App &appObject) {
 /*! \brief 	The update function for app to handle events.
  * 		This includes mouse and key events for draw, undo, redo
  *		and exit.
- *
+ *  \param appObject the App to update
  */
 void update(App &appObject) {
   // Update our canvas
   sf::Event event;
+  // Checking key events
   while (appObject.GetWindow().pollEvent(event)) {
     if (event.type == sf::Event::KeyPressed) {
       if (event.key.code == sf::Keyboard::Escape) {
@@ -84,6 +85,7 @@ void update(App &appObject) {
         appObject.SetSelectedColor(sf::Color::Cyan);
       }
     }
+
     // handle the keyReleased events
     else if (event.type == sf::Event::KeyReleased &&
              event.key.code == sf::Keyboard::Space) {
@@ -97,9 +99,9 @@ void update(App &appObject) {
     // assuming the image size does not reach INT_MAX
     int xSize = (int)image.getSize().x;
     int ySize = (int)(image.getSize().y);
+    // Bounds check
     if (coordinate.x >= 0 && coordinate.x < xSize && coordinate.y >= 0 &&
         coordinate.y < ySize) {
-      // sf::Color current_color = image.getPixel(coordinate.x, coordinate.y);
       std::vector<std::vector<sf::Color>> current_colors;
       for (int i = -appObject.GetPenSize(); i <= appObject.GetPenSize(); ++i) {
         // We need to keep track of all the old pixels so that we can revert to
@@ -115,22 +117,26 @@ void update(App &appObject) {
         current_colors.push_back(row);
       }
       if (!appObject.IsOnline()) {
+        // If offline we just directly add the command
         appObject.AddCommand(std::make_shared<Draw>(
             coordinate.x, coordinate.y, appObject.GetSelectedColor(),
             current_colors, appObject.GetPenSize()));
       } else {
+        // If online we serialize, send the command and wait to get it back before
+        // actually putting it in the execution queue
         auto command = std::make_shared<Draw>(
             coordinate.x, coordinate.y, appObject.GetSelectedColor(),
             current_colors, appObject.GetPenSize());
+        // Serialize and add the packet to queue of packets to be send
         for (auto packet : command->Serialize()) {
           appObject.AddPacket(packet);
         }
-        // appObject.AddPacket(command->Serialize());
       }
       appObject.ExecuteCommand();
     }
   }
 
+  // Attempt to send a packet to the server
   appObject.SendPacket();
 
   // Capture input from the nuklear GUI
@@ -186,19 +192,14 @@ void update(App &appObject) {
   appObject.pmouseY = appObject.mouseY;
 }
 
-/*! \brief 	The draw call
- *
+/*! \brief Actually draws the image to the screen
+ * \param appObject the object to draw to
  */
 void draw(App &appObject) {
   // Static variable
   static int refreshRate = 0;
   ++refreshRate; // Increment
 
-  // We load into our texture the modified pixels
-  // But we only do so every 10 draw calls to reduce latency of transfer
-  // between the GPU and CPU.
-  // Ask yourself: Could we do better with sf::Clock and refresh once
-  // 	 	 every 'x' frames?
   if (refreshRate > 10) {
     appObject.GetTexture().loadFromImage(appObject.GetImage());
     refreshRate = 0;
@@ -206,7 +207,7 @@ void draw(App &appObject) {
 }
 
 /*! \brief 	The entry point into our program.
- *
+ * \return 0 if successful, not 0 otherwise
  */
 int main() {
   std::string username;

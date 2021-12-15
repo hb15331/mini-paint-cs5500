@@ -1,12 +1,7 @@
 <map id="nk_input" name="nk_input">
-<area shape="rect" id="node1" title=" " alt="" coords="223,580,301,657"/>
-<area shape="rect" id="node2" href="$structnk__keyboard.html" title=" " alt="" coords="149,440,255,517"/>
-<area shape="rect" id="node3" href="$structnk__key.html" title=" " alt="" coords="97,300,165,377"/>
-<area shape="rect" id="node4" title=" " alt="" coords="77,160,116,237"/>
-<area shape="rect" id="node8" href="$structnk__mouse__button.html" title=" " alt="" coords="265,300,403,377"/>
-<area shape="rect" id="node5" title=" " alt="" coords="311,160,392,237"/>
-<area shape="rect" id="node7" href="$structnk__mouse.html" title=" " alt="" coords="319,440,408,517"/>
-<area shape="rect" id="node6" title=" " alt="" coords="190,300,241,377"/>
-<area shape="rect" id="node9" href="$structnk__vec2.html" title=" " alt="" coords="512,160,588,237"/>
-<area shape="rect" id="node10" title=" " alt="" coords="525,5,575,83"/>
+<area shape="rect" id="node2" href="$structnk__keyboard.html" title="{nk_keyboard\n||}" alt="" coords="140,440,236,517"/>
+<area shape="rect" id="node5" href="$structnk__key.html" title="{nk_key\n||}" alt="" coords="87,300,151,377"/>
+<area shape="rect" id="node10" href="$structnk__mouse__button.html" title="{nk_mouse_button\n||}" alt="" coords="247,300,372,377"/>
+<area shape="rect" id="node7" href="$structnk__mouse.html" title="{nk_mouse\n||}" alt="" coords="299,440,382,517"/>
+<area shape="rect" id="node8" href="$structnk__vec2.html" title="{nk_vec2\n||}" alt="" coords="480,160,550,237"/>
 </map>

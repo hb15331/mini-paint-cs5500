@@ -1,13 +1,10 @@
 <map id="Catch::Matchers::StartsWithMatcher" name="Catch::Matchers::StartsWithMatcher">
-<area shape="rect" id="node1" title=" " alt="" coords="255,841,457,948"/>
-<area shape="rect" id="node2" href="$structCatch_1_1Matchers_1_1StringMatcherBase.html" title=" " alt="" coords="227,700,485,792"/>
-<area shape="rect" id="node3" href="$structCatch_1_1Matchers_1_1MatcherBase.html" title=" " alt="" coords="459,559,647,651"/>
-<area shape="rect" id="node4" href="$classCatch_1_1Matchers_1_1MatcherUntypedBase.html" title=" " alt="" coords="493,160,691,355"/>
-<area shape="rect" id="node7" href="$structCatch_1_1Matchers_1_1MatcherBase.html" title=" " alt="" coords="737,404,925,496"/>
-<area shape="rect" id="node5" title=" " alt="" coords="332,13,391,90"/>
-<area shape="rect" id="node10" href="$structCatch_1_1Matchers_1_1CasedString.html" title=" " alt="" coords="255,204,468,311"/>
-<area shape="rect" id="node6" href="$structCatch_1_1Matchers_1_1MatcherMethod.html" title=" " alt="" coords="525,404,713,496"/>
-<area shape="rect" id="node8" href="$structCatch_1_1Matchers_1_1MatcherMethod.html" title=" " alt="" coords="737,211,925,303"/>
-<area shape="rect" id="node9" href="$structCatch_1_1Matchers_1_1MatcherMethod.html" title=" " alt="" coords="737,5,925,97"/>
-<area shape="rect" id="node11" title=" " alt="" coords="5,13,120,90"/>
+<area shape="rect" id="node2" href="$structCatch_1_1Matchers_1_1StringMatcherBase.html" title="{Catch::Matchers::StringMatcherBase\n||+ StringMatcherBase()\l+ describe()\l}" alt="" coords="415,791,653,883"/>
+<area shape="rect" id="node3" href="$structCatch_1_1Matchers_1_1MatcherBase.html" title="{Catch::Matchers::Matcher\lBase\&lt; std::string \&gt;\n||}" alt="" coords="264,649,439,741"/>
+<area shape="rect" id="node4" href="$classCatch_1_1Matchers_1_1MatcherUntypedBase.html" title="{Catch::Matchers::Matcher\lUntypedBase\n||+ MatcherUntypedBase()\l+ MatcherUntypedBase()\l+ MatcherUntypedBase()\l+ operator=()\l+ operator=()\l+ toString()\l# ~MatcherUntypedBase()\l# describe()\l}" alt="" coords="321,160,496,355"/>
+<area shape="rect" id="node8" href="$structCatch_1_1Matchers_1_1MatcherBase.html" title="{Catch::Matchers::Matcher\lBase\&lt; T \&gt;\n||}" alt="" coords="196,495,371,587"/>
+<area shape="rect" id="node10" href="$structCatch_1_1Matchers_1_1CasedString.html" title="{Catch::Matchers::CasedString\n||+ CasedString()\l+ adjustString()\l+ caseSensitivitySuffix()\l}" alt="" coords="571,204,769,311"/>
+<area shape="rect" id="node6" href="$structCatch_1_1Matchers_1_1MatcherMethod.html" title="{Catch::Matchers::Matcher\lMethod\&lt; std::string \&gt;\n||+ match()\l}" alt="" coords="5,379,180,471"/>
+<area shape="rect" id="node7" href="$structCatch_1_1Matchers_1_1MatcherMethod.html" title="{Catch::Matchers::Matcher\lMethod\&lt; ObjectT \&gt;\n||+ match()\l}" alt="" coords="59,5,233,97"/>
+<area shape="rect" id="node9" href="$structCatch_1_1Matchers_1_1MatcherMethod.html" title="{Catch::Matchers::Matcher\lMethod\&lt; T \&gt;\n||+ match()\l}" alt="" coords="123,211,297,303"/>
 </map>

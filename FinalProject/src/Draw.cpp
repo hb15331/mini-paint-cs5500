@@ -8,6 +8,13 @@
 #include "Draw.hpp"
 
 /*!	\brief Constructor for a Draw object.
+ * \param pixelX the x coordinate to draw to
+ * \param pixelY the y coordinate to draw to
+ * \param newColor the color of the pixel
+ * \param image the image to obtain an old pixel colors from
+ * \param pen_size size of the pixel drawn (square of side len 1 + 2*pen_size)
+ * \param inverted whether the draw sets the image pixel to the newColor or previous color
+ * \param is_component whether the draw is part of a larger command
  * \return New Draw object.
  */
 Draw::Draw(int pixelX, int pixelY, const sf::Color &newColor, sf::Image &image,
@@ -28,8 +35,15 @@ Draw::Draw(int pixelX, int pixelY, const sf::Color &newColor, sf::Image &image,
   }
 }
 
-/*!	\brief Constructor for a Draw object. Used for transmission of commands,
- * as it does not include a reference to an image. \return New Draw object.
+/*!	\brief Constructor for a Draw object.
+ * \param pixelX the x coordinate to draw to
+ * \param pixelY the y coordinate to draw to
+ * \param newColor the color of the pixel
+ * \param oldColors old pixel colors directly given
+ * \param pen_size size of the pixel drawn (square of side len 1 + 2*pen_size)
+ * \param inverted whether the draw sets the image pixel to the newColor or previous color
+ * \param is_component whether the draw is part of a larger command
+ * \return New Draw object.
  */
 Draw::Draw(int pixelX, int pixelY, const sf::Color &newColor,
            const std::vector<std::vector<sf::Color>> &oldColors,
@@ -39,6 +53,7 @@ Draw::Draw(int pixelX, int pixelY, const sf::Color &newColor,
       m_is_component(is_component) {}
 
 /*!	\brief Constructor for a Draw object.
+ * \param obj draw object to copy from
  * \return New Draw object.
  */
 Draw::Draw(const Draw &obj)
@@ -49,6 +64,8 @@ Draw::Draw(const Draw &obj)
 /*! \brief 	The isEqual method compares the command with another command
  *object. If the command has the same pixel location and color, the bool value
  *true will be returned. Otherwise false is returned.
+ * \param other The other draw to compare to
+ * \return true if the two draws are equal, false otherwise
  */
 bool Draw::IsEqual(const Command &other) {
   const Draw *another = dynamic_cast<const Draw *>(&other);
@@ -58,6 +75,7 @@ bool Draw::IsEqual(const Command &other) {
 }
 
 /*! \brief 	Executes given command.
+ * \param image the image to draw to
  *  \return Return a bool reflecting success or failure of operation.
  */
 bool Draw::Execute(sf::Image &image) {
@@ -87,6 +105,7 @@ bool Draw::Execute(sf::Image &image) {
 }
 
 /*! \brief 	Undoes last operation/command.
+ * \param image the image to draw to
  * \return Return a bool value reflecting success or failure of operation.
  */
 bool Draw::Undo(sf::Image &image) {
@@ -120,7 +139,7 @@ std::string Draw::ToString() const {
   return ss.str();
 }
 
-/*! \brief Converts the draw into a packet.
+/*! \brief Converts the draw into a packet
  * \return Packet that represents the draw command.
  */
 std::vector<sf::Packet> Draw::Serialize() const {
@@ -148,7 +167,12 @@ std::vector<sf::Packet> Draw::Serialize() const {
   return vec;
 }
 
+/*! \brief Tells whether the draw command is part of a larger series of commands
+ *  This is used for undoing-- When a command to be undone is a component, we keep
+ *  undoing until we reach a non-component command
+ * \return true if the Draw is part of a series of multiple Draws
+ */
 bool Draw::IsComponent() const { return m_is_component; }
 
-/*! \brief inverts the command for undoing purposes*/
+/*! \brief inverts the command for undoing purposes */
 void Draw::Invert() { m_inverted = !m_inverted; }

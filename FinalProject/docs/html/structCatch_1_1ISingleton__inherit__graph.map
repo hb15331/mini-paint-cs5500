@@ -1,4 +1,3 @@
 <map id="Catch::ISingleton" name="Catch::ISingleton">
-<area shape="rect" id="node1" title=" " alt="" coords="77,5,209,83"/>
-<area shape="rect" id="node2" href="$classCatch_1_1Singleton.html" title=" " alt="" coords="5,131,280,237"/>
+<area shape="rect" id="node2" href="$classCatch_1_1Singleton.html" title="{Catch::Singleton\&lt; Singleton\lImplT, InterfaceT, MutableInterfaceT \&gt;\n||+ get()\l+ getMutable()\l}" alt="" coords="5,131,252,237"/>
 </map>

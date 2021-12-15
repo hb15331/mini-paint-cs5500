@@ -1,3 +1,6 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$classCatch_1_1Clara_1_1Detail_1_1TokenStream.html" title=" " alt="" coords="5,5,153,47"/>
+<area shape="rect" id="node1" href="$classCatch_1_1Clara_1_1Detail_1_1ResultBase.html" title="Catch::Clara::Detail\l::ResultBase" alt="" coords="5,39,144,80"/>
+<area shape="rect" id="node2" href="$classCatch_1_1Clara_1_1Detail_1_1ResultValueBase.html" title="Catch::Clara::Detail\l::ResultValueBase\&lt; T \&gt;" alt="" coords="200,5,363,47"/>
+<area shape="rect" id="node4" href="$classCatch_1_1Clara_1_1Detail_1_1ResultValueBase_3_01void_01_4.html" title="Catch::Clara::Detail\l::ResultValueBase\&lt; void \&gt;" alt="" coords="192,71,371,112"/>
+<area shape="rect" id="node3" href="$classCatch_1_1Clara_1_1Detail_1_1BasicResult.html" title="Catch::Clara::Detail\l::BasicResult\&lt; T \&gt;" alt="" coords="419,5,557,47"/>
 </map>

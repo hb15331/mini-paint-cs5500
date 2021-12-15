@@ -4,6 +4,8 @@
  *  @author Alex, Hualin, Jackson and Yufeng
  *  @date   2021-12-13
  ***********************************************/
+
+
 // Project header files
 #include "App.hpp"
 #define NK_IMPLEMENTATION
@@ -253,7 +255,7 @@ void App::Loop() {
   }
 }
 
-/*! Creates and saves the udp client */
+/*! \brief Creates and saves the udp client */
 void App::CreateUDPNetworkClient() {
   // FIXME Ideally in a real world application, a client would
   // never have to 'guess' which ports are open on a server.

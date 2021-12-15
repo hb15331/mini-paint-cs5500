@@ -1,7 +1,6 @@
 <map id="Catch::Matchers::PredicateMatcher&lt; T, Predicate &gt;" name="Catch::Matchers::PredicateMatcher&lt; T, Predicate &gt;">
-<area shape="rect" id="node1" title=" " alt="" coords="69,545,265,667"/>
-<area shape="rect" id="node2" href="$structCatch_1_1Matchers_1_1MatcherBase.html" title=" " alt="" coords="73,404,261,496"/>
-<area shape="rect" id="node3" href="$classCatch_1_1Matchers_1_1MatcherUntypedBase.html" title=" " alt="" coords="5,160,204,355"/>
-<area shape="rect" id="node4" href="$structCatch_1_1Matchers_1_1MatcherMethod.html" title=" " alt="" coords="228,211,416,303"/>
-<area shape="rect" id="node5" href="$structCatch_1_1Matchers_1_1MatcherMethod.html" title=" " alt="" coords="228,5,416,97"/>
+<area shape="rect" id="node2" href="$structCatch_1_1Matchers_1_1MatcherBase.html" title="{Catch::Matchers::Matcher\lBase\&lt; T \&gt;\n||}" alt="" coords="63,404,237,496"/>
+<area shape="rect" id="node3" href="$classCatch_1_1Matchers_1_1MatcherUntypedBase.html" title="{Catch::Matchers::Matcher\lUntypedBase\n|# m_cachedToString\l|+ MatcherUntypedBase()\l+ MatcherUntypedBase()\l+ MatcherUntypedBase()\l+ operator=()\l+ operator=()\l+ toString()\l# ~MatcherUntypedBase()\l# describe()\l}" alt="" coords="5,160,180,355"/>
+<area shape="rect" id="node4" href="$structCatch_1_1Matchers_1_1MatcherMethod.html" title="{Catch::Matchers::Matcher\lMethod\&lt; T \&gt;\n||+ match()\l}" alt="" coords="204,211,379,303"/>
+<area shape="rect" id="node5" href="$structCatch_1_1Matchers_1_1MatcherMethod.html" title="{Catch::Matchers::Matcher\lMethod\&lt; ObjectT \&gt;\n||+ match()\l}" alt="" coords="204,5,379,97"/>
 </map>

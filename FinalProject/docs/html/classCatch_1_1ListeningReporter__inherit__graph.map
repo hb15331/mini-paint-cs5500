@@ -1,4 +1,3 @@
 <map id="Catch::ListeningReporter" name="Catch::ListeningReporter">
-<area shape="rect" id="node1" title=" " alt="" coords="5,453,207,853"/>
-<area shape="rect" id="node2" href="$structCatch_1_1IStreamingReporter.html" title=" " alt="" coords="5,5,207,405"/>
+<area shape="rect" id="node2" href="$structCatch_1_1IStreamingReporter.html" title="{Catch::IStreamingReporter\n|# m_preferences\l|+ ~IStreamingReporter()\l+ getPreferences()\l+ noMatchingTestCases()\l+ reportInvalidArguments()\l+ testRunStarting()\l+ testGroupStarting()\l+ testCaseStarting()\l+ sectionStarting()\l+ benchmarkPreparing()\l+ benchmarkStarting()\l+ benchmarkEnded()\l+ benchmarkFailed()\l+ assertionStarting()\l+ assertionEnded()\l+ sectionEnded()\l+ testCaseEnded()\l+ testGroupEnded()\l+ testRunEnded()\l+ skipTest()\l+ fatalErrorEncountered()\l+ listReporters()\l+ listTests()\l+ listTags()\l}" alt="" coords="5,5,184,405"/>
 </map>

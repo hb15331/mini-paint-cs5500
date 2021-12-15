@@ -1,5 +1,4 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$structCatch_1_1ISingleton.html" title=" " alt="" coords="5,5,137,32"/>
-<area shape="rect" id="node2" href="$classCatch_1_1Singleton.html" title=" " alt="" coords="185,23,460,65"/>
-<area shape="rect" id="node3" href="$classSingletonImplT.html" title=" " alt="" coords="11,56,131,83"/>
+<area shape="rect" id="node1" href="$structCatch_1_1IMutableEnumValuesRegistry.html" title="Catch::IMutableEnumValues\lRegistry" alt="" coords="5,5,195,47"/>
+<area shape="rect" id="node2" href="$classCatch_1_1Detail_1_1EnumValuesRegistry.html" title="Catch::Detail::EnumValues\lRegistry" alt="" coords="243,5,424,47"/>
 </map>
