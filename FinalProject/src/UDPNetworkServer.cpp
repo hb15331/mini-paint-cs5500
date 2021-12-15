@@ -157,13 +157,16 @@ int UDPNetworkServer::start() {
     }
 
     std::map<unsigned short, sf::IpAddress>::iterator ipIterator;
-    float send_time = .01f;
-    if (!m_packets_to_send.empty() && m_packets_to_send.front().getDataSize() > 10000) {
+    float send_time = .0001f;
+    if (!m_packets_to_send.empty() &&
+        m_packets_to_send.front().getDataSize() > 10000) {
       send_time = .3f;
     }
     if (m_packet_clock.getElapsedTime() > sf::seconds(send_time) &&
         !m_packets_to_send.empty()) {
 
+      std::cout << "size" << m_packets_to_send.front().getDataSize()
+                << std::endl;
 
       m_packet_clock.restart();
       for (ipIterator = m_activeClients.begin();
@@ -179,7 +182,7 @@ int UDPNetworkServer::start() {
         }
       }
       m_packets_to_send.pop();
-        m_packetHistory.push_back(packet);
+      m_packetHistory.push_back(packet);
     }
 
   } // End our server while loop
@@ -238,9 +241,12 @@ int UDPNetworkServer::handleClientJoining(unsigned short clientPort,
   for (int i = 0; i < m_packetHistory.size(); i++) {
     std::cout << "Sending newbie packet" << std::endl;
     // Working around udp buffer restrictions
-    sf::sleep(sf::seconds(.2f));
+    sf::sleep(sf::seconds(.02f));
     if (i % 10 == 0) {
       sf::sleep(sf::seconds(.3f));
+    }
+    if (m_packetHistory.at(i).getDataSize() > 10000) {
+      sf::sleep(sf::seconds(.15f));
     }
     int send_status =
         m_socket.send(m_packetHistory.at(i), clientIpAddress, clientPort);
