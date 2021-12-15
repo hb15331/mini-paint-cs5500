@@ -26,8 +26,10 @@ Command::~Command() {}
 /*! \brief Converts the Command into a packet
  * \return Packet form of Command
  */
-sf::Packet Command::Serialize() const {
+std::vector<sf::Packet> Command::Serialize() const {
   sf::Packet packet;
   packet << "Command";
-  return packet;
+  std::vector<sf::Packet> vec;
+  vec.push_back(packet);
+  return vec;
 }

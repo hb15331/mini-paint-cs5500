@@ -10,24 +10,22 @@
 /*!	\brief Constructor for a Serializer object, takes command as param.
  * \return Return Serializer object.
  */
-sf::Packet Serializer::Serialize (Command command) {
+sf::Packet Serializer::Serialize(Command command) {
   return command.Serialize();
 }
 
 /*!	\brief Serialize a command and create a packet.
  * \return Packet.
  */
-sf::Packet Serializer::Serialize (std::string command_str) {
+sf::Packet Serializer::Serialize(std::string command_str) {
   sf::Packet packet;
   switch (command_str) {
   case "Undo":
     packet << "Undo";
-    break
-  case "Redo":
-    packet << "Redo";
+    break case "Redo" : packet << "Redo";
     break;
   default:
-    throw std::runtime_error ("Unknown command string '" + command_str + "'");
+    throw std::runtime_error("Unknown command string '" + command_str + "'");
   }
   return packet;
 }

@@ -47,6 +47,8 @@ int UDPNetworkServer::start() {
   // We are going to create a non-blocking UDP server..
   m_socket.setBlocking(false);
 
+  m_packet_clock.restart();
+
   // Start a server that will run forever
   while (m_start) {
 
@@ -72,21 +74,50 @@ int UDPNetworkServer::start() {
         if (command) {
           if (command->m_command_description == "Undo") {
             command = Undo();
-            if (command) {
-              packet = command->Serialize();
+            if (command == nullptr) {
+              continue;
+            }
+            while (command->IsComponent() && !m_undo.empty() &&
+                   m_undo.top()->IsComponent()) {
+              if (command != nullptr) {
+                packet = command->Serialize()[0];
+                packet << "Server";
+                std::cout << "Undoing" << std::endl;
+                m_packets_to_send.push(packet);
+              }
+              command = Undo();
+            }
+            if (command != nullptr) {
+              packet = command->Serialize()[0];
               packet << "Server";
               std::cout << "Undoing" << std::endl;
+              m_packets_to_send.push(packet);
             }
 
           } else if (command->m_command_description == "Redo") {
             command = Redo();
-            if (command) {
-              packet = command->Serialize();
+            if (command == nullptr) {
+              continue;
+            }
+            while (command->IsComponent() && !m_redo.empty() &&
+                   m_redo.top()->IsComponent()) {
+              if (command != nullptr) {
+                packet = command->Serialize()[0];
+                packet << "Server";
+                std::cout << "Redoing" << std::endl;
+                m_packets_to_send.push(packet);
+              }
+              command = Redo();
+            }
+            if (command != nullptr) {
+              packet = command->Serialize()[0];
               packet << "Server";
+              std::cout << "Redoing" << std::endl;
+              m_packets_to_send.push(packet);
             }
           } else {
             AddCommand(command);
-
+            m_packets_to_send.push(packet);
           }
           if (command) {
             std::cout << *command << std::endl;
@@ -120,19 +151,32 @@ int UDPNetworkServer::start() {
       // For each of our clients we are going to send to them
       // (including the client that just joined) the message that
       // was just received.
-      std::map<unsigned short, sf::IpAddress>::iterator ipIterator;
-      for (ipIterator = m_activeClients.begin();
-           ipIterator != m_activeClients.end(); ipIterator++) {
-        int send_status = m_socket.send(packet, ipIterator->second, ipIterator->first);
-        if(send_status == sf::Socket::Done) {
+
+    } else if (status != 1) {
+      std::cout << status << std::endl;
+    }
+    std::map<unsigned short, sf::IpAddress>::iterator ipIterator;
+
+    for (ipIterator = m_activeClients.begin();
+         ipIterator != m_activeClients.end(); ipIterator++) {
+      float send_time = .01f;
+      if (!m_packets_to_send.empty() &&
+          m_packets_to_send.front().getDataSize() > 10000) {
+        send_time = .3f;
+      }
+      if (m_packet_clock.getElapsedTime() > sf::seconds(send_time) &&
+          !m_packets_to_send.empty()) {
+        m_packet_clock.restart();
+        int send_status = m_socket.send(m_packets_to_send.front(),
+                                        ipIterator->second, ipIterator->first);
+        m_packets_to_send.pop();
+        m_packetHistory.push_back(packet);
+        if (send_status == sf::Socket::Done) {
 
         } else if (send_status != 1) {
           std::cout << "Problem: " << send_status << std::endl;
         }
       }
-      m_packetHistory.push_back(packet);
-    } else if (status != 1) {
-      std::cout << status << std::endl;
     }
 
   } // End our server while loop
@@ -176,7 +220,8 @@ int UDPNetworkServer::handleClientJoining(unsigned short clientPort,
                                           sf::IpAddress clientIpAddress) {
   std::cout << "Updating new client" << std::endl;
   sf::Packet stringpacket;
-  stringpacket << "String" << "Initialize";
+  stringpacket << "String"
+               << "Initialize";
 
   if (m_socket.send(stringpacket, clientIpAddress, clientPort) !=
       sf::Socket::Done) {
@@ -188,9 +233,15 @@ int UDPNetworkServer::handleClientJoining(unsigned short clientPort,
   sf::sleep(sf::seconds(1.f));
   std::cout << m_packetHistory.size() << std::endl;
   for (int i = 0; i < m_packetHistory.size(); i++) {
-    sf::sleep(sf::seconds(.1f));
-    int send_status = m_socket.send(m_packetHistory.at(i), clientIpAddress, clientPort);
-    if(send_status == sf::Socket::Done) {
+    std::cout << "Sending newbie packet" << std::endl;
+    // Working around udp buffer restrictions
+    sf::sleep(sf::seconds(.2f));
+    if (i % 10 == 0) {
+      sf::sleep(sf::seconds(.3f));
+    }
+    int send_status =
+        m_socket.send(m_packetHistory.at(i), clientIpAddress, clientPort);
+    if (send_status == sf::Socket::Done) {
 
     } else if (send_status != 1) {
       std::cout << "Problem: " << send_status << std::endl;
@@ -201,10 +252,8 @@ int UDPNetworkServer::handleClientJoining(unsigned short clientPort,
 /*! \brief 	Undo the latest command that has executed.
  *		The command that's been undone can be invoked again in redo.
  */
-std::shared_ptr<Command> UDPNetworkServer::Undo()
-{
-  if (!m_undo.empty())
-  {
+std::shared_ptr<Command> UDPNetworkServer::Undo() {
+  if (!m_undo.empty()) {
     std::shared_ptr<Command> undo = m_undo.top();
     undo->Invert();
     m_redo.push(undo);
@@ -218,12 +267,10 @@ std::shared_ptr<Command> UDPNetworkServer::Undo()
 /*! \brief 	Redo the latest command that has undone.
  *		The command that's been re-done can be invoked again in undo.
  */
-std::shared_ptr<Command> UDPNetworkServer::Redo()
-{
-  if (!m_redo.empty())
-  {
+std::shared_ptr<Command> UDPNetworkServer::Redo() {
+  if (!m_redo.empty()) {
     m_undo.push(m_redo.top());
-    auto redo =  m_redo.top();
+    auto redo = m_redo.top();
     m_redo.pop();
     redo->Invert();
     return redo;
@@ -233,7 +280,7 @@ std::shared_ptr<Command> UDPNetworkServer::Redo()
 /*! \brief Adds command to relevant queue and stack.
  */
 void UDPNetworkServer::AddCommand(std::shared_ptr<Command> c) {
-  if(c && (m_undo.empty() || !(c->IsEqual(*m_undo.top())))) {
+  if (c && (m_undo.empty() || !(c->IsEqual(*m_undo.top())))) {
     m_commands.push(c);
     m_undo.push(c);
   }

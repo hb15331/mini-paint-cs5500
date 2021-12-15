@@ -35,9 +35,9 @@ inline std::shared_ptr<Command> Deserialize(sf::Packet packet) {
       return nullptr;
     }
     //std::cout << "COLOR DESERIALIZE\n";
-    for(int row_idx = 0; row_idx < old_color_rows; ++row_idx) {
+    for(size_t row_idx = 0; row_idx < old_color_rows; ++row_idx) {
       std::vector<sf::Color> row;
-      for(int col_idx = 0; col_idx < old_color_cols; ++col_idx) {
+      for(size_t col_idx = 0; col_idx < old_color_cols; ++col_idx) {
         uint32_t color_int;
         if (!(packet >> color_int)) {
           std::cout << "Old color deserialization error at row " << row_idx << ", col " << col_idx << std::endl;
@@ -65,6 +65,34 @@ inline std::shared_ptr<Command> Deserialize(sf::Packet packet) {
     std::string out;
     std::cout << "String packet\n" << out << std::endl;
     return nullptr;
+  } else if (cmd_type == "ClearComponent") {
+    std::string trash;
+    packet >> trash;
+    if (!(packet >> xcoord >> ycoord >> pen_size >> inverted >> curr_color >> old_color_rows >> old_color_cols) &&
+      packet.getDataSize() > 0) {
+      std::cout << "Error deserializing packet " << packet
+              << " size: " << packet.getDataSize() << std::endl;
+      return nullptr;
+    }
+    //std::cout << "COLOR DESERIALIZE\n";
+    for(size_t row_idx = 0; row_idx < old_color_rows; ++row_idx) {
+      std::vector<sf::Color> row;
+      for(size_t col_idx = 0; col_idx < old_color_cols; ++col_idx) {
+        uint32_t color_int;
+        if (!(packet >> color_int)) {
+          std::cout << "Old color deserialization error at row " << row_idx << ", col " << col_idx << std::endl;
+          return nullptr;
+        }
+        row.push_back(sf::Color(color_int));
+        //std::cout << color_int << " ";
+      }
+      //std::cout << std::endl;
+      prev_colors.push_back(row);
+    }
+    packet >> username;
+
+    return (std::make_shared<Draw>(xcoord, ycoord, sf::Color(curr_color),
+                                   prev_colors, pen_size, inverted, true));
   } else {
     return nullptr;
   }
