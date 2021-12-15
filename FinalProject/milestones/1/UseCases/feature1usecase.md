@@ -1,4 +1,3 @@
-**TODO for your task:** Edit the Text in italics with your text.
 
 <hr>
 
@@ -6,25 +5,25 @@
 
 <hr>
 
-**Use Case**: *use-case-title*
+**Use Case**: Launch Client
 
-**Primary Actor**: *primary-actor*
+**Primary Actor**: User
 
-**Goal in Context**: *the aim of the primary-actor in a particular circumstance*
+**Goal in Context**: Start the client paint program 
 
-**Preconditions**: *conditions that must be true before the scenario may play out*
+**Preconditions**: User has built from source code and have access to the executable file "App".
 
-**Trigger**: *an action or actions that initiate the scenario*
+**Trigger**: running "App" file from CLI interface. i.e. using command line "./App"
   
-**Scenario**: *an enumerated list of steps describing the actions and interactions of the primary actor with the system*
+**Scenario**: User navigates to the binary file directory from CLI interface, and runs the client-side program.
  
-**Exceptions**: *errors or faults that may occur during the scenario. Should include remedy/corrective action taken by the primary actor*
+**Exceptions**: App may not build or run. Check system environment to make sure all required libraries and files are present.
 
-**Priority**: *relative importance of this use case compared to other use cases*
+**Priority**: Medium
 
 **When available**: *the targeted release that covers this use case*
 
-**Channel to actor**: *the means through which the primary actor and the system communicate*
+**Channel to actor**: Keyboard, Mouse, Monitor, IO devices.
 
 **Secondary Actor**: *any other actors – people or systems – that may be involved in the scenario*
 
