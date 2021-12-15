@@ -13,6 +13,7 @@
 #include <iostream>
 #include <memory>
 #include <string>
+#include <vector>
 
 #include <SFML/Network.hpp>
 #include <SFML/Graphics/Image.hpp>
@@ -33,17 +34,19 @@ public:
   // undo stack.
   // Each parameters also takes in a string name. While this may not be optimal,
   // it allows us to easily debug what each command is doing in a textual form.
-  virtual bool Execute() = 0;
   virtual bool Execute(sf::Image &image) = 0;
   virtual bool Undo(sf::Image &image) = 0;
 
-  // Inverts the command
+  //! Inverts the command
   virtual void Invert() = 0;
 
   //! Converts the command to a user-readable string
   virtual std::string ToString() const;
 
-  virtual sf::Packet Serialize() const;
+  virtual std::vector<sf::Packet> Serialize() const;
+
+  //! Is the command part of a larger set of subsequent/precequent commands
+  virtual bool IsComponent() const = 0;
 };
 
 /*! \brief Allow Commands to be printed with std::cout */

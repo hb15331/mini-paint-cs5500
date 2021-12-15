@@ -94,8 +94,10 @@ private:
   std::map<unsigned short, sf::IpAddress> m_activeClients;
   // A data structure to hold all of the packets
   std::vector<sf::Packet> m_packetHistory;
-  // A data structure to hold all of the messages sent
-  std::vector<std::string> m_sentHistory;
+  // Packets not yet sent
+  std::queue<sf::Packet> m_packets_to_send;
+  // Timer to avoid overloading packets
+  sf::Clock m_packet_clock;
 };
 
 #endif
