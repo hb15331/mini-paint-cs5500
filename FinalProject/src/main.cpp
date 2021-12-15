@@ -86,7 +86,7 @@ void update(App &appObject) {
     }
     // handle the keyReleased events
     else if (event.type == sf::Event::KeyReleased &&
-        event.key.code == sf::Keyboard::Space) {
+             event.key.code == sf::Keyboard::Space) {
       appObject.ClearTheCanvas(appObject.GetSelectedColor());
     }
   }

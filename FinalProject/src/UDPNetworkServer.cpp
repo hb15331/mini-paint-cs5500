@@ -155,28 +155,31 @@ int UDPNetworkServer::start() {
     } else if (status != 1) {
       std::cout << status << std::endl;
     }
-    std::map<unsigned short, sf::IpAddress>::iterator ipIterator;
 
-    for (ipIterator = m_activeClients.begin();
-         ipIterator != m_activeClients.end(); ipIterator++) {
-      float send_time = .01f;
-      if (!m_packets_to_send.empty() &&
-          m_packets_to_send.front().getDataSize() > 10000) {
-        send_time = .3f;
-      }
-      if (m_packet_clock.getElapsedTime() > sf::seconds(send_time) &&
-          !m_packets_to_send.empty()) {
-        m_packet_clock.restart();
+    std::map<unsigned short, sf::IpAddress>::iterator ipIterator;
+    float send_time = .01f;
+    if (!m_packets_to_send.empty() && m_packets_to_send.front().getDataSize() > 10000) {
+      send_time = .3f;
+    }
+    if (m_packet_clock.getElapsedTime() > sf::seconds(send_time) &&
+        !m_packets_to_send.empty()) {
+
+
+      m_packet_clock.restart();
+      for (ipIterator = m_activeClients.begin();
+           ipIterator != m_activeClients.end(); ipIterator++) {
+
         int send_status = m_socket.send(m_packets_to_send.front(),
                                         ipIterator->second, ipIterator->first);
-        m_packets_to_send.pop();
-        m_packetHistory.push_back(packet);
+
         if (send_status == sf::Socket::Done) {
 
         } else if (send_status != 1) {
           std::cout << "Problem: " << send_status << std::endl;
         }
       }
+      m_packets_to_send.pop();
+        m_packetHistory.push_back(packet);
     }
 
   } // End our server while loop
